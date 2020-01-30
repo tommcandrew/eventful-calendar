@@ -11,6 +11,7 @@ const View = ({
   setShowWholeYear,
   setMonth,
   handleShowModalContainer,
+  handleShowMyEvents,
   holidays
 }) => {
   const { dateObj } = useContext(DateContext);
@@ -18,6 +19,8 @@ const View = ({
   if (showWholeYear) {
     return (
       <>
+        <YearHeader setYear={setYear} handleShowMyEvents={handleShowMyEvents} />
+
         <div className="year-view">
           {yearArray.map((mappedMonth, index) => (
             <Month

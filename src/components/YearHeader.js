@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
 import { DateContext } from "../context/DateContext";
 
-const YearHeader = ({ setYear }) => {
+const YearHeader = ({ setYear, handleShowMyEvents }) => {
   const { dateObj } = useContext(DateContext);
 
   return (
     <div className="year-header">
-      <div className="year-header__links"></div>
+      <div className="year-header__links">
+        <button onClick={handleShowMyEvents}>My Events</button>
+      </div>
       <div className="year-header__content">
         <button
           className="year-header__arrow"

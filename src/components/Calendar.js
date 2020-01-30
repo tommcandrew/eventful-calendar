@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
-import createYearArray from "../util/createYearArray";
+import createYearArray from "../utils/createYearArray";
 import View from "./View";
 import { DateContext } from "../context/DateContext";
 import Modal from "./Modal";
 import axios from "axios";
+import { DragDropContext } from "react-beautiful-dnd";
 import { EventsContext } from "../context/EventsContext";
 
 const Calendar = () => {
@@ -86,26 +87,28 @@ const Calendar = () => {
   if (dateObj && yearArray) {
     return (
       <>
-        <div className="calendar">
-          <View
-            yearArray={yearArray}
-            setMonthView={setMonthView}
-            setYear={setYear}
-            showWholeYear={showWholeYear}
-            setShowWholeYear={setShowWholeYear}
-            setMonth={setMonth}
-            handleShowModalContainer={handleShowModalContainer}
-            handleShowMyEvents={handleShowMyEvents}
-            holidays={holidays}
-          />
-        </div>
-        {showModalContainer && (
-          <Modal
-            closeModals={closeModals}
-            showMyEvents={showMyEvents}
-            setShowMyEvents={setShowMyEvents}
-          />
-        )}
+        <DragDropContext onDragEnd={onDragEnd}>
+          <div className="calendar">
+            <View
+              yearArray={yearArray}
+              setMonthView={setMonthView}
+              setYear={setYear}
+              showWholeYear={showWholeYear}
+              setShowWholeYear={setShowWholeYear}
+              setMonth={setMonth}
+              handleShowModalContainer={handleShowModalContainer}
+              handleShowMyEvents={handleShowMyEvents}
+              holidays={holidays}
+            />
+          </div>
+          {showModalContainer && (
+            <Modal
+              closeModals={closeModals}
+              showMyEvents={showMyEvents}
+              setShowMyEvents={setShowMyEvents}
+            />
+          )}
+        </DragDropContext>
       </>
     );
   } else {

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { EventsContext } from "../context/EventsContext";
+import { Droppable, Draggable } from "react-beautiful-dnd";
 
 const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
   const d = new Date();
@@ -153,18 +154,38 @@ const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
             )}
 
             {!yearView && (
-              <div className="cell__event-titles">
-                {!yearView &&
-                  abbreviatedEventTitles &&
-                  abbreviatedEventTitles.map((title, index) => (
-                    <div
-                      key={index + "event-title"}
-                      className="cell__event-title"
-                    >
-                      {title}
-                    </div>
-                  ))}
-              </div>
+              <Droppable droppableId={fullDayDateString}>
+                {(provided, snapshot) => (
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
+                    className="cell__event-titles"
+                  >
+                    {!yearView &&
+                      abbreviatedEventTitles &&
+                      abbreviatedEventTitles.map((title, index) => (
+                        <Draggable
+                          index={index}
+                          draggableId={title}
+                          key={title}
+                        >
+                          {(provided, snapshot) => (
+                            <div
+                              {...provided.dragHandleProps}
+                              {...provided.draggableProps}
+                              ref={provided.innerRef}
+                              key={index + "event-title"}
+                              className="cell__event-title"
+                            >
+                              {title}
+                            </div>
+                          )}
+                        </Draggable>
+                      ))}
+                    {provided.placeholder}
+                  </div>
+                )}
+              </Droppable>
             )}
           </div>
         </>

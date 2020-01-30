@@ -33,6 +33,4 @@ const createMonthArray = (currentYear, month) => {
   return monthArray;
 };
 
-console.log(createMonthArray(2019, 8));
-
 export default createMonthArray;

@@ -7,9 +7,10 @@ const User = new Schema({
   password: { type: String },
   events: [
     {
+      id: String,
       title: String,
       time: String,
-      location: String,
+      timePeriod: String,
       date: Number,
       month: Number,
       year: Number

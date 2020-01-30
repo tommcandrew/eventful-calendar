@@ -53,8 +53,8 @@ app.get("/events", verifyToken, (req, res) => {
 });
 
 app.post("/addevent", verifyToken, (req, res) => {
-  const { title, time, timePeriod, date, month, year } = req.body;
-  const event = { title, time, timePeriod, date, month, year };
+  const { title, time, timePeriod, date, month, year, id } = req.body;
+  const event = { title, time, timePeriod, date, month, year, id };
   const email = req.tokenData.user.email;
   User.findOne({ email })
     .then(user => {
@@ -114,7 +114,7 @@ app.post("/moveevent/:id", verifyToken, (req, res) => {
   const { newDay } = req.body;
   const email = req.tokenData.user.email;
   User.updateOne(
-    { email: email, "events._id": id },
+    { email: email, "events.id": id },
     {
       $set: {
         "events.$.date": newDay
@@ -175,15 +175,11 @@ app.post("/register", (req, res) => {
   console.log("creating new user");
 
   bcrypt.genSalt(10, (err, salt) => {
-    console.log("hashing passsword");
     bcrypt.hash(user.password, salt, (err, hash) => {
       user.password = hash;
-      console.log("about to save user");
       user.save().then(user => {
-        console.log("new user created");
         console.log(user);
         jwt.sign({ user }, "secretkey", (err, token) => {
-          console.log("signing token");
           res.send(token);
         });
       });

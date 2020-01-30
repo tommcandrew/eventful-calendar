@@ -4,13 +4,15 @@ import EventsContext from "../context/EventsContext";
 const MyEvents = ({ handleShowEventInfo }) => {
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [selectedEvents, setSelectedEvents] = useState(null);
-  const { events } = useContext(EventsContext);
+  const { eventsLocal } = useContext(EventsContext);
 
   useEffect(() => {
-    const filteredEvents = events.filter(event => event.year === selectedYear);
+    const filteredEvents = eventsLocal.filter(
+      event => event.year === selectedYear
+    );
     setSelectedEvents(filteredEvents);
     //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedYear, events]);
+  }, [selectedYear, eventsLocal]);
 
   return (
     <div className="my-events">

@@ -7,7 +7,7 @@ const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
   const currentMonth = d.getMonth();
   const currentDate = d.getDate();
   const currentYear = d.getFullYear();
-  const { events } = useContext(EventsContext);
+  const { eventsLocal } = useContext(EventsContext);
   const dayDateString = day.date.toString();
   const dayMonthString = day.month.toString();
   const dayYearString = day.year.toString();
@@ -16,15 +16,15 @@ const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
 
   const eventsOnThisDay = [];
 
-  if (events && events.length > 0) {
+  if (eventsLocal && eventsLocal.length > 0) {
     if (day.date !== -1) {
-      for (let i = 0; i < events.length; i++) {
+      for (let i = 0; i < eventsLocal.length; i++) {
         if (
-          events[i].month === day.month &&
-          events[i].date === day.date &&
-          events[i].year === day.year
+          eventsLocal[i].month === day.month &&
+          eventsLocal[i].date === day.date &&
+          eventsLocal[i].year === day.year
         ) {
-          eventsOnThisDay.push(events[i]);
+          eventsOnThisDay.push(eventsLocal[i]);
         }
       }
     }
@@ -78,6 +78,10 @@ const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
         return event;
       }
     });
+    //only space for 5 events in cell so, if more, just say how many there are (user can click to see list)
+    if (abbreviatedEvents.length > 5) {
+      abbreviatedEvents = [{ title: `${abbreviatedEvents.length} events...` }];
+    }
   }
 
   let holidayNames;
@@ -162,8 +166,8 @@ const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
                       abbreviatedEvents.map((event, index) => (
                         <Draggable
                           index={index}
-                          draggableId={event._id}
-                          key={event.title}
+                          draggableId={event.id}
+                          key={event.id}
                         >
                           {(provided, snapshot) => (
                             <div

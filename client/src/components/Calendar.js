@@ -15,11 +15,14 @@ const Calendar = () => {
   const [holidays, setHolidays] = useState([]);
 
   const { dateObj, setDateObj } = useContext(DateContext);
-  const { moveEvent } = useContext(EventsContext);
+  const { moveEventLocal } = useContext(EventsContext);
 
   const onDragEnd = result => {
     const { draggableId, destination } = result;
-    moveEvent(draggableId, destination.droppableId);
+    if (!destination) {
+      return;
+    }
+    moveEventLocal(draggableId, destination.droppableId);
   };
 
   useEffect(() => {

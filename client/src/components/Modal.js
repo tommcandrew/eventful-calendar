@@ -6,6 +6,7 @@ import EventInfo from "./EventInfo";
 import EventsContext from "../context/EventsContext";
 import DateContext from "../context/DateContext";
 import MyEvents from "./MyEvents";
+import uuid from "uuid";
 
 const Modal = ({ closeModals, showMyEvents, setShowMyEvents }) => {
   const [showDayEvents, setShowDayEvents] = useState(!showMyEvents && true);
@@ -14,22 +15,25 @@ const Modal = ({ closeModals, showMyEvents, setShowMyEvents }) => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [viaMyEvents, setViaMyEvents] = useState(null);
 
-  const { events, addEvent, editEvent, deleteEvent } = useContext(
-    EventsContext
-  );
+  const {
+    eventsLocal,
+    addEventLocal,
+    editEventLocal,
+    deleteEventLocal
+  } = useContext(EventsContext);
   const { dateObj } = useContext(DateContext);
 
   const eventsOnThisDay = [];
 
-  if (events !== null) {
+  if (eventsLocal !== null) {
     if (dateObj.date || dateObj.date === 0) {
-      for (let i = 0; i < events.length; i++) {
+      for (let i = 0; i < eventsLocal.length; i++) {
         if (
-          events[i].month === dateObj.month &&
-          events[i].date === dateObj.date &&
-          events[i].year === dateObj.year
+          eventsLocal[i].month === dateObj.month &&
+          eventsLocal[i].date === dateObj.date &&
+          eventsLocal[i].year === dateObj.year
         ) {
-          eventsOnThisDay.push(events[i]);
+          eventsOnThisDay.push(eventsLocal[i]);
         }
       }
     }
@@ -63,7 +67,7 @@ const Modal = ({ closeModals, showMyEvents, setShowMyEvents }) => {
     setShowEventInfo(true);
   };
 
-  //event CRUD operations
+  //EVENT CRUD OPERATIONS
 
   //ADD & EDIT
   const handleFormSubmit = (e, titleInput, timeInput, timePeriodInput) => {
@@ -73,6 +77,8 @@ const Modal = ({ closeModals, showMyEvents, setShowMyEvents }) => {
     const date = dateObj.date;
     const month = dateObj.month;
     const year = dateObj.year;
+    //generating id here so don't have to wait for db to provide one
+    const id = uuid.v4();
     if (title === "") {
       alert("you must provide a title");
       return;
@@ -80,21 +86,21 @@ const Modal = ({ closeModals, showMyEvents, setShowMyEvents }) => {
     if (time === "") {
       timePeriod = "";
     }
-
     const newEvent = {
       title,
       time,
       timePeriod,
       date,
       month,
-      year
+      year,
+      id
     };
 
     if (selectedEvent) {
-      editEvent(newEvent, selectedEvent._id);
+      editEventLocal(newEvent, selectedEvent._id);
       setSelectedEvent(null);
     } else {
-      addEvent(newEvent);
+      addEventLocal(newEvent);
     }
     setShowEventForm(false);
     setShowDayEvents(true);
@@ -102,7 +108,7 @@ const Modal = ({ closeModals, showMyEvents, setShowMyEvents }) => {
 
   //DELETE
   const handleDeleteEvent = () => {
-    deleteEvent(selectedEvent._id);
+    deleteEventLocal(selectedEvent._id);
     setShowEventInfo(false);
     setSelectedEvent(null);
     setShowDayEvents(true);

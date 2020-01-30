@@ -88,16 +88,35 @@ a {
   width: 20%;
 }
 
-.year-header__links {
+.year-header__links--left {
   display: flex;
   position: absolute;
   top: 0;
   bottom: 0;
 }
 
-.year-header__links button {
-  margin: 0 10px;
+.year-header__links--left button {
+  margin: 3px 0 0 15px;
   font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.year-header__links--right {
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin-right: 5px;
+}
+
+.year-header__links--right img {
+  width: 40px;
+  cursor: pointer;
+}
+
+.year-header__links--left img {
+  width: 30px;
   cursor: pointer;
 }
 
@@ -472,7 +491,7 @@ a {
 .modal__content {
   /* position: absolute;
   top: 10%; */
-  width: 35%;
+  min-width: 35%;
   min-height: 50%;
   max-height: 80%;
   /* transform: translate(50%); */
@@ -905,6 +924,14 @@ a {
 .radio-groups-wrapper {
   display: flex;
   justify-content: space-between;
-  width: 70%;
-  margin: 0 auto;
+  /* width: 70%; */
+  margin: 20px 10px 0 10px;
+}
+
+.settings-wrapper {
+  padding: 10px;
+  margin: 0 10px;
+}
+
+.radio-groups-wrapper .all-options {
 }

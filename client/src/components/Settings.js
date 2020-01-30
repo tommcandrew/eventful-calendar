@@ -8,12 +8,14 @@ const Settings = ({ closeModals }) => {
         <div className="settings-wrapper">
           <h1>Settings</h1>
           <div className="radio-groups-wrapper">
-            <RadioGroup options={["Light", "Dark"]} category="Theme" />
-
             <RadioGroup
               options={["English", "Español", "Français", "Türkçe"]}
               category="Language"
             />
+
+            <RadioGroup options={["Light", "Dark"]} category="Theme" />
+
+            <RadioGroup options={["True", "False"]} category="Show Holidays" />
           </div>
           <button onClick={closeModals} className="button button-done">
             Done

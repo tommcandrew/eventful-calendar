@@ -6,6 +6,7 @@ import ModalContainer from "./ModalContainer";
 import axios from "axios";
 import { DragDropContext } from "react-beautiful-dnd";
 import EventsContext from "../context/EventsContext";
+import HolidaysContext from "../context/HolidaysContext";
 
 const Calendar = () => {
   const [yearArray, setYearArray] = useState(null);
@@ -14,9 +15,19 @@ const Calendar = () => {
   const [showMyEvents, setShowMyEvents] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [holidays, setHolidays] = useState([]);
-
   const { dateObj, setDateObj } = useContext(DateContext);
   const { moveEventLocal } = useContext(EventsContext);
+  const { showHolidays } = useContext(HolidaysContext);
+
+  useEffect(() => {
+    if (showHolidays === "False") {
+      setHolidays([]);
+    }
+  }, [showHolidays]);
+
+  useEffect(() => {
+    console.log("app mounted");
+  }, []);
 
   const onDragEnd = result => {
     const { draggableId, destination } = result;
@@ -31,19 +42,21 @@ const Calendar = () => {
       const yearArray = createYearArray(dateObj.year);
       setYearArray(yearArray);
 
-      axios
-        .get(
-          `https://calendarific.com/api/v2/holidays?&api_key=bb4313c99b956fe470dc7c996850b622abbae5fc&country=Uk&year=${dateObj.year}`
-        )
-        .then(res => {
-          setHolidays(
-            res.data.response.holidays.filter(
-              holiday =>
-                holiday.type.includes("National holiday") ||
-                holiday.type.includes("Common local holiday")
-            )
-          );
-        });
+      if (showHolidays === "True") {
+        axios
+          .get(
+            `https://calendarific.com/api/v2/holidays?&api_key=bb4313c99b956fe470dc7c996850b622abbae5fc&country=Uk&year=${dateObj.year}`
+          )
+          .then(res => {
+            setHolidays(
+              res.data.response.holidays.filter(
+                holiday =>
+                  holiday.type.includes("National holiday") ||
+                  holiday.type.includes("Common local holiday")
+              )
+            );
+          });
+      }
     }
   }, [dateObj]);
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import createYearArray from "../utils/createYearArray";
 import View from "./View";
 import DateContext from "../context/DateContext";
-import Modal from "./Modal";
+import ModalContainer from "./ModalContainer";
 import axios from "axios";
 import { DragDropContext } from "react-beautiful-dnd";
 import EventsContext from "../context/EventsContext";
@@ -12,6 +12,7 @@ const Calendar = () => {
   const [showWholeYear, setShowWholeYear] = useState(true);
   const [showModalContainer, setShowModalContainer] = useState(false);
   const [showMyEvents, setShowMyEvents] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
   const [holidays, setHolidays] = useState([]);
 
   const { dateObj, setDateObj } = useContext(DateContext);
@@ -47,9 +48,13 @@ const Calendar = () => {
   }, [dateObj]);
 
   const closeModals = e => {
-    if (e.target.classList.contains("modal")) {
+    if (
+      e.target.classList.contains("modal") ||
+      e.target.classList.contains("button-done")
+    ) {
       setShowModalContainer(false);
       setShowMyEvents(false);
+      setShowSettings(false);
     }
   };
 
@@ -87,6 +92,11 @@ const Calendar = () => {
     setShowModalContainer(true);
   };
 
+  const handleShowSettings = () => {
+    setShowSettings(true);
+    setShowModalContainer(true);
+  };
+
   if (dateObj && yearArray) {
     return (
       <>
@@ -101,14 +111,17 @@ const Calendar = () => {
               setMonth={setMonth}
               handleShowModalContainer={handleShowModalContainer}
               handleShowMyEvents={handleShowMyEvents}
+              handleShowSettings={handleShowSettings}
               holidays={holidays}
             />
           </div>
           {showModalContainer && (
-            <Modal
+            <ModalContainer
               closeModals={closeModals}
               showMyEvents={showMyEvents}
               setShowMyEvents={setShowMyEvents}
+              showSettings={showSettings}
+              setShowSettings={setShowSettings}
             />
           )}
         </DragDropContext>

@@ -3,7 +3,11 @@ import AuthContext from "../context/AuthContext";
 import { withRouter, Redirect, Link } from "react-router-dom";
 
 const Home = () => {
-  const { authenticated } = useContext(AuthContext);
+  const { authenticated, loading } = useContext(AuthContext);
+
+  if (loading) {
+    return <div className="loader"></div>;
+  }
 
   if (authenticated) {
     return <Redirect to="/calendar" />;

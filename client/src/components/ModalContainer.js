@@ -7,8 +7,14 @@ import EventsContext from "../context/EventsContext";
 import DateContext from "../context/DateContext";
 import MyEvents from "./MyEvents";
 import uuid from "uuid";
+import Settings from "./Settings";
 
-const Modal = ({ closeModals, showMyEvents, setShowMyEvents }) => {
+const ModalContainer = ({
+  closeModals,
+  showMyEvents,
+  setShowMyEvents,
+  showSettings
+}) => {
   const [showDayEvents, setShowDayEvents] = useState(!showMyEvents && true);
   const [showEventForm, setShowEventForm] = useState(false);
   const [showEventInfo, setShowEventInfo] = useState(false);
@@ -117,7 +123,7 @@ const Modal = ({ closeModals, showMyEvents, setShowMyEvents }) => {
   return (
     <div className="modal" onClick={closeModals}>
       <div className="modal__content">
-        {!showMyEvents && <ModalHeader />}
+        {!showMyEvents && !showSettings && <ModalHeader />}
         {showDayEvents && (
           <DayEvents
             handleShowForm={handleShowForm}
@@ -125,6 +131,7 @@ const Modal = ({ closeModals, showMyEvents, setShowMyEvents }) => {
             eventsOnThisDay={eventsOnThisDay}
           />
         )}
+
         {showEventForm && (
           <EventForm
             setShowEventForm={setShowEventForm}
@@ -146,9 +153,10 @@ const Modal = ({ closeModals, showMyEvents, setShowMyEvents }) => {
           />
         )}
         {showMyEvents && <MyEvents handleShowEventInfo={handleShowEventInfo} />}
+        {showSettings && <Settings />}
       </div>
     </div>
   );
 };
 
-export default Modal;
+export default ModalContainer;

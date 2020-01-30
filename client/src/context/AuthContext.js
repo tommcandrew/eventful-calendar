@@ -34,7 +34,6 @@ export const AuthContextProvider = props => {
   }, []);
 
   const login = (e, cb) => {
-    console.log("login");
     const email = e.target.email.value;
     const password = e.target.password.value;
     axios.post("/login", { email, password }).then(res => {

@@ -1,8 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import weekdays from "../data/weekdays";
 import Day from "./Day";
 import MonthHeader from "./MonthHeader";
 import DateContext from "../context/DateContext";
+import LanguageContext from "../context/LanguageContext";
+import ThemeContext from "../context/ThemeContext";
 
 const Month = ({
   monthArray,
@@ -15,23 +17,18 @@ const Month = ({
   holidays
 }) => {
   const { dateObj } = useContext(DateContext);
+  const { language } = useContext(LanguageContext);
+  const { theme } = useContext(ThemeContext);
+
+  const weekdaysArray = weekdays[language];
 
   return (
     <>
       <div
         className={`month ${
           yearView ? "month--year-view" : "month--month-view"
-        }`}
+        }${theme === "Dark" ? " dark" : " light"}`}
       >
-        {/* {!yearView && (
-          <button
-            className="month__back-button"
-            onClick={() => setShowWholeYear(true)}
-          >
-            &#8678;
-          </button>
-        )} */}
-
         <div
           className={`month__content ${
             yearView
@@ -48,7 +45,7 @@ const Month = ({
           />
           <div className="month__weekdays">
             {yearView &&
-              weekdays.short.map((weekday, index) => (
+              weekdaysArray.short.map((weekday, index) => (
                 <button
                   className="month__weekdays__weekday"
                   key={index + "weekday"}
@@ -57,7 +54,7 @@ const Month = ({
                 </button>
               ))}
             {!yearView &&
-              weekdays.long.map((weekday, index) => (
+              weekdaysArray.long.map((weekday, index) => (
                 <button
                   className="month__weekdays__weekday"
                   key={index + "weekday"}

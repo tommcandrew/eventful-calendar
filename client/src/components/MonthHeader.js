@@ -1,15 +1,18 @@
 import React, { useContext } from "react";
 import months from "../data/months";
 import DateContext from "../context/DateContext";
+import LanguageContext from "../context/LanguageContext";
 
 const MonthHeader = ({ monthIndex, yearView, setMonth, setShowWholeYear }) => {
   const { dateObj } = useContext(DateContext);
+  const { language } = useContext(LanguageContext);
+  const monthsArray = months[language];
 
   if (yearView) {
     return (
       <div className="month-header">
         <div className="month-header__content">
-          <button className="month-name">{months[monthIndex]}</button>
+          <button className="month-name">{monthsArray[monthIndex]}</button>
         </div>
       </div>
     );
@@ -30,7 +33,7 @@ const MonthHeader = ({ monthIndex, yearView, setMonth, setShowWholeYear }) => {
             &#11207;
           </button>
           <div className="month-header__date-info">
-            <button className="month-name">{months[monthIndex]}</button>
+            <button className="month-name">{monthsArray[monthIndex]}</button>
             <button className="year-name">{dateObj.year}</button>
           </div>
 

@@ -65,7 +65,16 @@ a {
   display: flex;
   position: relative;
   /* background: rgb(255, 255, 98); */
+}
+
+.year-header--light {
   background: rgb(166, 236, 238);
+  transition: all 400ms ease-out;
+}
+
+.year-header--dark {
+  background: rgb(4, 92, 33);
+  transition: all 400ms ease-out;
 }
 
 .year-header__content,
@@ -124,7 +133,32 @@ a {
   cursor: pointer;
 }
 
-.month--year-view:hover {
+.light {
+  background-color: white;
+  transition: all 400ms ease-out;
+}
+
+.dark {
+  background-color: #1b2938;
+  transition: all 400ms ease-out;
+}
+
+.dark .cell__date {
+  color: #ddd;
+  transition: all 400ms ease-out;
+}
+
+.dark .month-name {
+  color: #ddd;
+  transition: all 400ms ease-out;
+}
+
+.dark .month__weekdays__weekday {
+  color: #ddd;
+  transition: all 400ms ease-out;
+}
+
+.light:hover {
   background: #eee;
 }
 
@@ -279,9 +313,16 @@ a {
   cursor: pointer;
 }
 
-.month--year-view .cell--with-event {
+.light .cell--with-event {
   position: relative;
   background: rgb(255, 207, 207);
+  transition: all 400ms ease-out;
+}
+
+.dark .cell--with-event {
+  position: relative;
+  background: black;
+  transition: all 400ms ease-out;
 }
 
 .cell__hover-messages {
@@ -370,14 +411,30 @@ a {
   border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
-.month--year-view .cell--with-holiday {
-  /* background: rgb(224, 224, 248); */
+.light .cell--with-holiday {
   background: rgb(170, 255, 170);
+  transition: all 400ms ease-out;
 }
 
-.cell--today {
-  /* background: rgb(255, 255, 98); */
+.dark .cell--with-holiday {
+  background: rgb(43, 109, 43);
+  transition: all 400ms ease-out;
+}
+
+.light .cell--today {
   background: rgb(166, 236, 238);
+  transition: all 400ms ease-out;
+}
+
+.dark .cell--today {
+  background: white;
+  color: black;
+  transition: all 400ms ease-out;
+}
+
+.dark .cell--today .cell__date {
+  color: black;
+  transition: all 400ms ease-out;
 }
 
 .month--month-view .hideRow {
@@ -397,7 +454,7 @@ a {
   right: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.5);
-  animation: fade-in 300ms ease-in-out;
+  animation: fade-in 200ms ease-in-out;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -807,4 +864,47 @@ a {
 
 .register__login-link a {
   color: rgb(107, 107, 199);
+}
+
+.radio-button-wrapper {
+  margin: 10px 0;
+  clear: both;
+}
+
+.radio-button-wrapper > * {
+  display: inline;
+  margin: 10px 0;
+}
+
+.radio-button-wrapper span {
+  font-size: 1.5rem;
+  float: left;
+}
+
+.radio-button {
+  border: 2px solid black;
+  min-width: 25px;
+  min-height: 25px;
+  border-radius: 50%;
+  float: right;
+}
+
+.radio-button.checked {
+  background: rgb(107, 107, 199);
+}
+
+.radio-button.unchecked:hover {
+  background: rgb(178, 178, 235);
+}
+
+.all-options {
+  width: 20%;
+  min-width: 120px;
+}
+
+.radio-groups-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  margin: 0 auto;
 }

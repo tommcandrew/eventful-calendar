@@ -1,0 +1,122 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body,
+#root {
+  height: 100vh;
+}
+
+.app {
+  display: flex;
+  height: 100%;
+}
+
+.calendar {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.year-view {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 9;
+}
+
+.month--year-view {
+  outline: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.month--year-view {
+  flex-basis: calc(100% / 4);
+  display: flex;
+}
+
+.month--year-view * {
+  cursor: pointer;
+}
+
+.month--month-view {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: rgb(245, 246, 248);
+}
+
+.month--month-view .month__cells {
+  background: white;
+}
+
+.month--month-view .month__weekdays {
+  background: #eee;
+}
+
+.month__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.month__content--month-view {
+  width: 100%;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.month__weekdays {
+  display: flex;
+  width: 100%;
+}
+
+.month__cells {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
+
+.cell {
+  flex-basis: calc(100% / 7);
+  position: relative;
+}
+
+.cell--blank {
+  color: transparent;
+}
+
+.cell--day {
+  cursor: pointer;
+}
+
+.month--year-view .cell__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* important for date to be in center */
+  height: 100%;
+}
+
+.month--month-view .cell__content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.month--month-view .cell__date {
+  font-size: 1rem;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.month__weekdays {
+  display: flex;
+  width: 100%;
+}

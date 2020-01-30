@@ -2,14 +2,24 @@ import React, { useEffect, useState, useContext } from "react";
 import createYearArray from "../util/createYearArray";
 import View from "./View";
 import { DateContext } from "../context/DateContext";
+import Modal from "./Modal";
 import axios from "axios";
+import { EventsContext } from "../context/EventsContext";
 
 const Calendar = () => {
   const [yearArray, setYearArray] = useState(null);
   const [showWholeYear, setShowWholeYear] = useState(true);
+  const [showModalContainer, setShowModalContainer] = useState(false);
+  const [showMyEvents, setShowMyEvents] = useState(false);
   const [holidays, setHolidays] = useState([]);
 
   const { dateObj, setDateObj } = useContext(DateContext);
+  const { moveEvent } = useContext(EventsContext);
+
+  const onDragEnd = result => {
+    const { draggableId, destination } = result;
+    moveEvent(draggableId, destination.droppableId);
+  };
 
   useEffect(() => {
     if (dateObj) {
@@ -32,6 +42,13 @@ const Calendar = () => {
     }
   }, [dateObj]);
 
+  const closeModals = e => {
+    if (e.target.classList.contains("modal")) {
+      setShowModalContainer(false);
+      setShowMyEvents(false);
+    }
+  };
+
   const setMonthView = monthIndex => {
     setDateObj({ ...dateObj, month: monthIndex });
     setShowWholeYear(false);
@@ -53,6 +70,19 @@ const Calendar = () => {
     setDateObj({ ...dateObj, month: monthIndex });
   };
 
+  const handleShowModalContainer = e => {
+    const selectedDate = parseInt(
+      e.currentTarget.firstChild.firstChild.textContent
+    );
+    setDateObj({ ...dateObj, date: selectedDate });
+    setShowModalContainer(true);
+  };
+
+  const handleShowMyEvents = () => {
+    setShowMyEvents(true);
+    setShowModalContainer(true);
+  };
+
   if (dateObj && yearArray) {
     return (
       <>
@@ -64,9 +94,18 @@ const Calendar = () => {
             showWholeYear={showWholeYear}
             setShowWholeYear={setShowWholeYear}
             setMonth={setMonth}
+            handleShowModalContainer={handleShowModalContainer}
+            handleShowMyEvents={handleShowMyEvents}
             holidays={holidays}
           />
         </div>
+        {showModalContainer && (
+          <Modal
+            closeModals={closeModals}
+            showMyEvents={showMyEvents}
+            setShowMyEvents={setShowMyEvents}
+          />
+        )}
       </>
     );
   } else {

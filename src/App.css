@@ -132,14 +132,14 @@ button {
 }
 
 /* .month--month-view .year-header__arrow {
-    font-size: 3.5rem;
-    cursor: pointer;
-    position: absolute;
-    width: 10%;
-    bottom: 0;
-    top: 0;
-    height: 100%;
-  } */
+  font-size: 3.5rem;
+  cursor: pointer;
+  position: absolute;
+  width: 10%;
+  bottom: 0;
+  top: 0;
+  height: 100%;
+} */
 
 .month-header__arrow--left {
   left: 0;
@@ -196,8 +196,8 @@ button {
 }
 
 /* .month__content--month-view {
-    border: 2px solid black;
-  } */
+  border: 2px solid black;
+} */
 
 .month__content {
   display: flex;
@@ -224,8 +224,8 @@ button {
 }
 
 /* .month__content--month-view .month__weekdays__weekday {
-    font-size: 150%;
-  } */
+  font-size: 150%;
+} */
 
 .month__weekdays__weekday {
   flex-basis: calc(100% / 7);
@@ -240,16 +240,16 @@ button {
 }
 
 /* .month__content--month-view .month__cells {
-    padding: 0 60px;
-  } */
+  padding: 0 60px;
+} */
 
 /* .month__back-button {
-    position: absolute;
-    top: -10px;
-    left: 20px;
-    font-size: 4rem;
-    cursor: pointer;
-  } */
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  font-size: 4rem;
+  cursor: pointer;
+} */
 
 .month__content--month-view .month-header {
   /* background: rgb(255, 255, 98); */
@@ -302,7 +302,7 @@ button {
 .month--month-view .cell {
   outline: 1px solid rgba(0, 0, 0, 0.3);
   /* margin-left: -1px;
-    margin-bottom: -1px; */
+  margin-bottom: -1px; */
 }
 
 .month--month-view .cell--day:hover {
@@ -413,7 +413,7 @@ button {
 
 .modal__content {
   /* position: absolute;
-    top: 10%; */
+  top: 10%; */
   width: 35%;
   min-height: 50%;
   max-height: 80%;

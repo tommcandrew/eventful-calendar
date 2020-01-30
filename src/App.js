@@ -2,12 +2,12 @@ import React from "react";
 import "./App.css";
 import Calendar from "./components/Calendar";
 
-const App = () => {
+function App() {
   return (
-    <div>
+    <div className="app">
       <Calendar />
     </div>
   );
-};
+}
 
 export default App;

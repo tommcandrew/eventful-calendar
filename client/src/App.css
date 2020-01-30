@@ -23,6 +23,10 @@ button {
   outline: none;
 }
 
+a {
+  text-decoration: none;
+}
+
 .button {
   /* background: rgb(255, 255, 98); */
   background: rgb(166, 236, 238);
@@ -121,7 +125,7 @@ button {
 }
 
 .month--year-view:hover {
-  background: rgb(252, 252, 148);
+  background: #eee;
 }
 
 .month--year-view .month-name {
@@ -654,6 +658,9 @@ button {
   background: rgb(107, 107, 199);
   height: 100vh;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .home-header {
@@ -663,7 +670,12 @@ button {
 .home-content {
   padding: 50px;
   text-align: center;
-  margin-top: 30px;
+  width: 40%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-top: -200px;
 }
 
 .home-header h1 {
@@ -679,7 +691,6 @@ button {
 .loader {
   border: 16px solid #f3f3f3;
   border-top: 16px solid rgb(166, 236, 238);
-
   border-radius: 50%;
   width: 120px;
   height: 120px;
@@ -687,4 +698,113 @@ button {
   position: fixed;
   top: 40%;
   left: 45%;
+}
+
+.home__buttons {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.login,
+.register {
+  width: 100%;
+  background: white;
+}
+
+.login__header,
+.register__header {
+  padding: 10px;
+  background: rgb(107, 107, 199);
+}
+
+.login__header h1 {
+  color: white;
+  margin-left: 10px;
+}
+
+.register__header h1 {
+  color: white;
+  margin-left: 10px;
+}
+
+.login__content,
+.register__content {
+  width: 40%;
+  margin: 0 auto;
+  min-height: 60%;
+  margin-top: 100px;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 6px;
+  background: white;
+}
+
+.login__content h2 {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 2rem;
+  padding: 10px 0;
+}
+
+.register__content h2 {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 2rem;
+  padding: 10px 0;
+}
+
+.login__content form {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  height: 60%;
+  align-items: center;
+  margin: 0 auto;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+
+.register__content form {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  height: 60%;
+  align-items: center;
+  margin: 0 auto;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+
+.login__content form input {
+  padding: 5px 10px;
+  width: 100%;
+  margin: 5px 0;
+
+  font-size: 1.2rem;
+}
+
+.register__content form input {
+  padding: 5px 10px;
+  width: 100%;
+  margin: 5px 0;
+  font-size: 1.2rem;
+}
+
+.login__register-link,
+.register__login-link {
+  width: 60%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 10px;
+  margin-top: 40px;
+}
+
+.login__register-link a {
+  color: rgb(107, 107, 199);
+}
+
+.register__login-link a {
+  color: rgb(107, 107, 199);
 }

@@ -3,6 +3,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Calendar from "./components/Calendar";
 import Home from "./components/Home";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Login from "./components/Login";
+import Register from "./components/Register";
+
 import "./App.css";
 
 const App = () => {
@@ -11,6 +14,8 @@ const App = () => {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
           <ProtectedRoute path="/calendar" component={Calendar} />
         </Switch>
       </BrowserRouter>

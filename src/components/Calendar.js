@@ -9,8 +9,10 @@ const Calendar = () => {
   const [showWholeYear, setShowWholeYear] = useState(true);
 
   useEffect(() => {
-    const yearArray = createYearArray();
-    setYearArray(yearArray);
+    if (dateObj) {
+      const yearArray = createYearArray(dateObj.year);
+      setYearArray(yearArray);
+    }
   }, [dateObj]);
 
   //CHANGING VIEW

@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { DateContext } from "../context/DateContext";
 import weekdays from "../data/weekdays";
+import Day from "./Day";
 
-const Month = ({ monthIndex, setMonthView, yearView }) => {
+const Month = ({ monthArray, monthIndex, setMonthView, yearView }) => {
+  const { dateObj } = useContext(DateContext);
+
   return (
     <>
       <div
@@ -39,7 +43,20 @@ const Month = ({ monthIndex, setMonthView, yearView }) => {
               ))}
           </div>
 
-          <div className="month__cells"></div>
+          <div className="month__cells">
+            {monthArray &&
+              monthArray.map((day, index) => {
+                return (
+                  <Day
+                    day={day}
+                    monthIndex={dateObj.date}
+                    index={index}
+                    key={index + "day"}
+                    yearView={yearView}
+                  />
+                );
+              })}
+          </div>
         </div>
       </div>
     </>

@@ -8,6 +8,8 @@ const createMonthArray = (currentYear, month) => {
   }
   //generate blanks for start of month
   for (let i = 0; i < firstDayOfMonth - 1; i++) {
+    debugger;
+
     //giving blanks value of -1 to avoid CSS issues later (so content size in all cells is equal)
     monthArray.push({ date: -1, month: month, year: currentYear });
   }

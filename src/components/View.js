@@ -1,8 +1,18 @@
 import React, { useContext } from "react";
-import { DateContext } from "../context/DateContext";
 import Month from "./Month";
+import YearHeader from "./YearHeader";
+import { DateContext } from "../context/DateContext";
 
-const View = ({ setMonth, setMonthView, showWholeYear, yearArray }) => {
+const View = ({
+  yearArray,
+  setMonthView,
+  setYear,
+  showWholeYear,
+  setShowWholeYear,
+  setMonth,
+  handleShowModalContainer,
+  holidays
+}) => {
   const { dateObj } = useContext(DateContext);
 
   if (showWholeYear) {
@@ -11,11 +21,12 @@ const View = ({ setMonth, setMonthView, showWholeYear, yearArray }) => {
         <div className="year-view">
           {yearArray.map((mappedMonth, index) => (
             <Month
-              key={index + "month"}
-              monthIndex={index}
               monthArray={mappedMonth}
-              setMonthView={setMonthView}
               yearView={true}
+              setMonthView={setMonthView}
+              monthIndex={index}
+              key={index + "month"}
+              holidays={holidays}
             />
           ))}
         </div>
@@ -24,10 +35,13 @@ const View = ({ setMonth, setMonthView, showWholeYear, yearArray }) => {
   } else {
     return (
       <Month
+        yearView={false}
+        setShowWholeYear={setShowWholeYear}
         monthArray={yearArray[dateObj.month]}
         monthIndex={dateObj.month}
         setMonth={setMonth}
-        yearView={false}
+        handleShowModalContainer={handleShowModalContainer}
+        holidays={holidays}
       />
     );
   }

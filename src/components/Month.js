@@ -1,9 +1,19 @@
 import React, { useContext } from "react";
-import { DateContext } from "../context/DateContext";
 import weekdays from "../data/weekdays";
 import Day from "./Day";
+import MonthHeader from "./MonthHeader";
+import { DateContext } from "../context/DateContext";
 
-const Month = ({ monthArray, monthIndex, setMonthView, yearView }) => {
+const Month = ({
+  monthArray,
+  monthIndex,
+  yearView,
+  setMonthView,
+  setShowWholeYear,
+  setMonth,
+  handleShowModalContainer,
+  holidays
+}) => {
   const { dateObj } = useContext(DateContext);
 
   return (
@@ -13,6 +23,15 @@ const Month = ({ monthArray, monthIndex, setMonthView, yearView }) => {
           yearView ? "month--year-view" : "month--month-view"
         }`}
       >
+        {/* {!yearView && (
+          <button
+            className="month__back-button"
+            onClick={() => setShowWholeYear(true)}
+          >
+            &#8678;
+          </button>
+        )} */}
+
         <div
           className={`month__content ${
             yearView
@@ -21,6 +40,12 @@ const Month = ({ monthArray, monthIndex, setMonthView, yearView }) => {
           }`}
           onClick={setMonthView ? () => setMonthView(monthIndex) : null}
         >
+          <MonthHeader
+            monthIndex={monthIndex}
+            yearView={yearView}
+            setMonth={setMonth}
+            setShowWholeYear={setShowWholeYear}
+          />
           <div className="month__weekdays">
             {yearView &&
               weekdays.short.map((weekday, index) => (
@@ -31,7 +56,6 @@ const Month = ({ monthArray, monthIndex, setMonthView, yearView }) => {
                   {weekday}
                 </button>
               ))}
-
             {!yearView &&
               weekdays.long.map((weekday, index) => (
                 <button
@@ -42,17 +66,18 @@ const Month = ({ monthArray, monthIndex, setMonthView, yearView }) => {
                 </button>
               ))}
           </div>
-
           <div className="month__cells">
             {monthArray &&
               monthArray.map((day, index) => {
                 return (
                   <Day
-                    day={day}
                     monthIndex={dateObj.date}
-                    index={index}
-                    key={index + "day"}
+                    day={day}
                     yearView={yearView}
+                    handleShowModalContainer={handleShowModalContainer}
+                    index={index}
+                    holidays={holidays}
+                    key={index + "day"}
                   />
                 );
               })}

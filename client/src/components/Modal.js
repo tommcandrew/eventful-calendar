@@ -3,8 +3,8 @@ import ModalHeader from "./ModalHeader";
 import DayEvents from "./DayEvents";
 import EventForm from "./EventForm";
 import EventInfo from "./EventInfo";
-import { EventsContext } from "../context/EventsContext";
-import { DateContext } from "../context/DateContext";
+import EventsContext from "../context/EventsContext";
+import DateContext from "../context/DateContext";
 import MyEvents from "./MyEvents";
 
 const Modal = ({ closeModals, showMyEvents, setShowMyEvents }) => {
@@ -65,18 +65,14 @@ const Modal = ({ closeModals, showMyEvents, setShowMyEvents }) => {
 
   //event CRUD operations
 
-  const d = new Date();
-
   //ADD & EDIT
   const handleFormSubmit = (e, titleInput, timeInput, timePeriodInput) => {
-    debugger;
     const title = titleInput;
     const time = timeInput;
     let timePeriod = timePeriodInput;
     const date = dateObj.date;
     const month = dateObj.month;
     const year = dateObj.year;
-    const id = d.getTime();
     if (title === "") {
       alert("you must provide a title");
       return;
@@ -91,12 +87,11 @@ const Modal = ({ closeModals, showMyEvents, setShowMyEvents }) => {
       timePeriod,
       date,
       month,
-      year,
-      id
+      year
     };
 
     if (selectedEvent) {
-      editEvent(newEvent, selectedEvent.id);
+      editEvent(newEvent, selectedEvent._id);
       setSelectedEvent(null);
     } else {
       addEvent(newEvent);
@@ -107,7 +102,7 @@ const Modal = ({ closeModals, showMyEvents, setShowMyEvents }) => {
 
   //DELETE
   const handleDeleteEvent = () => {
-    deleteEvent(selectedEvent.id);
+    deleteEvent(selectedEvent._id);
     setShowEventInfo(false);
     setSelectedEvent(null);
     setShowDayEvents(true);

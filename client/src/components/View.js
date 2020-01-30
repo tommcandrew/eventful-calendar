@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Month from "./Month";
 import YearHeader from "./YearHeader";
-import { DateContext } from "../context/DateContext";
+import DateContext from "../context/DateContext";
 
 const View = ({
   yearArray,

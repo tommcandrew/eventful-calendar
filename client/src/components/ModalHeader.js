@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import months from "../data/months";
-import { DateContext } from "../context/DateContext";
+import DateContext from "../context/DateContext";
 
 const ModalHeader = () => {
   const { dateObj } = useContext(DateContext);

@@ -1,35 +1,86 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect, useContext } from "react";
+import axios from "axios";
+import AuthContext from "./AuthContext";
 
-export const EventsContext = createContext();
+const EventsContext = createContext();
 
-const EventsContextProvider = props => {
-  const [events, setEvents] = useState([]);
+export const EventsContextProvider = props => {
+  const [events, setEvents] = useState(null);
+  const { authenticated } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (authenticated) {
+      fetchEvents();
+    }
+  }, [authenticated]);
+
+  const fetchEvents = async () => {
+    const token = localStorage.getItem("my-token");
+    const res = await axios.get("/events", {
+      headers: {
+        Authorization: "Bearer " + token
+      }
+    });
+    setEvents(res.data);
+  };
+
   const addEvent = newEvent => {
-    const updatedArray = events.concat(newEvent);
-    setEvents(updatedArray);
+    const token = localStorage.getItem("my-token");
+
+    axios
+      .post("/addevent", newEvent, {
+        headers: { authorization: "Bearer " + token }
+      })
+      .then(() => {
+        fetchEvents();
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   const deleteEvent = id => {
-    const updatedEvents = events.filter(event => event.id !== id);
-    setEvents(updatedEvents);
+    const token = localStorage.getItem("my-token");
+    axios
+      .delete(`/deleteevent/${id}`, {
+        headers: { authorization: "Bearer " + token }
+      })
+      .then(() => {
+        fetchEvents();
+      });
   };
 
-  const editEvent = (event, id) => {
-    const updatedEvents = events.filter(event => event.id !== id);
-    updatedEvents.push(event);
-    setEvents(updatedEvents);
+  const editEvent = (newEvent, id) => {
+    const token = localStorage.getItem("my-token");
+    axios
+      .post("/editevent/" + id, newEvent, {
+        headers: { authorization: "Bearer " + token }
+      })
+      .then(() => {
+        fetchEvents();
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
-  const moveEvent = (title, newDate) => {
+  const moveEvent = (id, newDate) => {
+    const token = localStorage.getItem("my-token");
     const newDay = parseInt(newDate.split("-")[0]);
-    let updatedEvents = [];
-    for (let i = 0; i < events.length; i++) {
-      if (events[i].title === title) {
-        events[i].date = newDay;
-      }
-      updatedEvents.push(events[i]);
-    }
-    setEvents(updatedEvents);
+    axios
+      .post(
+        "/moveevent/" + id,
+        { newDay },
+        {
+          headers: { authorization: "Bearer " + token }
+        }
+      )
+      .then(() => {
+        fetchEvents();
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   return (
@@ -47,4 +98,4 @@ const EventsContextProvider = props => {
   );
 };
 
-export default EventsContextProvider;
+export default EventsContext;

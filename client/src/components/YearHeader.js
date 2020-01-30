@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { DateContext } from "../context/DateContext";
+import DateContext from "../context/DateContext";
 
 const YearHeader = ({ setYear, handleShowMyEvents }) => {
   const { dateObj } = useContext(DateContext);

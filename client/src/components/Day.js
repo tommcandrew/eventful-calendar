@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { EventsContext } from "../context/EventsContext";
+import EventsContext from "../context/EventsContext";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 
 const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
@@ -44,7 +44,7 @@ const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
   }
 
   let classNames = "cell ";
-  let abbreviatedEventTitles;
+  let abbreviatedEvents;
 
   if (day.date === -1) {
     classNames = classNames.concat(" cell--blank");
@@ -70,18 +70,14 @@ const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
 
   if (eventsOnThisDay.length > 0) {
     classNames = classNames.concat(" cell--with-event");
-    let eventTitles = eventsOnThisDay.map(event => event.title);
-    if (eventTitles.length > 2) {
-      abbreviatedEventTitles = [`${eventTitles.length} events...`];
-    } else {
-      abbreviatedEventTitles = eventTitles.map((title, index) => {
-        if (title.length > 17) {
-          return title.substr(0, 14) + "...";
-        } else {
-          return title;
-        }
-      });
-    }
+    abbreviatedEvents = eventsOnThisDay.map(event => {
+      if (event.title > 17) {
+        event.title = event.title.substr(0, 14) + "...";
+        return event;
+      } else {
+        return event;
+      }
+    });
   }
 
   let holidayNames;
@@ -124,8 +120,8 @@ const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
     >
       {hoverMessages && hoverMessages.length > 0 && (
         <div className="cell__hover-messages">
-          {hoverMessages.map(message => (
-            <div>{message}</div>
+          {hoverMessages.map((message, index) => (
+            <div key={index + "message"}>{message}</div>
           ))}
         </div>
       )}
@@ -162,12 +158,12 @@ const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
                     className="cell__event-titles"
                   >
                     {!yearView &&
-                      abbreviatedEventTitles &&
-                      abbreviatedEventTitles.map((title, index) => (
+                      abbreviatedEvents &&
+                      abbreviatedEvents.map((event, index) => (
                         <Draggable
                           index={index}
-                          draggableId={title}
-                          key={title}
+                          draggableId={event._id}
+                          key={event.title}
                         >
                           {(provided, snapshot) => (
                             <div
@@ -177,7 +173,7 @@ const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
                               key={index + "event-title"}
                               className="cell__event-title"
                             >
-                              {title}
+                              {event.title}
                             </div>
                           )}
                         </Draggable>

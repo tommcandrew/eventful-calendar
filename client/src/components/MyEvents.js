@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { EventsContext } from "../context/EventsContext";
+import EventsContext from "../context/EventsContext";
 
 const MyEvents = ({ handleShowEventInfo }) => {
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());

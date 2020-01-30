@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useContext } from "react";
 import createYearArray from "../utils/createYearArray";
 import View from "./View";
-import { DateContext } from "../context/DateContext";
+import DateContext from "../context/DateContext";
 import Modal from "./Modal";
 import axios from "axios";
 import { DragDropContext } from "react-beautiful-dnd";
-import { EventsContext } from "../context/EventsContext";
+import EventsContext from "../context/EventsContext";
 
 const Calendar = () => {
   const [yearArray, setYearArray] = useState(null);

@@ -1,13 +1,21 @@
 import React from "react";
-import "./App.css";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Calendar from "./components/Calendar";
+import Home from "./components/Home";
+import ProtectedRoute from "./components/ProtectedRoute";
+import "./App.css";
 
-function App() {
+const App = () => {
   return (
     <div className="app">
-      <Calendar />
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <ProtectedRoute path="/calendar" component={Calendar} />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
-}
+};
 
 export default App;

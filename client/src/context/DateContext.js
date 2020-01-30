@@ -1,8 +1,8 @@
 import React, { useState, createContext, useEffect } from "react";
 
-export const DateContext = createContext();
+const DateContext = createContext();
 
-const DateContextProvider = props => {
+export const DateContextProvider = props => {
   const [dateObj, setDateObj] = useState(null);
 
   useEffect(() => {
@@ -20,4 +20,4 @@ const DateContextProvider = props => {
   );
 };
 
-export default DateContextProvider;
+export default DateContext;

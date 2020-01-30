@@ -1,8 +1,12 @@
 import React from "react";
-import createMonthArray from "./util/createMonthArray";
+import Calendar from "./components/Calendar";
 
 const App = () => {
-  return <div></div>;
+  return (
+    <div>
+      <Calendar />
+    </div>
+  );
 };
 
 export default App;

@@ -1,10 +1,14 @@
 import React, { useContext, useState, useEffect } from "react";
 import EventsContext from "../context/EventsContext";
+import LanguageContext from "../context/LanguageContext";
+import { myEventsTextOptions } from "../data/otherText";
+import { noEventsTextOptions } from "../data/otherText";
 
 const MyEvents = ({ handleShowEventInfo }) => {
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [selectedEvents, setSelectedEvents] = useState(null);
   const { eventsLocal } = useContext(EventsContext);
+  const { language } = useContext(LanguageContext);
 
   useEffect(() => {
     const filteredEvents = eventsLocal.filter(
@@ -16,7 +20,7 @@ const MyEvents = ({ handleShowEventInfo }) => {
 
   return (
     <div className="my-events">
-      <h1>My Events</h1>
+      <h1>{myEventsTextOptions[language]}</h1>
       <div className="my-events-nav">
         <div className="my-events-nav-content">
           <button
@@ -54,7 +58,9 @@ const MyEvents = ({ handleShowEventInfo }) => {
           (selectedEvents.length === 0 && (
             <div className="event-details">
               {!selectedEvents ||
-                (selectedEvents.length === 0 && <h2>No events</h2>)}
+                (selectedEvents.length === 0 && (
+                  <h2>{noEventsTextOptions[language]}</h2>
+                ))}
             </div>
           ))}
       </div>

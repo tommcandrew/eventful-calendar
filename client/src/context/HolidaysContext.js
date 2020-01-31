@@ -3,7 +3,7 @@ import React, { useState, createContext } from "react";
 const HolidaysContext = createContext();
 
 export const HolidaysContextProvider = props => {
-  const [showHolidays, setShowHolidays] = useState("True");
+  const [showHolidays, setShowHolidays] = useState("Show");
 
   return (
     <HolidaysContext.Provider value={{ showHolidays, setShowHolidays }}>

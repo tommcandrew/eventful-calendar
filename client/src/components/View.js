@@ -50,6 +50,7 @@ const View = ({
         setMonth={setMonth}
         handleShowModalContainer={handleShowModalContainer}
         holidays={holidays}
+        handleShowSettings={handleShowSettings}
       />
     );
   }

@@ -2,8 +2,16 @@ import React, { useContext } from "react";
 import months from "../data/months";
 import DateContext from "../context/DateContext";
 import LanguageContext from "../context/LanguageContext";
+import gears from "../images/gears.svg";
+import { seeWholeYearTextOptions } from "../data/otherText";
 
-const MonthHeader = ({ monthIndex, yearView, setMonth, setShowWholeYear }) => {
+const MonthHeader = ({
+  monthIndex,
+  yearView,
+  setMonth,
+  setShowWholeYear,
+  handleShowSettings
+}) => {
   const { dateObj } = useContext(DateContext);
   const { language } = useContext(LanguageContext);
   const monthsArray = months[language];
@@ -23,7 +31,7 @@ const MonthHeader = ({ monthIndex, yearView, setMonth, setShowWholeYear }) => {
           className="month-header__whole-year-button"
           onClick={() => setShowWholeYear(true)}
         >
-          See Whole Year
+          {seeWholeYearTextOptions[language]}
         </button>
         <div className="month-header__content">
           <button
@@ -42,6 +50,15 @@ const MonthHeader = ({ monthIndex, yearView, setMonth, setShowWholeYear }) => {
             onClick={() => setMonth(monthIndex + 1)}
           >
             &#11208;
+          </button>
+        </div>
+
+        <div className="month-header__links--right">
+          <button
+            onClick={handleShowSettings}
+            className="month-header__settings-button"
+          >
+            <img src={gears} alt="settings" title="Settings" />
           </button>
         </div>
       </div>

@@ -120,6 +120,20 @@ a {
   cursor: pointer;
 }
 
+.month-header__links--right {
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin-right: 5px;
+}
+
+.month-header__links--right img {
+  width: 30px;
+  cursor: pointer;
+}
+
 .year-header__content .year-header__title {
   flex-grow: 4;
   font-size: 1.5rem;

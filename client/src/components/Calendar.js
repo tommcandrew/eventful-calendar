@@ -20,14 +20,13 @@ const Calendar = () => {
   const { showHolidays } = useContext(HolidaysContext);
 
   useEffect(() => {
-    if (showHolidays === "False") {
+    if (showHolidays === "Hide") {
       setHolidays([]);
     }
+    if (showHolidays === "Show") {
+      fetchHolidays();
+    }
   }, [showHolidays]);
-
-  useEffect(() => {
-    console.log("app mounted");
-  }, []);
 
   const onDragEnd = result => {
     const { draggableId, destination } = result;
@@ -37,25 +36,29 @@ const Calendar = () => {
     moveEventLocal(draggableId, destination.droppableId);
   };
 
+  const fetchHolidays = () => {
+    axios
+      .get(
+        `https://calendarific.com/api/v2/holidays?&api_key=bb4313c99b956fe470dc7c996850b622abbae5fc&country=Uk&year=${dateObj.year}`
+      )
+      .then(res => {
+        setHolidays(
+          res.data.response.holidays.filter(
+            holiday =>
+              holiday.type.includes("National holiday") ||
+              holiday.type.includes("Common local holiday")
+          )
+        );
+      });
+  };
+
   useEffect(() => {
     if (dateObj) {
       const yearArray = createYearArray(dateObj.year);
       setYearArray(yearArray);
 
       if (showHolidays === "True") {
-        axios
-          .get(
-            `https://calendarific.com/api/v2/holidays?&api_key=bb4313c99b956fe470dc7c996850b622abbae5fc&country=Uk&year=${dateObj.year}`
-          )
-          .then(res => {
-            setHolidays(
-              res.data.response.holidays.filter(
-                holiday =>
-                  holiday.type.includes("National holiday") ||
-                  holiday.type.includes("Common local holiday")
-              )
-            );
-          });
+        fetchHolidays();
       }
     }
   }, [dateObj]);
@@ -106,6 +109,7 @@ const Calendar = () => {
   };
 
   const handleShowSettings = () => {
+    console.log("recived");
     setShowSettings(true);
     setShowModalContainer(true);
   };

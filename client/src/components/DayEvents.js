@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
+import LanguageContext from "../context/LanguageContext";
+import { noEventsTextOptions } from "../data/otherText";
+import { addEventTextOptions } from "../data/otherText";
 
 const DayEvents = ({
   handleShowForm,
   handleShowEventInfo,
   eventsOnThisDay
 }) => {
+  const { language } = useContext(LanguageContext);
+
   return (
     <div className="day-events">
-      {!eventsOnThisDay || (eventsOnThisDay.length === 0 && <h2>No events</h2>)}
+      {!eventsOnThisDay ||
+        (eventsOnThisDay.length === 0 && (
+          <h2>{noEventsTextOptions[language]}</h2>
+        ))}
       {eventsOnThisDay &&
         eventsOnThisDay.length > 0 &&
         eventsOnThisDay.map((event, index) => {
@@ -23,7 +31,7 @@ const DayEvents = ({
           );
         })}
       <button onClick={handleShowForm} className="button">
-        Add Event
+        {addEventTextOptions[language]}
       </button>
     </div>
   );

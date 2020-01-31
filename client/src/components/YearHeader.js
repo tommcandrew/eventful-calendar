@@ -3,10 +3,13 @@ import DateContext from "../context/DateContext";
 import ThemeContext from "../context/ThemeContext";
 import gears from "../images/gears.svg";
 import glass from "../images/glass.svg";
+import LanguageContext from "../context/LanguageContext";
+import { myEventsTextOptions } from "../data/otherText";
 
 const YearHeader = ({ setYear, handleShowMyEvents, handleShowSettings }) => {
   const { dateObj } = useContext(DateContext);
   const { theme } = useContext(ThemeContext);
+  const { language } = useContext(LanguageContext);
 
   return (
     <div
@@ -17,7 +20,11 @@ const YearHeader = ({ setYear, handleShowMyEvents, handleShowSettings }) => {
       <div className="year-header__links--left">
         <button onClick={handleShowMyEvents}>
           {" "}
-          <img src={glass} alt="cocktail glass" title="My Events" />
+          <img
+            src={glass}
+            alt="cocktail glass"
+            title={myEventsTextOptions[language]}
+          />
         </button>
       </div>
       <div className="year-header__content">

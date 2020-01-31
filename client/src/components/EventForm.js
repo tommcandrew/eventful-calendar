@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import TimePicker from "./TimePicker";
+import { eventTitleTextOptions } from "../data/otherText";
+import LanguageContext from "../context/LanguageContext";
+import { addTextOptions } from "../data/otherText";
+import { addIconTextOptions } from "../data/otherText";
 
 const EventForm = ({ handleFormSubmit, selectedEvent, handleGoBack }) => {
+  const { language } = useContext(LanguageContext);
+
   const [titleInput, setTitleInput] = useState(
     selectedEvent ? selectedEvent.title : ""
   );
@@ -50,7 +56,6 @@ const EventForm = ({ handleFormSubmit, selectedEvent, handleGoBack }) => {
       <form className="event-form__form" onSubmit={getFormValues}>
         <div className="event-form__form-fields">
           <div className="event-form__form-field">
-            {/* <label htmlFor="event-title">Title*</label> */}
             <input
               type="text"
               id="event-title"
@@ -58,7 +63,7 @@ const EventForm = ({ handleFormSubmit, selectedEvent, handleGoBack }) => {
               maxLength="45"
               value={titleInput}
               onChange={e => handleTitleInput(e.target.value)}
-              placeholder="Event title..."
+              placeholder={eventTitleTextOptions[language]}
             />
             <p
               className={`event-form__char-limit-message${
@@ -74,9 +79,16 @@ const EventForm = ({ handleFormSubmit, selectedEvent, handleGoBack }) => {
             onTimeChange={handleTimeInput}
             onTimePeriodChange={handleTimePeriodInput}
           />
+          <div>
+            <button>{addIconTextOptions[language]}:</button>
+            <span>&#127874;</span>
+            <span>&#128214;</span>
+            <span>&#127865;</span>
+            <span>&#128187;</span>
+          </div>
         </div>
         <button className="button" type="submit">
-          Add
+          {addTextOptions[language]}
         </button>
       </form>
     </div>

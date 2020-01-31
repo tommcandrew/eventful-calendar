@@ -3,7 +3,7 @@ import React, { useState, createContext, useEffect } from "react";
 const ThemeContext = createContext();
 
 export const ThemeContextProvider = props => {
-  const [theme, setTheme] = useState("Light");
+  const [theme, setTheme] = useState(getInitialTheme);
 
   function getInitialTheme() {
     const savedTheme = JSON.parse(localStorage.getItem("theme"));

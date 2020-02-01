@@ -14,18 +14,18 @@ const Home = () => {
   }
 
   return (
-    <div className="home-wrapper">
-      <div className="home-content">
-        <div className="home-header">
+    <div className="home">
+      <div className="home__content">
+        <div className="home__header">
           <h1>Eventful</h1>
           <h2>Live organised.</h2>
         </div>
         <div className="home__buttons">
           <Link to="/login">
-            <button className="button">Log in</button>
+            <button className="home__button">Log in</button>
           </Link>
           <Link to="/register">
-            <button className="button">Register</button>
+            <button className="home__button">Register</button>
           </Link>
         </div>
       </div>

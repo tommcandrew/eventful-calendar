@@ -20,7 +20,9 @@ const MonthHeader = ({
     return (
       <div className="month-header">
         <div className="month-header__content">
-          <button className="month-name">{monthsArray[monthIndex]}</button>
+          <button className="month-header__month-name">
+            {monthsArray[monthIndex]}
+          </button>
         </div>
       </div>
     );

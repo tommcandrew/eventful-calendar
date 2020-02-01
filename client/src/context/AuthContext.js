@@ -5,6 +5,7 @@ const AuthContext = createContext();
 
 export const AuthContextProvider = props => {
   const [authenticated, setAuthenticated] = useState(false);
+  const [userName, setUserName] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -38,10 +39,11 @@ export const AuthContextProvider = props => {
     const password = e.target.password.value;
     axios.post("/login", { email, password }).then(res => {
       if (res.status === 200) {
-        const token = res.data;
+        const { token, userName } = res.data;
         localStorage.setItem("my-token", token);
         setAuthenticated(true);
         setUserEmail(email);
+        setUserName(userName);
         cb();
       } else {
         console.log("unable to log in");
@@ -51,15 +53,18 @@ export const AuthContextProvider = props => {
   };
 
   const register = (e, cb) => {
+    const name = e.target.name.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
     const password2 = e.target.password2.value;
-    axios.post("/register", { email, password, password2 }).then(res => {
+    axios.post("/register", { name, email, password, password2 }).then(res => {
       if (res.status === 200) {
         const token = res.data;
         localStorage.setItem("my-token", token);
         setAuthenticated(true);
+        //does it matter that the email and password here are from the form and not from the db like in login above?
         setUserEmail(email);
+        setUserName(name);
         cb();
       } else {
         console.log("unable to log in");
@@ -75,7 +80,15 @@ export const AuthContextProvider = props => {
 
   return (
     <AuthContext.Provider
-      value={{ authenticated, userEmail, login, logout, register, loading }}
+      value={{
+        authenticated,
+        userEmail,
+        userName,
+        login,
+        logout,
+        register,
+        loading
+      }}
     >
       {props.children}
     </AuthContext.Provider>

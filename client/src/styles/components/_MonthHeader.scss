@@ -1,0 +1,55 @@
+.month-header {
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  &__links--right {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin-right: 5px;
+  }
+  &__links--right img {
+    width: 30px;
+    cursor: pointer;
+  }
+  &__arrow--left {
+    left: 0;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  &__date-info {
+    min-width: 55%;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__arrow--right {
+    right: 0;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  &__whole-year-button {
+    font-size: 1.2rem;
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    cursor: pointer;
+  }
+}
+
+.dark .month-name {
+  color: #ddd;
+  transition: all 400ms ease-out;
+}
+
+//does month-content need the month-view flag? why not just have it on month?
+.month__content--month-view .month-header {
+  background: $mainColor;
+}
+
+.month__content--month-view .month-header__content {
+  position: relative;
+  width: 20%;
+}

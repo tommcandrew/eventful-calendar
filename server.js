@@ -147,7 +147,7 @@ app.post("/login", (req, res) => {
           } else {
             console.log("Password correct - now generating jwt");
             jwt.sign({ user }, "secretkey", (err, token) => {
-              res.status(200).send(token);
+              res.status(200).send({ token: token, userName: user.name });
             });
           }
         }
@@ -157,8 +157,7 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-  const { email, password, password2 } = req.body;
-  console.log(req.body);
+  const { name, email, password, password2 } = req.body;
   if (password !== password2) {
     console.log("passwords must match");
     res.status(500).send();
@@ -171,14 +170,11 @@ app.post("/register", (req, res) => {
       return;
     }
   });
-  const user = new User({ email, password });
-  console.log("creating new user");
-
+  const user = new User({ name, email, password });
   bcrypt.genSalt(10, (err, salt) => {
     bcrypt.hash(user.password, salt, (err, hash) => {
       user.password = hash;
       user.save().then(user => {
-        console.log(user);
         jwt.sign({ user }, "secretkey", (err, token) => {
           res.send(token);
         });

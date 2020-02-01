@@ -28,7 +28,7 @@ const Month = ({
       <div
         className={`month ${
           yearView ? "month--year-view" : "month--month-view"
-        }${theme === "Dark" ? " dark" : " light"}`}
+        }${theme === "Dark" ? " month--dark" : " month--light"}`}
       >
         <div
           className={`month__content ${

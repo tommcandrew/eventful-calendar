@@ -37,11 +37,13 @@ const Calendar = () => {
   };
 
   const fetchHolidays = () => {
+    console.log("fetching holidays");
     axios
       .get(
-        `https://calendarific.com/api/v2/holidays?&api_key=bb4313c99b956fe470dc7c996850b622abbae5fc&country=Uk&year=${dateObj.year}`
+        `https://calendarific.com/api/v2/holidays?&api_key=423d3eeb339e68f8ac6484808dbda88b657f40b8&country=Uk&year=${dateObj.year}`
       )
       .then(res => {
+        console.log(res);
         setHolidays(
           res.data.response.holidays.filter(
             holiday =>

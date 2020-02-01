@@ -6,8 +6,6 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Login from "./components/Login";
 import Register from "./components/Register";
 
-import "./App.css";
-
 const App = () => {
   return (
     <div className="app">

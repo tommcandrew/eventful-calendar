@@ -65,7 +65,7 @@ const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
   }
 
   if ([5, 6, 12, 13, 19, 20, 26, 27, 33, 34].includes(index)) {
-    classNames = classNames.concat(" weekend");
+    classNames = classNames.concat(" cell--weekend");
   }
 
   if (eventsOnThisDay.length > 0) {

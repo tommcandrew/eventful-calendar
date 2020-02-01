@@ -12,22 +12,22 @@ const Login = ({ history }) => {
   };
 
   return (
-    <div className="login">
-      <div className="login__header">
+    <div className="loginRegister">
+      <div className="loginRegister__header">
         <Link to="/">
           <h1>Eventful</h1>
         </Link>
       </div>
-      <div className="login__content">
+      <div className="loginRegister__content">
         <h2>Log in</h2>
         <form onSubmit={e => handleLogin(e)}>
           <input type="email" name="email" placeholder="Your email" />
           <input type="password" name="password" placeholder="Your password" />
-          <button type="submit" className="button">
+          <button type="submit" className="button loginRegister__button">
             Log in
           </button>
         </form>
-        <div className="login__register-link">
+        <div className="loginRegister__link-container">
           <p>No account?</p>
           <Link to="/register">Register</Link>
         </div>

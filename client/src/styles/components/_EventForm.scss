@@ -1,0 +1,52 @@
+.event-form {
+  position: relative;
+  flex: 5;
+  display: flex;
+  flex-direction: column;
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: space-around;
+  }
+  &__form-fields {
+    display: flex;
+    flex-direction: column;
+  }
+  &__form-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    & input {
+      font-size: 1.3rem;
+      padding: 0 5px;
+    }
+  }
+  &__time-picker {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+  &__time-input {
+    font-size: 1.1rem;
+    flex-grow: 1;
+    padding: 2px;
+  }
+  &__time-period-input {
+    font-size: 1.1rem;
+    padding: 2px;
+  }
+  &__char-limit-message {
+    font-size: 1rem;
+    padding-top: 10px;
+    color: red;
+    visibility: hidden;
+    &--show {
+      font-size: 1rem;
+      padding-top: 10px;
+      color: red;
+      visibility: visible;
+    }
+  }
+}

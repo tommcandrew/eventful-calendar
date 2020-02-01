@@ -7,6 +7,7 @@ import { LanguageContextProvider } from "./context/LanguageContext";
 import { ThemeContextProvider } from "./context/ThemeContext";
 import { AuthContextProvider } from "./context/AuthContext";
 import { HolidaysContextProvider } from "./context/HolidaysContext";
+import "./styles/styles.scss";
 
 ReactDOM.render(
   <DateContextProvider>

@@ -41,7 +41,7 @@ const RadioGroup = ({ options, category }) => {
   };
 
   return (
-    <div className="all-options">
+    <div className="radio-group">
       <h2>{categoryText}:</h2>
       {options.text.map((optionText, i) => {
         return (

@@ -9,9 +9,9 @@ const Settings = ({ closeModals }) => {
   return (
     <div className="modal" onClick={closeModals}>
       <div className="modal__content">
-        <div className="settings-wrapper">
+        <div className="settings">
           <h1>{settingsTextOptions[language]}</h1>
-          <div className="radio-groups-wrapper">
+          <div className="settings__radio-groups">
             <RadioGroup
               options={{ text: ["English", "Español", "Français", "Türkçe"] }}
               category="Language"

@@ -21,33 +21,33 @@ const MyEvents = ({ handleShowEventInfo }) => {
   return (
     <div className="my-events">
       <h1>{myEventsTextOptions[language]}</h1>
-      <div className="my-events-nav">
-        <div className="my-events-nav-content">
+      <div className="my-events__nav">
+        <div className="my-events__nav-content">
           <button
-            className="my-events-arrow-left"
+            className="my-events__arrow-left"
             onClick={() => setSelectedYear(selectedYear - 1)}
           >
             ‹
           </button>
-          <button className="my-events-year-name">{selectedYear}</button>
+          <button className="my-events__year-name">{selectedYear}</button>
           <button
-            className="my-events-arrow-right"
+            className="my-events__arrow-right"
             onClick={() => setSelectedYear(selectedYear + 1)}
           >
             ›
           </button>
         </div>
       </div>
-      <div className="events-container">
+      <div className="my-events__events-container">
         {selectedEvents &&
           selectedEvents.map(event => {
             return (
               <>
                 <div
-                  className="my-events-event"
+                  className="my-events__event"
                   onClick={() => handleShowEventInfo(event, "MyEvents")}
                 >
-                  <span className="event-title">{event.title}</span>
+                  <span className="my-event__event-title">{event.title}</span>
                   {event.time && <span>{event.time}</span>}
                   {event.timePeriod && <span>{event.timePeriod}</span>}
                 </div>
@@ -56,7 +56,7 @@ const MyEvents = ({ handleShowEventInfo }) => {
           })}
         {!selectedEvents ||
           (selectedEvents.length === 0 && (
-            <div className="event-details">
+            <div className="my-event__event-details">
               {!selectedEvents ||
                 (selectedEvents.length === 0 && (
                   <h2>{noEventsTextOptions[language]}</h2>

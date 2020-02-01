@@ -13,7 +13,6 @@
 @import "./components/_RadioButton.scss";
 @import "./components/_RadioGroup.scss";
 @import "./components/_View.scss";
-@import "./components/_YearHeader.scss";
 @import "./global/_back-button.scss";
 @import "./global/loader.scss";
 @import "./components/EventForm";
@@ -21,3 +20,5 @@
 //home extends button above but also overrides a rule so they must be in this order
 @import "./components/_Home.scss";
 @import "./components//Settings";
+@import "./components/_YearHeader.scss";
+@import "./components/MyAccount.scss";

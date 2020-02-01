@@ -21,6 +21,7 @@ export const AuthContextProvider = props => {
         .then(res => {
           if (res.data.user) {
             setUserEmail(res.data.user.email);
+            setUserName(res.data.user.name);
             setAuthenticated(true);
             setLoading(false);
           }
@@ -82,6 +83,7 @@ export const AuthContextProvider = props => {
     <AuthContext.Provider
       value={{
         authenticated,
+        setAuthenticated,
         userEmail,
         userName,
         login,

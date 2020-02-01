@@ -1,15 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import DateContext from "../context/DateContext";
 import ThemeContext from "../context/ThemeContext";
-import gears from "../images/gears.svg";
-import glass from "../images/glass.svg";
 import LanguageContext from "../context/LanguageContext";
-import { myEventsTextOptions } from "../data/otherText";
+import MyAccount from "./MyAccount";
+import {
+  myEventsTextOptions,
+  settingsTextOptions,
+  myAccountTextOptions
+} from "../data/otherText";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUserCircle,
+  faGlassMartiniAlt,
+  faCog
+} from "@fortawesome/free-solid-svg-icons";
 
 const YearHeader = ({ setYear, handleShowMyEvents, handleShowSettings }) => {
   const { dateObj } = useContext(DateContext);
   const { theme } = useContext(ThemeContext);
   const { language } = useContext(LanguageContext);
+  const [showMyAccount, setShowMyAccount] = useState(false);
 
   return (
     <div
@@ -19,10 +29,8 @@ const YearHeader = ({ setYear, handleShowMyEvents, handleShowSettings }) => {
     >
       <div className="year-header__links--left">
         <button onClick={handleShowMyEvents}>
-          {" "}
-          <img
-            src={glass}
-            alt="cocktail glass"
+          <FontAwesomeIcon
+            icon={faGlassMartiniAlt}
             title={myEventsTextOptions[language]}
           />
         </button>
@@ -43,11 +51,19 @@ const YearHeader = ({ setYear, handleShowMyEvents, handleShowSettings }) => {
         </button>
       </div>
       <div className="year-header__links--right">
+        <button onClick={() => setShowMyAccount(!showMyAccount)}>
+          <FontAwesomeIcon
+            icon={faUserCircle}
+            title={myAccountTextOptions[language]}
+            className="year-header__account-button"
+          />
+          {showMyAccount && <MyAccount />}
+        </button>
         <button
           onClick={handleShowSettings}
           className="year-header__settings-button"
         >
-          <img src={gears} alt="settings" title="Settings" />
+          <FontAwesomeIcon icon={faCog} title={settingsTextOptions[language]} />
         </button>
       </div>
     </div>

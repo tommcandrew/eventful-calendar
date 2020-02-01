@@ -54,6 +54,14 @@
         width: 40px;
         cursor: pointer;
       }
+      button {
+        margin: 3px 0 0 15px;
+        font-size: 1.3rem;
+        cursor: pointer;
+      }
     }
+  }
+  &__account-button {
+    position: relative;
   }
 }

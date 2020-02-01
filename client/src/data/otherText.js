@@ -81,3 +81,10 @@ export const seeWholeYearTextOptions = {
   Français: "Regardez L'année Entière",
   Türkçe: "Tüm Yıl Görünümü"
 };
+
+export const myAccountTextOptions = {
+  English: "My Account",
+  Español: "Mi Cuenta",
+  Français: "Mon Compte",
+  Türkçe: "Hesabım"
+};

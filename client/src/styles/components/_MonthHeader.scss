@@ -52,4 +52,6 @@
 .month__content--month-view .month-header__content {
   position: relative;
   width: 20%;
+  display: flex;
+  justify-content: space-between;
 }

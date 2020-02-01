@@ -1,0 +1,33 @@
+.my-account {
+  position: absolute;
+  top: 6vh;
+  left: -15.5vw;
+  min-height: 40vh;
+  min-width: 20vw;
+  z-index: 10;
+  background: white;
+  border-radius: 6px;
+  box-shadow: $boxShadow;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.my-account__profile-pic {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: $mainColor;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+
+.my-account p {
+  font-size: 1rem;
+  color: rgb(58, 56, 56);
+  margin-top: 3px;
+}

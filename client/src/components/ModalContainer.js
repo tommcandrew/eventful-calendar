@@ -5,6 +5,8 @@ import EventForm from "./EventForm";
 import EventInfo from "./EventInfo";
 import EventsContext from "../context/EventsContext";
 import DateContext from "../context/DateContext";
+import ThemeContext from "../context/ThemeContext";
+
 import MyEvents from "./MyEvents";
 import uuid from "uuid";
 import Settings from "./Settings";
@@ -31,6 +33,7 @@ const ModalContainer = ({
     deleteEventLocal
   } = useContext(EventsContext);
   const { dateObj } = useContext(DateContext);
+  const { theme } = useContext(ThemeContext);
 
   const eventsOnThisDay = [];
 
@@ -132,7 +135,10 @@ const ModalContainer = ({
   };
 
   return (
-    <div className="modal" onClick={closeModals}>
+    <div
+      className={`modal ${theme === "Dark" ? "modal--dark" : "modal--light"}`}
+      onClick={closeModals}
+    >
       <div className="modal__content" onClick={handleModalContentClick}>
         {!showMyEvents && !showSettings && <ModalHeader />}
         {showDayEvents && (

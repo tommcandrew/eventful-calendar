@@ -4,6 +4,8 @@ $josefin: "Josefin Sans", sans-serif;
 $mainColor: #6b6bc7;
 $mainColorLight: lighten(rgb(107, 107, 199), 20%);
 $mainColorDark: darken(rgb(107, 107, 199), 20%);
+$darkThemeColor: #1b2938;
+$darkThemeColorDark: darken(#1b2938, 3%);
 
 $secondaryColor: rgb(255, 207, 207);
 $themeTransition: all 400ms ease-out;

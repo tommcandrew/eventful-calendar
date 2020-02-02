@@ -1,17 +1,14 @@
 .radio-button {
   &__wrapper {
     margin: 10px 0;
-    // clear: both;
     display: flex;
     justify-content: space-between;
   }
   &__wrapper > * {
-    // display: inline;
     margin: 10px 0;
   }
   &__wrapper span {
     font-size: 1.5rem;
-    // float: left;
   }
   &__button {
     margin-left: 10px;
@@ -19,7 +16,6 @@
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    // float: right;
     &--checked {
       background: rgb(107, 107, 199);
     }
@@ -27,4 +23,9 @@
       background: rgb(178, 178, 235);
     }
   }
+}
+
+.modal--dark .radio-button__button--checked {
+  background: white;
+  transition: $themeTransition;
 }

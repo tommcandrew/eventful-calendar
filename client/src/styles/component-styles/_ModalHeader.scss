@@ -17,3 +17,8 @@
   //to stop it changing size when toggling between DayEvents and EventForm
   min-height: 60px;
 }
+
+.modal--dark .modal-header {
+  background: $mainColor;
+  transition: $themeTransition;
+}

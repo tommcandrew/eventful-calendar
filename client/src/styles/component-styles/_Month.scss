@@ -53,9 +53,7 @@
   &--dark {
     background-color: #1b2938;
     transition: $themeTransition;
-    .month__weekdays {
-      background: black;
-    }
+
     .month__weekdays__weekday {
       color: #ddd;
       transition: $themeTransition;

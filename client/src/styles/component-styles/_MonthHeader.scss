@@ -1,5 +1,6 @@
 .month-header {
   display: flex;
+  padding: 3px 0;
   justify-content: space-around;
   position: relative;
   &__links--right {
@@ -40,9 +41,24 @@
   }
 }
 
-.dark .month-name {
-  color: #ddd;
-  transition: all 400ms ease-out;
+.month--dark .month-header {
+  background: #111;
+  transition: $themeTransition;
+}
+
+.month--month-view.month--dark .month-header {
+  background: $mainColorDark;
+  transition: $themeTransition;
+}
+
+.month--dark .month-header__month-name {
+  color: #eee;
+  transition: $themeTransition;
+}
+
+.month--light .month-header {
+  background: #eee;
+  transition: $themeTransition;
 }
 
 //does month-content need the month-view flag? why not just have it on month?
@@ -66,7 +82,6 @@
 }
 
 .month__content--year-view .month-header {
-  background: #eee;
   &__month-name {
     font-size: 1.1rem;
   }

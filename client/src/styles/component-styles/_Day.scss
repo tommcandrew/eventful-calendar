@@ -1,7 +1,7 @@
 //general
 
 .cell {
-  flex-basis: calc(95% / 7);
+  flex-basis: calc(100% / 7);
   position: relative;
   &--day {
     cursor: pointer;
@@ -35,12 +35,12 @@
 
 //month-view only
 
+.month--month-view.month--dark .cell--day:hover {
+  background: $darkThemeColorDark;
+}
+
 .month--month-view {
   .cell {
-    &--day:hover {
-      background: #eee;
-    }
-
     font-size: 150%;
     outline: 1px solid rgba(0, 0, 0, 0.3);
     &__content {
@@ -76,8 +76,6 @@
       justify-content: space-around;
       align-items: center;
       min-height: 20px;
-      & span {
-      }
     }
     &__holiday-names {
       display: flex;
@@ -108,6 +106,8 @@
 
 .month--year-view {
   .cell {
+    flex-basis: calc(95% / 7);
+
     margin: 1px;
     &__content {
       display: flex;
@@ -142,7 +142,10 @@
 
     &--today {
       background: $mainColorLight;
-      transition: $themeTransition;
+      // transition: $themeTransition;
+      &:hover {
+        background: $mainColor;
+      }
     }
   }
 }
@@ -152,16 +155,19 @@
 .month--dark {
   .cell {
     background-color: #1b2938;
-
+    transition: $themeTransition;
     &--with-holiday {
       background: rgb(43, 109, 43);
       transition: $themeTransition;
     }
 
     &--today {
-      background: white;
+      background: $mainColor;
       color: black;
       transition: $themeTransition;
+    }
+    .cell__event-title {
+      background-color: $mainColor;
     }
 
     &__date {

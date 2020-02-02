@@ -6,7 +6,9 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const secrets = require("./secrets");
 const PORT = process.env.PORT || 5000;
-const mongoUri = `mongodb+srv://${secrets.MONGODB_USERNAME}:${secrets.MONGODB_PASSWORD}@cluster0-hjn2u.gcp.mongodb.net/eventful?retryWrites=true&w=majority`;
+const mongoUri =
+  process.envMONGODB_URI ||
+  `mongodb+srv://${secrets.MONGODB_USERNAME}:${secrets.MONGODB_PASSWORD}@cluster0-hjn2u.gcp.mongodb.net/eventful?retryWrites=true&w=majority`;
 
 app.listen(PORT, () => {
   console.log("listening on port " + PORT);

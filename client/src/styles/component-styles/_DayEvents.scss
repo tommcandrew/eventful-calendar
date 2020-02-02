@@ -5,6 +5,10 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  &__event-title,
+  &__event-time {
+    padding-top: 5px;
+  }
   & h2 {
     font-family: $josefin;
   }
@@ -18,7 +22,6 @@
     cursor: pointer;
     & span {
       margin: 0 10px;
-      padding: 10px;
     }
   }
   &__button {

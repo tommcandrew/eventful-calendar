@@ -3,7 +3,7 @@
 @import "./components/_Day.scss";
 @import "./components/_DayEvents.scss";
 @import "./components/_EventInfo.scss";
-@import "./components/_global.scss";
+@import "./global/_base.scss";
 @import "./components/_LoginRegister.scss";
 @import "./components/_ModalContainer.scss";
 @import "./components/_ModalHeader.scss";
@@ -22,4 +22,4 @@
 @import "./components/_YearHeader.scss";
 @import "./components/MyAccount.scss";
 @import "./components/Icons";
-@import "./components/TimePicker";
+@import "./components/TimeList";

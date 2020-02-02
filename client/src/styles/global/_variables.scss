@@ -1,6 +1,11 @@
-$mainColor: rgb(107, 107, 199);
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap");
+
+$josefin: "Josefin Sans", sans-serif;
+$mainColor: #6b6bc7;
 $mainColorLight: lighten(rgb(107, 107, 199), 20%);
-$eventColor: rgb(255, 207, 207);
+$mainColorDark: darken(rgb(107, 107, 199), 20%);
+
+$secondaryColor: rgb(255, 207, 207);
 $themeTransition: all 400ms ease-out;
 $boxShadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
 

@@ -158,6 +158,11 @@ app.post("/login", (req, res) => {
 
 app.post("/register", (req, res) => {
   const { name, email, password, password2 } = req.body;
+  if (password.length < 8) {
+    console.log("password must be at least 8 characters");
+    res.status(500).send();
+    return;
+  }
   if (password !== password2) {
     console.log("passwords must match");
     res.status(500).send();

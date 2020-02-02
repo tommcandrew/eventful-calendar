@@ -36,5 +36,9 @@
   }
   &__button {
     @include button(white, 1.5rem);
+    &:hover,
+    &:focus {
+      background: #ddd;
+    }
   }
 }

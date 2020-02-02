@@ -10,8 +10,8 @@
     bottom: 0;
     margin-right: 5px;
   }
-  &__links--right img {
-    width: 30px;
+  &__settings-button {
+    font-size: 1.7rem;
     cursor: pointer;
   }
   &__arrow--left {
@@ -24,6 +24,7 @@
     display: flex;
     justify-content: space-between;
   }
+
   &__arrow--right {
     right: 0;
     font-size: 1.5rem;
@@ -51,12 +52,23 @@
     font-size: 1.5rem;
     margin: 0 10px;
   }
+  .year-name,
+  .month-name {
+    font-size: 1.5rem;
+    margin: 0 10px;
+  }
+  .month__cells {
+    background: white;
+  }
+  .month__weekdays {
+    background: #eee;
+  }
 }
 
 .month__content--year-view .month-header {
-  background: #ddd;
+  background: #eee;
   &__month-name {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
   }
 }
 

@@ -1,7 +1,10 @@
 import React, { useContext } from "react";
 import LanguageContext from "../context/LanguageContext";
-import { noEventsTextOptions } from "../data/otherText";
-import { addEventTextOptions } from "../data/otherText";
+import {
+  noEventsTextOptions,
+  eventsOnThisDayTextOptions,
+  addEventTextOptions
+} from "../data/otherText";
 
 const DayEvents = ({
   handleShowForm,
@@ -12,9 +15,10 @@ const DayEvents = ({
 
   return (
     <div className="day-events">
+      <h2>{eventsOnThisDayTextOptions[language]}:</h2>
       {!eventsOnThisDay ||
         (eventsOnThisDay.length === 0 && (
-          <h2>{noEventsTextOptions[language]}</h2>
+          <h3>{noEventsTextOptions[language]}</h3>
         ))}
       {eventsOnThisDay &&
         eventsOnThisDay.length > 0 &&

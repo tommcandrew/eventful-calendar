@@ -1,22 +1,25 @@
 .radio-button {
   &__wrapper {
     margin: 10px 0;
-    clear: both;
+    // clear: both;
+    display: flex;
+    justify-content: space-between;
   }
   &__wrapper > * {
-    display: inline;
+    // display: inline;
     margin: 10px 0;
   }
   &__wrapper span {
     font-size: 1.5rem;
-    float: left;
+    // float: left;
   }
   &__button {
+    margin-left: 10px;
     border: 2px solid black;
-    min-width: 25px;
-    min-height: 25px;
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
-    float: right;
+    // float: right;
     &--checked {
       background: rgb(107, 107, 199);
     }

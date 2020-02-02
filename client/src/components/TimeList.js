@@ -1,9 +1,12 @@
-import React, { useContext } from "react";
-import LanguageContext from "../context/LanguageContext";
+import React from "react";
 
-const TimePicker = ({ timeInput, onTimeChange }) => {
+const TimeList = ({ handleSelectTime }) => {
   const timeChoices = [
     "",
+    "All day",
+    "Morning",
+    "Afternoon",
+    "Evening",
     "00:00",
     "00:30",
     "01:00",
@@ -52,27 +55,19 @@ const TimePicker = ({ timeInput, onTimeChange }) => {
     "23:30"
   ];
 
-  const selectOptions = timeChoices.map((time, index) => {
-    return (
-      <option key={index} value={time}>
-        {time}
-      </option>
-    );
-  });
-
   return (
-    <div className="time-picker">
-      <span className="time-picker__clock"> &#128338; </span>
-      <select
-        name="time"
-        value={timeInput}
-        onChange={onTimeChange}
-        className="time-picker__time-input"
-      >
-        {selectOptions}
-      </select>
-    </div>
+    <ul className="time-list">
+      {timeChoices.map((time, index) => (
+        <li
+          key={index + "time"}
+          className="time-option"
+          onClick={handleSelectTime}
+        >
+          {time}
+        </li>
+      ))}
+    </ul>
   );
 };
 
-export default TimePicker;
+export default TimeList;

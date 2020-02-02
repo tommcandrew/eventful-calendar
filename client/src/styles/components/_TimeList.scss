@@ -1,0 +1,27 @@
+.time-list {
+  position: absolute;
+  list-style: none;
+  background: white;
+  z-index: 10;
+  right: 105px;
+  top: 31px;
+  overflow: auto;
+  max-height: 40vh;
+  width: 7vw;
+  padding: 5px 0;
+  border: 1px solid black;
+  border-radius: 6px;
+  & li {
+    padding: 3px 0;
+  }
+}
+
+.time-option {
+  cursor: pointer;
+  min-height: 20px;
+}
+
+.time-option:hover {
+  background: $mainColor;
+  color: white;
+}

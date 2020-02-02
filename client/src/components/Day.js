@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import EventsContext from "../context/EventsContext";
 import { Droppable, Draggable } from "react-beautiful-dnd";
+import sortEvents from "../utils/sortEvents";
 
 const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
   const d = new Date();
@@ -41,6 +42,10 @@ const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
         holidaysOnThisDay.push(holidays[i]);
       }
     }
+  }
+
+  if (eventsOnThisDay && eventsOnThisDay.length > 1) {
+    sortEvents(eventsOnThisDay);
   }
 
   let classNames = "cell ";
@@ -177,8 +182,9 @@ const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
                               key={index + "event-title"}
                               className="cell__event-title"
                             >
-                              {event.title}
-                              {event.icon && event.icon}
+                              <span> {event.title}</span>
+                              <span> {event.time && event.time}</span>
+                              <span> {event.icon && event.icon}</span>
                             </div>
                           )}
                         </Draggable>

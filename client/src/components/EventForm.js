@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import TimePicker from "./TimePicker";
+import TimeList from "./TimeList";
 import { eventTitleTextOptions } from "../data/otherText";
 import LanguageContext from "../context/LanguageContext";
 import { addTextOptions } from "../data/otherText";
@@ -10,7 +10,9 @@ const EventForm = ({
   selectedEvent,
   handleGoBack,
   showIcons,
-  setShowIcons
+  setShowIcons,
+  showTimeList,
+  setShowTimeList
 }) => {
   const { language } = useContext(LanguageContext);
 
@@ -18,16 +20,18 @@ const EventForm = ({
     selectedEvent ? selectedEvent.title : ""
   );
 
-  const [timeInput, setTimeInput] = useState(
-    selectedEvent ? selectedEvent.time : ""
+  const [selectedIcon, setSelectedIcon] = useState(
+    selectedEvent ? selectedEvent.icon : ""
   );
 
-  const [selectedIcon, setSelectedIcon] = useState("");
+  const [selectedTime, setSelectedTime] = useState(
+    selectedEvent ? selectedEvent.time : ""
+  );
 
   const getFormValues = e => {
     e.preventDefault();
     const title = e.target.title.value;
-    const time = timeInput;
+    const time = selectedTime;
     handleFormSubmit(e, title, time, selectedIcon);
   };
 
@@ -39,16 +43,21 @@ const EventForm = ({
     }
   };
 
-  const handleTimeInput = e => {
-    setTimeInput(e.target.value);
-  };
-
   const handleSelectIcon = e => {
     if (!e.target.classList.contains("icon")) {
       return;
     } else {
       setSelectedIcon(e.target.innerText);
       setShowIcons(false);
+    }
+  };
+
+  const handleSelectTime = e => {
+    if (!e.target.classList.contains("time-option")) {
+      return;
+    } else {
+      setSelectedTime(e.target.innerText);
+      setShowTimeList(false);
     }
   };
 
@@ -62,6 +71,15 @@ const EventForm = ({
         ‹
       </button>
       <form className="event-form__form" onSubmit={getFormValues}>
+        <div className="event-form__preview">
+          {titleInput && (
+            <span className="event-form__title-preview"> {titleInput}</span>
+          )}
+          {selectedTime && (
+            <span className="event-form__time-preview">{selectedTime}</span>
+          )}
+          {selectedIcon && <span>{selectedIcon}</span>}
+        </div>
         <div className="event-form__form-fields">
           <div className="event-form__form-field">
             <input
@@ -84,13 +102,20 @@ const EventForm = ({
           <div className="event-form__extra-inputs">
             <button
               type="button"
+              className="event-form__clock"
+              onClick={() => setShowTimeList(!showTimeList)}
+            >
+              &#128338;
+            </button>
+            {showTimeList && <TimeList handleSelectTime={handleSelectTime} />}
+            <button
+              type="button"
               className="event-form__icon-button"
               onClick={() => setShowIcons(!showIcons)}
             >
               &#127874;
             </button>
             {showIcons && <Icons handleSelectIcon={handleSelectIcon} />}
-            <TimePicker timeInput={timeInput} onTimeChange={handleTimeInput} />
           </div>
         </div>
         <button className="event-form__button" type="submit">

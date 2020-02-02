@@ -2,8 +2,9 @@ import React, { useContext } from "react";
 import months from "../data/months";
 import DateContext from "../context/DateContext";
 import LanguageContext from "../context/LanguageContext";
-import gears from "../images/gears.svg";
-import { seeWholeYearTextOptions } from "../data/otherText";
+import { wholeYearTextOptions, settingsTextOptions } from "../data/otherText";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCog } from "@fortawesome/free-solid-svg-icons";
 
 const MonthHeader = ({
   monthIndex,
@@ -33,7 +34,7 @@ const MonthHeader = ({
           className="month-header__whole-year-button"
           onClick={() => setShowWholeYear(true)}
         >
-          {seeWholeYearTextOptions[language]}
+          &#11207;{wholeYearTextOptions[language]}
         </button>
         <div className="month-header__content">
           <button
@@ -60,7 +61,10 @@ const MonthHeader = ({
             onClick={handleShowSettings}
             className="month-header__settings-button"
           >
-            <img src={gears} alt="settings" title="Settings" />
+            <FontAwesomeIcon
+              icon={faCog}
+              title={settingsTextOptions[language]}
+            />
           </button>
         </div>
       </div>

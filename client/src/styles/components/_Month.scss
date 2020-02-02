@@ -17,6 +17,7 @@
   &__weekdays {
     display: flex;
     width: 100%;
+    // background: #ddd;
     &__weekday {
       flex-basis: calc(100% / 7);
       font-weight: bold;
@@ -28,6 +29,11 @@
     outline: 1px solid rgba(0, 0, 0, 0.3);
     flex-basis: calc(100% / 4);
     display: flex;
+    &.month--light {
+      &:hover {
+        background: #eee;
+      }
+    }
   }
   //month-view only
   &--month-view {
@@ -37,25 +43,11 @@
     align-items: center;
     position: relative;
     background: rgb(245, 246, 248);
-
-    .year-name {
-      font-size: 1.5rem;
-      margin: 0 10px;
-    }
-    .month__cells {
-      background: white;
-    }
-    .month__weekdays {
-      background: #eee;
-    }
   }
   //light theme only
   &--light {
     background-color: white;
     transition: $themeTransition;
-    &:hover {
-      background: #eee;
-    }
   }
   //dark theme only
   &--dark {

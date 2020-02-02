@@ -61,11 +61,11 @@ export const addTextOptions = {
   Türkçe: "Ekle"
 };
 
-export const seeWholeYearTextOptions = {
-  English: "See Whole Year",
-  Español: "Mira Todo Año",
-  Français: "Regardez L'année Entière",
-  Türkçe: "Tüm Yıl Görünümü"
+export const wholeYearTextOptions = {
+  English: "Whole Year",
+  Español: "Todo El Año",
+  Français: "L'année Entière",
+  Türkçe: "Tüm Yıl"
 };
 
 export const myAccountTextOptions = {
@@ -73,4 +73,11 @@ export const myAccountTextOptions = {
   Español: "Mi Cuenta",
   Français: "Mon Compte",
   Türkçe: "Hesabım"
+};
+
+export const eventsOnThisDayTextOptions = {
+  English: "Events on this day",
+  Español: "Eventos en este día",
+  Français: "Événements ce jour",
+  Türkçe: "Bu günkü etkinlikler"
 };

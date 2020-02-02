@@ -11,6 +11,14 @@
     flex-grow: 1;
     align-items: center;
   }
+  &__button {
+    @include button($mainColor, 1.3rem);
+    color: white;
+    &:hover,
+    &:focus {
+      background: $mainColorDark;
+    }
+  }
   &__event {
     background: $mainColor;
     border-radius: 6px;

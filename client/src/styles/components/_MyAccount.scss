@@ -40,4 +40,8 @@
 .my-account__logout {
   @include button($mainColor, 1.3rem);
   color: white;
+  &:hover,
+  &:focus {
+    background: $mainColorDark;
+  }
 }

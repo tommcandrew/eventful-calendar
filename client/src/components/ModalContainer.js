@@ -20,8 +20,9 @@ const ModalContainer = ({
   const [showEventInfo, setShowEventInfo] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [viaMyEvents, setViaMyEvents] = useState(null);
-  //putting these here because I want modal content onClick (in this component) to hide icons in EventForm
+  //putting these here because I want modal content onClick (in this component) to hide icons/time list in EventForm
   const [showIcons, setShowIcons] = useState(false);
+  const [showTimeList, setShowTimeList] = useState(false);
 
   const {
     eventsLocal,
@@ -119,10 +120,14 @@ const ModalContainer = ({
   };
 
   const handleModalContentClick = e => {
-    if (e.target.classList.contains("event-form__icon-button")) {
+    if (
+      e.target.classList.contains("event-form__icon-button") ||
+      e.target.classList.contains("event-form__clock")
+    ) {
       return;
     } else {
       setShowIcons(false);
+      setShowTimeList(false);
     }
   };
 
@@ -147,6 +152,8 @@ const ModalContainer = ({
             handleGoBack={handleGoBack}
             showIcons={showIcons}
             setShowIcons={setShowIcons}
+            showTimeList={showTimeList}
+            setShowTimeList={setShowTimeList}
           />
         )}
         {showEventInfo && (

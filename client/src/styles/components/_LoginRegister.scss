@@ -38,6 +38,19 @@
         width: 100%;
         margin: 5px 0;
         font-size: 1.2rem;
+        border: 3px solid $mainColor;
+        border-radius: 5px;
+        color: black;
+        &.valid {
+          background-color: lightgreen;
+        }
+        &.invalid {
+          background-color: pink;
+        }
+        //html seems to have own styling for autofill (weird!)
+        &:-webkit-autofill {
+          -webkit-box-shadow: 0 0 0px 1000px lightgreen inset;
+        }
       }
     }
   }
@@ -54,5 +67,9 @@
     @include button($mainColor, 1.5rem);
     margin-top: 30px;
     color: white;
+    &:hover,
+    &:focus {
+      background: $mainColorDark;
+    }
   }
 }

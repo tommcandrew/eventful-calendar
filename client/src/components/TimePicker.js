@@ -1,41 +1,55 @@
 import React, { useContext } from "react";
-import { chooseTimeTextOptions } from "../data/otherText";
 import LanguageContext from "../context/LanguageContext";
 
-const TimePicker = ({
-  timeInput,
-  timePeriodInput,
-  onTimeChange,
-  onTimePeriodChange
-}) => {
-  const { language } = useContext(LanguageContext);
-
+const TimePicker = ({ timeInput, onTimeChange }) => {
   const timeChoices = [
-    chooseTimeTextOptions[language],
-    "12:00",
-    "12:30",
-    "1:00",
-    "1:30",
-    "2:00",
-    "2:30",
-    "3:00",
-    "3:30",
-    "4:00",
-    "4:30",
-    "5:00",
-    "5:30",
-    "6:00",
-    "6:30",
-    "7:00",
-    "7:30",
-    "8:00",
-    "8:30",
-    "9:00",
-    "9:30",
+    "",
+    "00:00",
+    "00:30",
+    "01:00",
+    "01:30",
+    "02:00",
+    "02:30",
+    "03:00",
+    "03:30",
+    "04:00",
+    "04:30",
+    "05:00",
+    "05:30",
+    "06:00",
+    "06:30",
+    "07:00",
+    "07:30",
+    "08:00",
+    "08:30",
+    "09:00",
+    "09:30",
     "10:00",
     "10:30",
     "11:00",
-    "11:30"
+    "11:30",
+    "12:00",
+    "12:30",
+    "13:00",
+    "13:30",
+    "14:00",
+    "14:30",
+    "15:00",
+    "15:30",
+    "16:00",
+    "16:30",
+    "17:00",
+    "18:30",
+    "19:00",
+    "19:30",
+    "20:00",
+    "20:30",
+    "21:00",
+    "21:30",
+    "22:00",
+    "22:30",
+    "23:00",
+    "23:30"
   ];
 
   const selectOptions = timeChoices.map((time, index) => {
@@ -47,23 +61,15 @@ const TimePicker = ({
   });
 
   return (
-    <div className="event-form__time-picker">
+    <div className="time-picker">
+      <span className="time-picker__clock"> &#128338; </span>
       <select
         name="time"
         value={timeInput}
         onChange={onTimeChange}
-        className="event-form__time-input"
+        className="time-picker__time-input"
       >
         {selectOptions}
-      </select>
-      <select
-        onChange={onTimePeriodChange}
-        value={timePeriodInput}
-        name="timePeriod"
-        className="event-form__time-period-input"
-      >
-        <option value="am">am</option>
-        <option value="pm">pm</option>
       </select>
     </div>
   );

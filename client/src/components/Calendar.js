@@ -68,7 +68,7 @@ const Calendar = () => {
   const closeModals = e => {
     if (
       e.target.classList.contains("modal") ||
-      e.target.classList.contains("button-done")
+      e.target.classList.contains("button--done")
     ) {
       setShowModalContainer(false);
       setShowMyEvents(false);

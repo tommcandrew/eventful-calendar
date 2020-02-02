@@ -1,4 +1,15 @@
 $mainColor: rgb(107, 107, 199);
+$mainColorLight: lighten(rgb(107, 107, 199), 20%);
 $eventColor: rgb(255, 207, 207);
 $themeTransition: all 400ms ease-out;
 $boxShadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+
+@mixin button($bgColor, $fontSize) {
+  background: $bgColor;
+  font-size: $fontSize;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  padding: 10px 17px;
+}

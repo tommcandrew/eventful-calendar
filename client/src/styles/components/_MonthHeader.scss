@@ -47,6 +47,17 @@
 //does month-content need the month-view flag? why not just have it on month?
 .month__content--month-view .month-header {
   background: $mainColor;
+  &__month-name {
+    font-size: 1.5rem;
+    margin: 0 10px;
+  }
+}
+
+.month__content--year-view .month-header {
+  background: #ddd;
+  &__month-name {
+    font-size: 1.3rem;
+  }
 }
 
 .month__content--month-view .month-header__content {

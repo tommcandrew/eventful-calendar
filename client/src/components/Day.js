@@ -178,6 +178,7 @@ const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
                               className="cell__event-title"
                             >
                               {event.title}
+                              {event.icon && event.icon}
                             </div>
                           )}
                         </Draggable>

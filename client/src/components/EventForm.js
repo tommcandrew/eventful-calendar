@@ -3,9 +3,15 @@ import TimePicker from "./TimePicker";
 import { eventTitleTextOptions } from "../data/otherText";
 import LanguageContext from "../context/LanguageContext";
 import { addTextOptions } from "../data/otherText";
-import { addIconTextOptions } from "../data/otherText";
+import Icons from "./Icons";
 
-const EventForm = ({ handleFormSubmit, selectedEvent, handleGoBack }) => {
+const EventForm = ({
+  handleFormSubmit,
+  selectedEvent,
+  handleGoBack,
+  showIcons,
+  setShowIcons
+}) => {
   const { language } = useContext(LanguageContext);
 
   const [titleInput, setTitleInput] = useState(
@@ -16,16 +22,13 @@ const EventForm = ({ handleFormSubmit, selectedEvent, handleGoBack }) => {
     selectedEvent ? selectedEvent.time : ""
   );
 
-  const [timePeriodInput, setTimePeriodInput] = useState(
-    selectedEvent ? selectedEvent.timePeriod : "am"
-  );
+  const [selectedIcon, setSelectedIcon] = useState("");
 
   const getFormValues = e => {
     e.preventDefault();
     const title = e.target.title.value;
     const time = timeInput;
-    const timePeriod = timePeriodInput;
-    handleFormSubmit(e, title, time, timePeriod);
+    handleFormSubmit(e, title, time, selectedIcon);
   };
 
   const handleTitleInput = value => {
@@ -40,8 +43,13 @@ const EventForm = ({ handleFormSubmit, selectedEvent, handleGoBack }) => {
     setTimeInput(e.target.value);
   };
 
-  const handleTimePeriodInput = e => {
-    setTimePeriodInput(e.target.value);
+  const handleSelectIcon = e => {
+    if (!e.target.classList.contains("icon")) {
+      return;
+    } else {
+      setSelectedIcon(e.target.innerText);
+      setShowIcons(false);
+    }
   };
 
   return (
@@ -73,21 +81,19 @@ const EventForm = ({ handleFormSubmit, selectedEvent, handleGoBack }) => {
               *Maximum 45 characters
             </p>
           </div>
-          <TimePicker
-            timeInput={timeInput}
-            timePeriodInput={timePeriodInput}
-            onTimeChange={handleTimeInput}
-            onTimePeriodChange={handleTimePeriodInput}
-          />
-          <div>
-            <button>{addIconTextOptions[language]}:</button>
-            <span>&#127874;</span>
-            <span>&#128214;</span>
-            <span>&#127865;</span>
-            <span>&#128187;</span>
+          <div className="event-form__extra-inputs">
+            <button
+              type="button"
+              className="event-form__icon-button"
+              onClick={() => setShowIcons(!showIcons)}
+            >
+              &#127874;
+            </button>
+            {showIcons && <Icons handleSelectIcon={handleSelectIcon} />}
+            <TimePicker timeInput={timeInput} onTimeChange={handleTimeInput} />
           </div>
         </div>
-        <button className="button" type="submit">
+        <button className="event-form__button" type="submit">
           {addTextOptions[language]}
         </button>
       </form>

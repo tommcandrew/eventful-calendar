@@ -26,13 +26,6 @@ export const eventTitleTextOptions = {
   Türkçe: "Etkinliğin adı..."
 };
 
-export const chooseTimeTextOptions = {
-  English: "Choose time",
-  Español: "Elige el tiempo",
-  Français: "Choisissez l'heure",
-  Türkçe: "Saati seç"
-};
-
 export const settingsTextOptions = {
   English: "Settings",
   Español: "Ajustes",
@@ -66,13 +59,6 @@ export const addTextOptions = {
   Español: "Agrega",
   Français: "Ajouter",
   Türkçe: "Ekle"
-};
-
-export const addIconTextOptions = {
-  English: "Add Icon",
-  Español: "Agrega Imagen",
-  Français: "Ajouter Icône",
-  Türkçe: "Resim Ekle"
 };
 
 export const seeWholeYearTextOptions = {

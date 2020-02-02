@@ -51,6 +51,8 @@
     }
   }
   &__button {
+    @include button($mainColor, 1.5rem);
     margin-top: 30px;
+    color: white;
   }
 }

@@ -16,7 +16,7 @@ const MyAccount = withRouter(({ history }) => {
         <h3>{userName}</h3>
         <p>{userEmail}</p>
       </div>
-      <button className="button button--logout" onClick={handleLogout}>
+      <button className="my-account__logout" onClick={handleLogout}>
         Log out
       </button>
     </div>

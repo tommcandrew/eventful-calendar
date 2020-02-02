@@ -11,7 +11,7 @@ const User = new Schema({
       id: String,
       title: String,
       time: String,
-      timePeriod: String,
+      icon: String,
       date: Number,
       month: Number,
       year: Number

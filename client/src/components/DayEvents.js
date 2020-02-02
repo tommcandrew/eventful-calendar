@@ -26,11 +26,12 @@ const DayEvents = ({
               className="day-events__event"
             >
               <span className="day-events__event-title">{event.title}</span>
-              {event.time && <span>{event.time + event.timePeriod}</span>}
+              {event.time && <span>{event.time}</span>}
+              {event.icon && <span>{event.icon}</span>}
             </div>
           );
         })}
-      <button onClick={handleShowForm} className="button">
+      <button onClick={handleShowForm} className="day-events__button">
         {addEventTextOptions[language]}
       </button>
     </div>

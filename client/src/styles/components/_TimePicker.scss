@@ -1,0 +1,13 @@
+.time-picker {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  border: 2px soid red;
+  &__time-input {
+    font-size: 1.1rem;
+    padding: 2px;
+  }
+  &__clock {
+    font-size: 1.6rem;
+  }
+}

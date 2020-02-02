@@ -20,6 +20,8 @@ const ModalContainer = ({
   const [showEventInfo, setShowEventInfo] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [viaMyEvents, setViaMyEvents] = useState(null);
+  //putting these here because I want modal content onClick (in this component) to hide icons in EventForm
+  const [showIcons, setShowIcons] = useState(false);
 
   const {
     eventsLocal,
@@ -76,10 +78,9 @@ const ModalContainer = ({
   //EVENT CRUD OPERATIONS
 
   //ADD & EDIT
-  const handleFormSubmit = (e, titleInput, timeInput, timePeriodInput) => {
+  const handleFormSubmit = (e, titleInput, timeInput, icon) => {
     const title = titleInput;
     const time = timeInput;
-    let timePeriod = timePeriodInput;
     const date = dateObj.date;
     const month = dateObj.month;
     const year = dateObj.year;
@@ -89,13 +90,10 @@ const ModalContainer = ({
       alert("you must provide a title");
       return;
     }
-    if (time === "") {
-      timePeriod = "";
-    }
     const newEvent = {
       title,
       time,
-      timePeriod,
+      icon,
       date,
       month,
       year,
@@ -120,9 +118,17 @@ const ModalContainer = ({
     setShowDayEvents(true);
   };
 
+  const handleModalContentClick = e => {
+    if (e.target.classList.contains("event-form__icon-button")) {
+      return;
+    } else {
+      setShowIcons(false);
+    }
+  };
+
   return (
     <div className="modal" onClick={closeModals}>
-      <div className="modal__content">
+      <div className="modal__content" onClick={handleModalContentClick}>
         {!showMyEvents && !showSettings && <ModalHeader />}
         {showDayEvents && (
           <DayEvents
@@ -139,6 +145,8 @@ const ModalContainer = ({
             handleFormSubmit={handleFormSubmit}
             selectedEvent={selectedEvent}
             handleGoBack={handleGoBack}
+            showIcons={showIcons}
+            setShowIcons={setShowIcons}
           />
         )}
         {showEventInfo && (

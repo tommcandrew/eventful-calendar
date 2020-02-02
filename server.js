@@ -53,8 +53,8 @@ app.get("/events", verifyToken, (req, res) => {
 });
 
 app.post("/addevent", verifyToken, (req, res) => {
-  const { title, time, timePeriod, date, month, year, id } = req.body;
-  const event = { title, time, timePeriod, date, month, year, id };
+  const { title, time, icon, date, month, year, id } = req.body;
+  const event = { title, time, icon, date, month, year, id };
   const email = req.tokenData.user.email;
   User.findOne({ email })
     .then(user => {

@@ -27,7 +27,11 @@ const Settings = ({ closeModals }) => {
               category="Holidays"
             />
           </div>
-          <button onClick={closeModals} className="button button-done">
+          <button
+            onClick={closeModals}
+            //second classname is checked in closeModals function in Calendar component
+            className="settings__button button--done"
+          >
             OK
           </button>
         </div>

@@ -1,0 +1,27 @@
+.icons {
+  position: absolute;
+  background: white;
+  border-radius: 6px;
+  padding: 5px;
+  border: 1px solid black;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  left: -190px;
+  top: 32px;
+}
+
+.icons .row {
+  display: flex;
+}
+
+.icons span {
+  font-size: 1.2rem;
+  margin: 5px;
+  padding: 3px;
+  cursor: pointer;
+}
+
+.icons span:hover {
+  background: #ddd;
+}

@@ -16,9 +16,10 @@
 @import "./global/_back-button.scss";
 @import "./global/loader.scss";
 @import "./components/EventForm";
-@import "./global/button";
 //home extends button above but also overrides a rule so they must be in this order
 @import "./components/_Home.scss";
 @import "./components//Settings";
 @import "./components/_YearHeader.scss";
 @import "./components/MyAccount.scss";
+@import "./components/Icons";
+@import "./components/TimePicker";

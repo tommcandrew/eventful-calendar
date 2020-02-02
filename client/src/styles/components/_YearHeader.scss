@@ -3,15 +3,15 @@
     display: flex;
     margin: 0 auto;
     justify-content: space-between;
-    &.year-header__title {
-      flex-grow: 4;
-      font-size: 1.5rem;
-    }
-    &.year-header__arrow {
-      flex-grow: 1;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
+  }
+  &__title {
+    flex-grow: 4;
+    font-size: 1.5rem;
+  }
+  &__arrow {
+    flex-grow: 1;
+    font-size: 1.5rem;
+    cursor: pointer;
   }
   flex-grow: 1;
   display: flex;
@@ -33,9 +33,9 @@
       position: absolute;
       top: 0;
       bottom: 0;
+      margin: 3px 0 0 25px;
       button {
-        margin: 3px 0 0 15px;
-        font-size: 1.3rem;
+        font-size: 1.7rem;
         cursor: pointer;
       }
       img {
@@ -49,19 +49,22 @@
       top: 0;
       right: 0;
       bottom: 0;
-      margin-right: 5px;
+      margin-right: 25px;
       img {
         width: 40px;
         cursor: pointer;
       }
       button {
         margin: 3px 0 0 15px;
-        font-size: 1.3rem;
         cursor: pointer;
       }
     }
   }
   &__account-button {
     position: relative;
+    font-size: 1.7rem;
+  }
+  &__settings-button {
+    font-size: 1.7rem;
   }
 }

@@ -79,8 +79,6 @@
     }
     &--with-event {
       position: relative;
-      background: black;
-      transition: $themeTransition;
     }
   }
   .hideRow {
@@ -105,6 +103,14 @@
       height: 100%;
     }
   }
+  &.month--light {
+    .cell {
+      &--with-event {
+        background: $eventColor;
+        transition: $themeTransition;
+      }
+    }
+  }
 }
 
 //light theme only
@@ -113,8 +119,6 @@
   .cell {
     &--with-event {
       position: relative;
-      background: $eventColor;
-      transition: $themeTransition;
     }
 
     &--with-holiday {
@@ -123,7 +127,7 @@
     }
 
     &--today {
-      background: $mainColor;
+      background: $mainColorLight;
       transition: $themeTransition;
     }
   }
@@ -160,8 +164,6 @@
     //repeated from above as being overridden
     &--with-event {
       position: relative;
-      background: black;
-      transition: $themeTransition;
     }
   }
 }

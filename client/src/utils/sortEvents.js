@@ -1,4 +1,5 @@
 const sortEvents = array => {
+  //eslint-disable-next-line
   const sortedArray = array.sort((event1, event2) => {
     const leftYear = parseInt(event1.year);
     const rightYear = parseInt(event2.year);
@@ -47,7 +48,6 @@ const sortEvents = array => {
         }
       }
     }
-    // return sortedArray;
   });
   return sortedArray;
 };

@@ -100,21 +100,23 @@ const EventForm = ({
             </p>
           </div>
           <div className="event-form__extra-inputs">
-            <button
-              type="button"
+            <span
+              role="img"
+              aria-label="add time"
               className="event-form__clock"
               onClick={() => setShowTimeList(!showTimeList)}
             >
               &#128338;
-            </button>
+            </span>
             {showTimeList && <TimeList handleSelectTime={handleSelectTime} />}
-            <button
-              type="button"
+            <span
+              role="img"
+              aria-label="add icon"
               className="event-form__icon-button"
               onClick={() => setShowIcons(!showIcons)}
             >
               &#127874;
-            </button>
+            </span>
             {showIcons && <Icons handleSelectIcon={handleSelectIcon} />}
           </div>
         </div>

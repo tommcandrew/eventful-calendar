@@ -13,16 +13,12 @@ const RadioGroup = ({ options, category }) => {
   const { showHolidays, setShowHolidays } = useContext(HolidaysContext);
 
   let categoryText;
-  switch (category) {
-    case "Language":
-      categoryText = languageTextOptions[language];
-      break;
-    case "Theme":
-      categoryText = themeTextOptions[language];
-      break;
-    case "Holidays":
-      categoryText = holidaysTextOptions[language];
-      break;
+  if (category === "Language") {
+    categoryText = languageTextOptions[language];
+  } else if (category === "Theme") {
+    categoryText = themeTextOptions[language];
+  } else if (category === "Holidays") {
+    categoryText = holidaysTextOptions[language];
   }
 
   const handleRadioClick = index => {

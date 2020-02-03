@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import weekdays from "../data/weekdays";
 import Day from "./Day";
 import MonthHeader from "./MonthHeader";

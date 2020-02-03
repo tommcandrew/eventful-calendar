@@ -28,7 +28,6 @@ export const EventsContextProvider = props => {
 
   useEffect(() => {
     setEventsLocal(events);
-    console.log("fetched events: " + JSON.stringify(events));
   }, [events]);
 
   //LOCAL

@@ -1,21 +1,18 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const User = require("./models/User.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const secrets = require("./secrets");
-const PORT = process.env.PORT || 5000;
-const mongoUri =
-  process.envMONGODB_URI ||
-  `mongodb+srv://${secrets.MONGODB_USERNAME}:${secrets.MONGODB_PASSWORD}@cluster0-hjn2u.gcp.mongodb.net/eventful?retryWrites=true&w=majority`;
+const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
   console.log("listening on port " + PORT);
 });
 
 mongoose.connect(
-  mongoUri,
+  process.env.MONGODB_URI,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,

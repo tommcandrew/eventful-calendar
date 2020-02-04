@@ -1,15 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import AuthContext from "../context/AuthContext";
 import { Link } from "react-router-dom";
 
 const Login = ({ history }) => {
-  const { login } = useContext(AuthContext);
-  const handleLogin = e => {
+  const { login, errorMessage, setErrorMessage } = useContext(AuthContext);
+  const handleLogin = async e => {
     e.preventDefault();
     login(e, () => {
       history.push("/calendar");
     });
   };
+
+  useEffect(() => {
+    setErrorMessage();
+  }, []);
 
   return (
     <div className="loginRegister">
@@ -23,6 +27,7 @@ const Login = ({ history }) => {
         <form onSubmit={e => handleLogin(e)}>
           <input type="email" name="email" placeholder="Your email" />
           <input type="password" name="password" placeholder="Your password" />
+          <div className="loginRegister__error-message">{errorMessage}</div>
           <button type="submit" className="button loginRegister__button">
             Log in
           </button>

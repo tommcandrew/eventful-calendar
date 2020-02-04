@@ -46,15 +46,6 @@ const YearHeader = ({ setYear, handleShowMyEvents, handleShowSettings }) => {
         </button>
       </div>
       <div className="year-header__links--right">
-        <div
-          onClick={handleShowMyEvents}
-          className="year-header__my-events-button"
-        >
-          <FontAwesomeIcon
-            icon={faGlassMartiniAlt}
-            title={myEventsTextOptions[language]}
-          />
-        </div>
         <div className="year-header__my-account-button">
           <FontAwesomeIcon
             icon={faUserCircle}
@@ -63,6 +54,15 @@ const YearHeader = ({ setYear, handleShowMyEvents, handleShowSettings }) => {
             onClick={() => setShowMyAccount(!showMyAccount)}
           />
           {showMyAccount && <MyAccount />}
+        </div>
+        <div
+          onClick={handleShowMyEvents}
+          className="year-header__my-events-button"
+        >
+          <FontAwesomeIcon
+            icon={faGlassMartiniAlt}
+            title={myEventsTextOptions[language]}
+          />
         </div>
         <div
           onClick={handleShowSettings}

@@ -1,9 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import AuthContext from "../context/AuthContext";
 import { Link } from "react-router-dom";
 
 const Login = ({ history }) => {
-  const { register } = useContext(AuthContext);
+  const { register, errorMessage, setErrorMessage } = useContext(AuthContext);
 
   //using custom validation because I want to check that passwords match and don't want to use mix of validation types (i.e. custom and HTML5)
 
@@ -19,6 +19,10 @@ const Login = ({ history }) => {
     confirmPasswordInputClassName,
     setConfirmPasswordInputClassName
   ] = useState("");
+
+  useEffect(() => {
+    setErrorMessage();
+  }, []);
 
   const handleNameInput = e => {
     const text = e.target.value;
@@ -113,6 +117,7 @@ const Login = ({ history }) => {
             value={confirmPasswordInput}
             className={confirmPasswordInputClassName}
           />
+          <div className="loginRegister__error-message">{errorMessage}</div>
           <button type="submit" className="button loginRegister__button">
             Register
           </button>

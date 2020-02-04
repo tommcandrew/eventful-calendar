@@ -131,6 +131,9 @@
 
 .month--light {
   .cell {
+    &:hover {
+      background: #eee;
+    }
     &--with-event {
       position: relative;
     }
@@ -185,6 +188,18 @@
     &--with-event {
       position: relative;
     }
+  }
+}
+
+.month--year-view.month--dark {
+  .cell--with-event {
+    background: rgb(21, 100, 21);
+  }
+}
+
+.month--month-view.month--dark {
+  .cell__event-title {
+    background: rgb(21, 100, 21);
   }
 }
 

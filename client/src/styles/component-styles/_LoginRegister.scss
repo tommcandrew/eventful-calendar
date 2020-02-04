@@ -48,7 +48,7 @@
           background-color: pink;
         }
         //html seems to have own styling for autofill (weird!)
-        &:-webkit-autofill {
+        &:-webkit-autofill.valid {
           -webkit-box-shadow: 0 0 0px 1000px lightgreen inset;
         }
       }
@@ -71,5 +71,10 @@
     &:focus {
       background: $mainColorDark;
     }
+  }
+  &__error-message {
+    min-height: 20px;
+    color: red;
+    margin-top: 10px;
   }
 }

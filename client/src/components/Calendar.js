@@ -111,7 +111,6 @@ const Calendar = () => {
   };
 
   const handleShowSettings = () => {
-    console.log("recived");
     setShowSettings(true);
     setShowModalContainer(true);
   };

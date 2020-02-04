@@ -2,12 +2,12 @@ import React, { useContext } from "react";
 import EventsContext from "../context/EventsContext";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import sortEvents from "../utils/sortEvents";
+import getClassNames from "../utils/getClassNames";
+import HoverMessages from "./HoverMessages";
+import BlankCellContent from "./BlankCellContent";
+import HolidayList from "./HolidayList";
 
 const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
-  const d = new Date();
-  const currentMonth = d.getMonth();
-  const currentDate = d.getDate();
-  const currentYear = d.getFullYear();
   const { eventsLocal } = useContext(EventsContext);
   const dayDateString = day.date.toString();
   const dayMonthString = day.month.toString();
@@ -48,30 +48,17 @@ const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
     sortEvents(eventsOnThisDay);
   }
 
-  let classNames = "cell ";
+  let classNames = getClassNames({
+    index,
+    day,
+    holidaysOnThisDay
+  });
+
+  let holidayNames;
+
+  holidayNames = holidaysOnThisDay.map(holiday => holiday.name);
+
   let abbreviatedEvents;
-
-  if (day.date === -1) {
-    classNames = classNames.concat(" cell--blank");
-  } else {
-    classNames = classNames.concat(" cell--day");
-  }
-
-  if (
-    day.month === currentMonth &&
-    day.date === currentDate &&
-    day.year === currentYear
-  ) {
-    classNames = classNames.concat(" cell--today");
-  }
-
-  if (index === 35 && day.date === -1) {
-    classNames = classNames.concat(" hideRow");
-  }
-
-  if ([5, 6, 12, 13, 19, 20, 26, 27, 33, 34].includes(index)) {
-    classNames = classNames.concat(" cell--weekend");
-  }
 
   if (eventsOnThisDay.length > 0) {
     classNames = classNames.concat(" cell--with-event");
@@ -87,12 +74,6 @@ const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
     if (abbreviatedEvents.length > 5) {
       abbreviatedEvents = [{ title: `${abbreviatedEvents.length} events...` }];
     }
-  }
-
-  let holidayNames;
-  if (holidaysOnThisDay.length > 0) {
-    classNames = classNames.concat(" cell--with-holiday");
-    holidayNames = holidaysOnThisDay.map(holiday => holiday.name);
   }
 
   let hoverMessages = [];
@@ -128,34 +109,17 @@ const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
       }
     >
       {hoverMessages && hoverMessages.length > 0 && (
-        <div className="cell__hover-messages">
-          {hoverMessages.map((message, index) => (
-            <div key={index + "message"}>{message}</div>
-          ))}
-        </div>
+        <HoverMessages hoverMessages={hoverMessages} />
       )}
 
-      {day.date === -1 && (
-        <div className="cell__content">
-          <span className="cell--blank">{day.date}</span>
-        </div>
-      )}
+      {day.date === -1 && <BlankCellContent date={day.date} />}
       {day.date !== -1 && (
         <>
           <div className="cell__content">
             <div className="cell__date">{day.date}</div>
 
             {!yearView && holidayNames && (
-              <div className="cell__holiday-names">
-                {holidayNames.map((holidayName, index) => (
-                  <div
-                    key={index + "holiday-title"}
-                    className="cell__holiday-name"
-                  >
-                    {holidayName}
-                  </div>
-                ))}
-              </div>
+              <HolidayList holidayNames={holidayNames} />
             )}
 
             {!yearView && (
@@ -183,8 +147,12 @@ const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
                               className="cell__event-title"
                             >
                               <span> {event.title}</span>
-                              <span> {event.time && event.time}</span>
-                              <span> {event.icon && event.icon}</span>
+                              {event.time && (
+                                <span> {event.time && event.time}</span>
+                              )}
+                              {event.icon && (
+                                <span> {event.icon && event.icon}</span>
+                              )}
                             </div>
                           )}
                         </Draggable>

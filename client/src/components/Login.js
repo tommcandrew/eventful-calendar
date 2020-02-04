@@ -13,6 +13,7 @@ const Login = ({ history }) => {
 
   useEffect(() => {
     setErrorMessage();
+    //eslint-disable-next-line
   }, []);
 
   return (

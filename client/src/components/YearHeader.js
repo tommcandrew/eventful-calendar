@@ -50,7 +50,6 @@ const YearHeader = ({ setYear, handleShowMyEvents, handleShowSettings }) => {
           <FontAwesomeIcon
             icon={faUserCircle}
             title={myAccountTextOptions[language]}
-            className="year-header__account-button"
             onClick={() => setShowMyAccount(!showMyAccount)}
           />
           {showMyAccount && <MyAccount />}

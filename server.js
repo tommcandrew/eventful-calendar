@@ -90,6 +90,7 @@ app.delete("/deleteevent/:id", verifyToken, (req, res) => {
 });
 
 app.post("/editevent/:id", verifyToken, (req, res) => {
+  console.log("editevent request received");
   const { id } = req.params;
   const { title, time, location } = req.body;
   const email = req.tokenData.user.email;
@@ -103,7 +104,8 @@ app.post("/editevent/:id", verifyToken, (req, res) => {
       }
     }
   )
-    .then(() => {
+    .then(user => {
+      console.log("updated user in db: " + JSON.stringify(user));
       res.status(200).send("Event updated");
     })
     .catch(err => {

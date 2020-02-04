@@ -23,6 +23,7 @@ export const EventsContextProvider = props => {
         Authorization: "Bearer " + token
       }
     });
+    console.log("fetched events: " + JSON.stringify(res.data));
     setEvents(res.data);
   };
 
@@ -45,9 +46,13 @@ export const EventsContextProvider = props => {
   };
 
   const editEventLocal = (event, id) => {
+    console.log("id: " + id);
+    console.log("event.id: " + event.id);
     const updatedEvents = eventsLocal.filter(event => event.id !== id);
     updatedEvents.push(event);
+    console.log("updated events: " + JSON.stringify(updatedEvents));
     setEventsLocal(updatedEvents);
+    console.log("calling editEvent");
     editEvent(event, id);
   };
 
@@ -94,11 +99,13 @@ export const EventsContextProvider = props => {
 
   const editEvent = (newEvent, id) => {
     const token = localStorage.getItem("my-token");
+    console.log("making post request");
     axios
       .post("/editevent/" + id, newEvent, {
         headers: { authorization: "Bearer " + token }
       })
       .then(() => {
+        console.log("fetching events");
         fetchEvents();
       })
       .catch(err => {

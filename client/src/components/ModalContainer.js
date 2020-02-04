@@ -83,31 +83,33 @@ const ModalContainer = ({
 
   //ADD & EDIT
   const handleFormSubmit = (e, titleInput, timeInput, icon) => {
+    console.log("icon: " + icon);
     const title = titleInput;
     const time = timeInput;
     const date = dateObj.date;
     const month = dateObj.month;
     const year = dateObj.year;
-    //generating id here so don't have to wait for db to provide one
-    const id = uuid.v4();
+
     if (title === "") {
       alert("you must provide a title");
       return;
     }
-    const newEvent = {
+    let newEvent = {
       title,
       time,
       icon,
       date,
       month,
-      year,
-      id
+      year
     };
 
     if (selectedEvent) {
+      console.log("calling editEventLocal");
       editEventLocal(newEvent, selectedEvent._id);
       setSelectedEvent(null);
     } else {
+      //generating id here so don't have to wait for db to provide one
+      newEvent.id = uuid.v4();
       addEventLocal(newEvent);
     }
     setShowEventForm(false);

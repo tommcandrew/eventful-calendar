@@ -22,6 +22,7 @@ const Login = ({ history }) => {
 
   useEffect(() => {
     setErrorMessage();
+    //eslint-disable-next-line
   }, []);
 
   const handleNameInput = e => {

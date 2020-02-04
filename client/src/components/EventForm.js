@@ -104,6 +104,7 @@ const EventForm = ({
               role="img"
               aria-label="add time"
               className="event-form__clock"
+              title="Add time"
               onClick={() => setShowTimeList(!showTimeList)}
             >
               &#128338;
@@ -112,6 +113,7 @@ const EventForm = ({
             <span
               role="img"
               aria-label="add icon"
+              title="Add icon"
               className="event-form__icon-button"
               onClick={() => setShowIcons(!showIcons)}
             >

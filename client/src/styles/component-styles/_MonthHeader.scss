@@ -38,6 +38,10 @@
     top: 0;
     bottom: 0;
     cursor: pointer;
+    &:hover,
+    &:focus {
+      color: white;
+    }
   }
 }
 

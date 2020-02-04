@@ -25,7 +25,13 @@
   }
 }
 
-.modal--dark .radio-button__button--checked {
-  background: white;
-  transition: $themeTransition;
+.modal--dark .radio-button {
+  &__button {
+    &--checked {
+      background: white;
+    }
+    &--unchecked:hover {
+      background: #eee;
+    }
+  }
 }

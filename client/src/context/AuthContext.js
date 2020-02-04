@@ -8,6 +8,7 @@ export const AuthContextProvider = props => {
   const [userName, setUserName] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState();
 
   useEffect(() => {
     const token = localStorage.getItem("my-token");
@@ -36,6 +37,7 @@ export const AuthContextProvider = props => {
   }, []);
 
   const login = (e, cb) => {
+    let errorMessage;
     const email = e.target.email.value;
     const password = e.target.password.value;
     axios.post("/login", { email, password }).then(res => {
@@ -47,8 +49,8 @@ export const AuthContextProvider = props => {
         setUserName(userName);
         cb();
       } else {
-        console.log("unable to log in");
-        cb();
+        errorMessage = res.data;
+        setErrorMessage(errorMessage);
       }
     });
   };
@@ -58,6 +60,7 @@ export const AuthContextProvider = props => {
     const email = e.target.email.value;
     const password = e.target.password.value;
     const password2 = e.target.password2.value;
+    let errorMessage;
     axios.post("/register", { name, email, password, password2 }).then(res => {
       if (res.status === 200) {
         const token = res.data;
@@ -68,8 +71,8 @@ export const AuthContextProvider = props => {
         setUserName(name);
         cb();
       } else {
-        console.log("unable to log in");
-        cb();
+        errorMessage = res.data;
+        setErrorMessage(errorMessage);
       }
     });
   };
@@ -89,7 +92,9 @@ export const AuthContextProvider = props => {
         login,
         logout,
         register,
-        loading
+        loading,
+        errorMessage,
+        setErrorMessage
       }}
     >
       {props.children}

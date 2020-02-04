@@ -132,8 +132,8 @@ app.post("/login", (req, res) => {
   const { email, password } = req.body;
   User.findOne({ email }).then(user => {
     if (!user) {
-      console.log("not registered");
-      res.status(403).send();
+      //some status codes allow to send back data (message) and others don't (e.g. 403)
+      res.status(201).send("That email is not registered");
     } else {
       bcrypt.compare(password, user.password, (err, isSame) => {
         if (err) {
@@ -141,10 +141,8 @@ app.post("/login", (req, res) => {
           res.status(201).send("Problem comparing the passwords");
         } else {
           if (!isSame) {
-            console.log("Wrong password");
             res.status(201).send("Wrong password");
           } else {
-            console.log("Password correct - now generating jwt");
             jwt.sign({ user }, "secretkey", (err, token) => {
               res.status(200).send({ token: token, userName: user.name });
             });
@@ -164,13 +162,13 @@ app.post("/register", (req, res) => {
   }
   if (password !== password2) {
     console.log("passwords must match");
-    res.status(500).send();
+    res.status(201).send("Passwords must match");
     return;
   }
   User.findOne({ email }).then(user => {
     if (user) {
       console.log("already registered");
-      res.status(500).send();
+      res.status(201).send("That email is already registered");
       return;
     }
   });

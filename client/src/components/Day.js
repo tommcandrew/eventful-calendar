@@ -71,7 +71,7 @@ const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
       }
     });
     //only space for 5 events in cell so, if more, just tell user how many there are (they can click to see list)
-    if (abbreviatedEvents.length > 5) {
+    if (abbreviatedEvents.length > 4) {
       abbreviatedEvents = [{ title: `${abbreviatedEvents.length} events...` }];
     }
   }

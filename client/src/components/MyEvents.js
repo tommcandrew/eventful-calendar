@@ -7,16 +7,14 @@ import { noEventsTextOptions } from "../data/otherText";
 const MyEvents = ({ handleShowEventInfo }) => {
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [selectedEvents, setSelectedEvents] = useState(null);
-  const { eventsLocal } = useContext(EventsContext);
+  const { events } = useContext(EventsContext);
   const { language } = useContext(LanguageContext);
 
   useEffect(() => {
-    const filteredEvents = eventsLocal.filter(
-      event => event.year === selectedYear
-    );
+    const filteredEvents = events.filter(event => event.year === selectedYear);
     setSelectedEvents(filteredEvents);
     //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedYear, eventsLocal]);
+  }, [selectedYear, events]);
 
   return (
     <div className="my-events">

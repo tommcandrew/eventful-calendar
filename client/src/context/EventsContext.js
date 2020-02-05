@@ -7,12 +7,22 @@ const EventsContext = createContext();
 export const EventsContextProvider = props => {
   const { authenticated } = useContext(AuthContext);
   const [events, setEvents] = useState(null);
+  const [alert, setAlert] = useState("");
 
   useEffect(() => {
     if (authenticated) {
       fetchEvents();
     }
   }, [authenticated]);
+
+  useEffect(() => {
+    const alertTimer = setTimeout(() => {
+      setAlert("");
+    }, 5000);
+    return () => {
+      clearTimeout(alertTimer);
+    };
+  }, [alert]);
 
   const fetchEvents = async () => {
     const token = localStorage.getItem("my-token");
@@ -36,6 +46,7 @@ export const EventsContextProvider = props => {
       })
       .then(() => {
         fetchEvents();
+        setAlert("Event saved");
       })
       .catch(err => {
         console.log(err);
@@ -63,7 +74,7 @@ export const EventsContextProvider = props => {
       )
       .then(() => {
         fetchEvents();
-        console.log("database has been updated (moveEvent)");
+        setAlert("Event saved");
       })
       .catch(err => {
         console.log(err);
@@ -80,7 +91,7 @@ export const EventsContextProvider = props => {
       })
       .then(() => {
         fetchEvents();
-        console.log("database has been updated (deleteEvent)");
+        setAlert("Event deleted");
       });
   };
 
@@ -102,7 +113,7 @@ export const EventsContextProvider = props => {
       })
       .then(() => {
         fetchEvents();
-        console.log("database has been updated (editEvent)");
+        setAlert("Event saved");
       })
       .catch(err => {
         console.log(err);
@@ -116,7 +127,8 @@ export const EventsContextProvider = props => {
         addEvent,
         deleteEvent,
         editEvent,
-        moveEvent
+        moveEvent,
+        alert
       }}
     >
       {props.children}

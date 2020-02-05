@@ -1,0 +1,41 @@
+/* The alert message box */
+.alert {
+  padding: 10px;
+  background-color: rgb(62, 163, 62);
+  color: white;
+  margin-bottom: 15px;
+  position: absolute;
+  top: -50px;
+  z-index: 10;
+  width: 30%;
+  text-align: center;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  animation: bounce-in 3000ms forwards;
+}
+
+@keyframes bounce-in {
+  0% {
+    top: -50px;
+  }
+  8% {
+    top: 50px;
+  }
+  10% {
+    top: 10px;
+  }
+  13% {
+    top: 40px;
+  }
+  17% {
+    top: 25px;
+  }
+
+  95% {
+    top: 25px;
+  }
+  100% {
+    top: -50px;
+  }
+}

@@ -94,7 +94,7 @@ app.post("/editevent/:id", verifyToken, (req, res) => {
   const { title, time, location } = req.body;
   const email = req.tokenData.user.email;
   User.updateOne(
-    { email: email, "events._id": id },
+    { email: email, "events.id": id },
     {
       $set: {
         "events.$.title": title,

@@ -7,6 +7,7 @@ import axios from "axios";
 import { DragDropContext } from "react-beautiful-dnd";
 import EventsContext from "../context/EventsContext";
 import HolidaysContext from "../context/HolidaysContext";
+import Alert from "./Alert";
 
 const Calendar = () => {
   const [yearArray, setYearArray] = useState(null);
@@ -16,7 +17,7 @@ const Calendar = () => {
   const [showSettings, setShowSettings] = useState(false);
   const [holidays, setHolidays] = useState([]);
   const { dateObj, setDateObj } = useContext(DateContext);
-  const { moveEvent } = useContext(EventsContext);
+  const { moveEvent, alert } = useContext(EventsContext);
   const { showHolidays } = useContext(HolidaysContext);
 
   useEffect(() => {
@@ -120,6 +121,7 @@ const Calendar = () => {
       <>
         <DragDropContext onDragEnd={onDragEnd}>
           <div className="calendar">
+            {alert && <Alert alert={alert} />}
             <View
               yearArray={yearArray}
               setMonthView={setMonthView}

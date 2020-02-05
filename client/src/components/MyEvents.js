@@ -38,9 +38,9 @@ const MyEvents = ({ handleShowEventInfo }) => {
       </div>
       <div className="my-events__events-container">
         {selectedEvents &&
-          selectedEvents.map(event => {
+          selectedEvents.map((event, index) => {
             return (
-              <>
+              <React.Fragment key={"event" + index}>
                 <div
                   className="my-events__event"
                   onClick={() => handleShowEventInfo(event, "MyEvents")}
@@ -49,7 +49,7 @@ const MyEvents = ({ handleShowEventInfo }) => {
                   {event.time && <span>{event.time}</span>}
                   {event.timePeriod && <span>{event.timePeriod}</span>}
                 </div>
-              </>
+              </React.Fragment>
             );
           })}
         {!selectedEvents ||

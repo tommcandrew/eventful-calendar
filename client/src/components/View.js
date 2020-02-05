@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import Month from "./Month";
 import YearHeader from "./YearHeader";
 import DateContext from "../context/DateContext";
+import DeviceContext from "../context/DeviceContext";
 
 const View = ({
   yearArray,
@@ -16,8 +17,9 @@ const View = ({
   holidays
 }) => {
   const { dateObj } = useContext(DateContext);
+  const { device } = useContext(DeviceContext);
 
-  if (showWholeYear) {
+  if (showWholeYear && device !== "mobile") {
     return (
       <>
         <YearHeader
@@ -35,6 +37,8 @@ const View = ({
               monthIndex={index}
               key={index + "month"}
               holidays={holidays}
+              handleShowMyEvents={handleShowMyEvents}
+              handleShowSettings={handleShowSettings}
             />
           ))}
         </div>
@@ -51,6 +55,7 @@ const View = ({
         handleShowModalContainer={handleShowModalContainer}
         holidays={holidays}
         handleShowSettings={handleShowSettings}
+        handleShowMyEvents={handleShowMyEvents}
       />
     );
   }

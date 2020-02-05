@@ -107,6 +107,7 @@ const Calendar = () => {
   };
 
   const handleShowMyEvents = () => {
+    console.log("show my events");
     setShowMyEvents(true);
     setShowModalContainer(true);
   };

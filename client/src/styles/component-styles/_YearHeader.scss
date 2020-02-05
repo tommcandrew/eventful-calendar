@@ -36,33 +36,5 @@
       margin: 5px 0 0 10px;
       align-items: center;
     }
-    &--right {
-      display: flex;
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      margin-right: 25px;
-      align-items: center;
-    }
-  }
-  &__my-events-button {
-    font-size: 1.4rem;
-    cursor: pointer;
-    margin: 3px 0 0 15px;
-    cursor: pointer;
-  }
-  &__my-account-button {
-    position: relative;
-    font-size: 1.7rem;
-    cursor: pointer;
-    margin: 3px 0 0 15px;
-    cursor: pointer;
-  }
-  &__settings-button {
-    font-size: 1.7rem;
-    cursor: pointer;
-    margin: 3px 0 0 15px;
-    cursor: pointer;
   }
 }

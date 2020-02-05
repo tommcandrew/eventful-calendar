@@ -1,0 +1,36 @@
+.header-links {
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin-right: 5px;
+  &__my-events-button {
+    font-size: 1.4rem;
+    cursor: pointer;
+    margin: 3px 0 0 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__my-account-button {
+    position: relative;
+    font-size: 1.7rem;
+    cursor: pointer;
+    margin: 3px 0 0 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__settings-button {
+    font-size: 1.7rem;
+    cursor: pointer;
+    margin: 3px 0 0 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

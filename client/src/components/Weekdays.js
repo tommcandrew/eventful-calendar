@@ -1,12 +1,15 @@
 import React, { useContext } from "react";
 import weekdays from "../data/weekdays";
 import LanguageContext from "../context/LanguageContext";
+import DeviceContext from "../context/DeviceContext";
 
 const Weekdays = ({ yearView }) => {
   const { language } = useContext(LanguageContext);
   const weekdaysObj = weekdays[language];
+  const { device } = useContext(DeviceContext);
 
-  const weekdaysArray = yearView ? weekdaysObj.short : weekdaysObj.long;
+  const weekdaysArray =
+    yearView || device === "mobile" ? weekdaysObj.short : weekdaysObj.long;
 
   return (
     <div className="weekdays">

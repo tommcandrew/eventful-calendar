@@ -7,6 +7,7 @@ import { LanguageContextProvider } from "./context/LanguageContext";
 import { ThemeContextProvider } from "./context/ThemeContext";
 import { AuthContextProvider } from "./context/AuthContext";
 import { HolidaysContextProvider } from "./context/HolidaysContext";
+import { DeviceContextProvider } from "./context/DeviceContext";
 import "./styles/styles.scss";
 
 ReactDOM.render(
@@ -16,7 +17,9 @@ ReactDOM.render(
         <AuthContextProvider>
           <EventsContextProvider>
             <HolidaysContextProvider>
-              <App />
+              <DeviceContextProvider>
+                <App />
+              </DeviceContextProvider>
             </HolidaysContextProvider>
           </EventsContextProvider>
         </AuthContextProvider>

@@ -46,22 +46,3 @@
     transition: $themeTransition;
   }
 }
-
-//media queries
-@media only screen and (max-width: 1000px) {
-  .year-view {
-    margin: 0 5%;
-  }
-  .month--year-view {
-    flex-basis: calc(100% / 2);
-  }
-}
-
-@media only screen and (max-width: 650px) {
-  .month--year-view {
-    flex-basis: calc(100%);
-  }
-  .month {
-    height: 70vh;
-  }
-}

@@ -1,0 +1,40 @@
+@media only screen and (max-width: 480px) {
+  .header-links {
+    position: static;
+    width: 100%;
+    justify-content: center;
+    padding: 10px;
+  }
+  .month-header {
+    flex-direction: column;
+  }
+  .month__content--month-view .month-header__content {
+    width: 80%;
+    margin: 0 auto;
+  }
+  .month-header__month-name,
+  .month-header__year-name {
+    font-size: 2rem;
+    padding: 0 10px;
+  }
+  .month-header__arrow--left,
+  .month-header__arrow--right {
+    font-size: 2rem;
+  }
+
+  .modal__content {
+    width: 80%;
+  }
+
+  .time-list {
+    width: 22vw;
+  }
+  .my-account {
+    width: 45vw;
+    top: 6vh;
+    left: -39vw;
+  }
+  .settings {
+    padding: 0;
+  }
+}

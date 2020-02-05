@@ -6,9 +6,7 @@ const EventsContext = createContext();
 
 export const EventsContextProvider = props => {
   const { authenticated } = useContext(AuthContext);
-  //using local verion of events (and methods below) to avoid lag when dragging and dropping
   const [events, setEvents] = useState(null);
-  const [eventsLocal, setEventsLocal] = useState(null);
 
   useEffect(() => {
     if (authenticated) {
@@ -23,57 +21,15 @@ export const EventsContextProvider = props => {
         Authorization: "Bearer " + token
       }
     });
-    console.log("fetched events: " + JSON.stringify(res.data));
     setEvents(res.data);
   };
 
-  useEffect(() => {
-    setEventsLocal(events);
-  }, [events]);
-
-  //LOCAL
-
-  const addEventLocal = newEvent => {
-    const updatedArray = eventsLocal.concat(newEvent);
-    setEventsLocal(updatedArray);
-    addEvent(newEvent);
-  };
-
-  const deleteEventLocal = id => {
-    const updatedEvents = eventsLocal.filter(event => event.id !== id);
-    setEventsLocal(updatedEvents);
-    deleteEvent(id);
-  };
-
-  const editEventLocal = (event, id) => {
-    console.log("id: " + id);
-    console.log("event.id: " + event.id);
-    const updatedEvents = eventsLocal.filter(event => event.id !== id);
-    updatedEvents.push(event);
-    console.log("updated events: " + JSON.stringify(updatedEvents));
-    setEventsLocal(updatedEvents);
-    console.log("calling editEvent");
-    editEvent(event, id);
-  };
-
-  const moveEventLocal = (id, newDate) => {
-    const newDay = parseInt(newDate.split("-")[0]);
-    let updatedEvents = [];
-    for (let i = 0; i < eventsLocal.length; i++) {
-      if (eventsLocal[i].id === id) {
-        eventsLocal[i].date = newDay;
-      }
-      updatedEvents.push(eventsLocal[i]);
-    }
-    setEventsLocal(updatedEvents);
-    moveEvent(id, newDate);
-  };
-
-  //REMOTE
-
   const addEvent = newEvent => {
-    const token = localStorage.getItem("my-token");
+    //update state (optimistically)
+    setEvents([...events, newEvent]);
 
+    //update database
+    const token = localStorage.getItem("my-token");
     axios
       .post("/addevent", newEvent, {
         headers: { authorization: "Bearer " + token }
@@ -86,36 +42,17 @@ export const EventsContextProvider = props => {
       });
   };
 
-  const deleteEvent = id => {
-    const token = localStorage.getItem("my-token");
-    axios
-      .delete(`/deleteevent/${id}`, {
-        headers: { authorization: "Bearer " + token }
-      })
-      .then(() => {
-        fetchEvents();
-      });
-  };
-
-  const editEvent = (newEvent, id) => {
-    const token = localStorage.getItem("my-token");
-    console.log("making post request");
-    axios
-      .post("/editevent/" + id, newEvent, {
-        headers: { authorization: "Bearer " + token }
-      })
-      .then(() => {
-        console.log("fetching events");
-        fetchEvents();
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
   const moveEvent = (id, newDate) => {
-    const token = localStorage.getItem("my-token");
     const newDay = parseInt(newDate.split("-")[0]);
+    let updatedEvents = events.map(event => {
+      if (event.id === id) {
+        event.date = newDay;
+      }
+      return event;
+    });
+    setEvents(updatedEvents);
+
+    const token = localStorage.getItem("my-token");
     axios
       .post(
         "/moveevent/" + id,
@@ -126,6 +63,46 @@ export const EventsContextProvider = props => {
       )
       .then(() => {
         fetchEvents();
+        console.log("database has been updated (moveEvent)");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  const deleteEvent = id => {
+    const updatedEvents = events.filter(event => event.id !== id);
+    setEvents(updatedEvents);
+    const token = localStorage.getItem("my-token");
+    axios
+      .delete(`/deleteevent/${id}`, {
+        headers: { authorization: "Bearer " + token }
+      })
+      .then(() => {
+        fetchEvents();
+        console.log("database has been updated (deleteEvent)");
+      });
+  };
+
+  const editEvent = (editedEvent, id) => {
+    const updatedEvents = events.map(event => {
+      if (event.id === id) {
+        event.time = editedEvent.time;
+        event.title = editedEvent.title;
+        event.date = editedEvent.date;
+      }
+      return event;
+    });
+    setEvents(updatedEvents);
+
+    const token = localStorage.getItem("my-token");
+    axios
+      .post("/editevent/" + id, editedEvent, {
+        headers: { authorization: "Bearer " + token }
+      })
+      .then(() => {
+        fetchEvents();
+        console.log("database has been updated (editEvent)");
       })
       .catch(err => {
         console.log(err);
@@ -135,11 +112,11 @@ export const EventsContextProvider = props => {
   return (
     <EventsContext.Provider
       value={{
-        eventsLocal,
-        addEventLocal,
-        deleteEventLocal,
-        editEventLocal,
-        moveEventLocal
+        events,
+        addEvent,
+        deleteEvent,
+        editEvent,
+        moveEvent
       }}
     >
       {props.children}

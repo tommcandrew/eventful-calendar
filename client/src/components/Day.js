@@ -8,7 +8,7 @@ import BlankCellContent from "./BlankCellContent";
 import HolidayList from "./HolidayList";
 
 const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
-  const { eventsLocal } = useContext(EventsContext);
+  const { events } = useContext(EventsContext);
   const dayDateString = day.date.toString();
   const dayMonthString = day.month.toString();
   const dayYearString = day.year.toString();
@@ -17,15 +17,15 @@ const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
 
   const eventsOnThisDay = [];
 
-  if (eventsLocal && eventsLocal.length > 0) {
+  if (events && events.length > 0) {
     if (day.date !== -1) {
-      for (let i = 0; i < eventsLocal.length; i++) {
+      for (let i = 0; i < events.length; i++) {
         if (
-          eventsLocal[i].month === day.month &&
-          eventsLocal[i].date === day.date &&
-          eventsLocal[i].year === day.year
+          events[i].month === day.month &&
+          events[i].date === day.date &&
+          events[i].year === day.year
         ) {
-          eventsOnThisDay.push(eventsLocal[i]);
+          eventsOnThisDay.push(events[i]);
         }
       }
     }
@@ -70,7 +70,7 @@ const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
         return event;
       }
     });
-    //only space for 5 events in cell so, if more, just say how many there are (user can click to see list)
+    //only space for 5 events in cell so, if more, just tell user how many there are (they can click to see list)
     if (abbreviatedEvents.length > 5) {
       abbreviatedEvents = [{ title: `${abbreviatedEvents.length} events...` }];
     }

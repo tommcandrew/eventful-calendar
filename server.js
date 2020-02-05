@@ -62,7 +62,6 @@ app.post("/addevent", verifyToken, (req, res) => {
     .then(user => {
       user.events.push(event);
       user.save().then(() => {
-        console.log("event saved");
         res.status(200).send("Event saved");
       });
     })
@@ -77,7 +76,7 @@ app.delete("/deleteevent/:id", verifyToken, (req, res) => {
 
   User.update(
     { email: email },
-    { $pull: { events: { _id: id } } },
+    { $pull: { events: { id: id } } },
     { safe: true, multi: true }
   )
     .then(() => {

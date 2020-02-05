@@ -6,7 +6,6 @@ import EventInfo from "./EventInfo";
 import EventsContext from "../context/EventsContext";
 import DateContext from "../context/DateContext";
 import ThemeContext from "../context/ThemeContext";
-
 import MyEvents from "./MyEvents";
 import uuid from "uuid";
 import Settings from "./Settings";
@@ -26,26 +25,23 @@ const ModalContainer = ({
   const [showIcons, setShowIcons] = useState(false);
   const [showTimeList, setShowTimeList] = useState(false);
 
-  const {
-    eventsLocal,
-    addEventLocal,
-    editEventLocal,
-    deleteEventLocal
-  } = useContext(EventsContext);
+  const { events, addEvent, editEvent, deleteEvent } = useContext(
+    EventsContext
+  );
   const { dateObj } = useContext(DateContext);
   const { theme } = useContext(ThemeContext);
 
   const eventsOnThisDay = [];
 
-  if (eventsLocal !== null) {
+  if (events !== null) {
     if (dateObj.date || dateObj.date === 0) {
-      for (let i = 0; i < eventsLocal.length; i++) {
+      for (let i = 0; i < events.length; i++) {
         if (
-          eventsLocal[i].month === dateObj.month &&
-          eventsLocal[i].date === dateObj.date &&
-          eventsLocal[i].year === dateObj.year
+          events[i].month === dateObj.month &&
+          events[i].date === dateObj.date &&
+          events[i].year === dateObj.year
         ) {
-          eventsOnThisDay.push(eventsLocal[i]);
+          eventsOnThisDay.push(events[i]);
         }
       }
     }
@@ -70,6 +66,7 @@ const ModalContainer = ({
   };
 
   const handleShowEventInfo = (event, origin) => {
+    console.log(event);
     if (origin === "MyEvents") {
       setViaMyEvents(true);
       setShowMyEvents(false);
@@ -83,7 +80,6 @@ const ModalContainer = ({
 
   //ADD & EDIT
   const handleFormSubmit = (e, titleInput, timeInput, icon) => {
-    console.log("icon: " + icon);
     const title = titleInput;
     const time = timeInput;
     const date = dateObj.date;
@@ -104,13 +100,12 @@ const ModalContainer = ({
     };
 
     if (selectedEvent) {
-      console.log("calling editEventLocal");
-      editEventLocal(newEvent, selectedEvent._id);
+      editEvent(newEvent, selectedEvent.id);
       setSelectedEvent(null);
     } else {
-      //generating id here so don't have to wait for db to provide one
+      //generating id here so don't have to wait for db to provide one (required for draggable id)
       newEvent.id = uuid.v4();
-      addEventLocal(newEvent);
+      addEvent(newEvent);
     }
     setShowEventForm(false);
     setShowDayEvents(true);
@@ -118,7 +113,7 @@ const ModalContainer = ({
 
   //DELETE
   const handleDeleteEvent = () => {
-    deleteEventLocal(selectedEvent._id);
+    deleteEvent(selectedEvent.id);
     setShowEventInfo(false);
     setSelectedEvent(null);
     setShowDayEvents(true);

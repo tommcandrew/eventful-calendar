@@ -16,7 +16,7 @@ const Calendar = () => {
   const [showSettings, setShowSettings] = useState(false);
   const [holidays, setHolidays] = useState([]);
   const { dateObj, setDateObj } = useContext(DateContext);
-  const { moveEventLocal } = useContext(EventsContext);
+  const { moveEvent } = useContext(EventsContext);
   const { showHolidays } = useContext(HolidaysContext);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const Calendar = () => {
     if (!destination) {
       return;
     }
-    moveEventLocal(draggableId, destination.droppableId);
+    moveEvent(draggableId, destination.droppableId);
   };
 
   const fetchHolidays = () => {

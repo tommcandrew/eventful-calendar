@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
-import weekdays from "../data/weekdays";
 import Day from "./Day";
 import MonthHeader from "./MonthHeader";
 import DateContext from "../context/DateContext";
-import LanguageContext from "../context/LanguageContext";
 import ThemeContext from "../context/ThemeContext";
+import Weekdays from "./Weekdays";
 
 const Month = ({
   monthArray,
@@ -18,10 +17,7 @@ const Month = ({
   handleShowSettings
 }) => {
   const { dateObj } = useContext(DateContext);
-  const { language } = useContext(LanguageContext);
   const { theme } = useContext(ThemeContext);
-
-  const weekdaysArray = weekdays[language];
 
   return (
     <>
@@ -45,26 +41,7 @@ const Month = ({
             setShowWholeYear={setShowWholeYear}
             handleShowSettings={handleShowSettings}
           />
-          <div className="month__weekdays">
-            {yearView &&
-              weekdaysArray.short.map((weekday, index) => (
-                <button
-                  className="month__weekdays__weekday"
-                  key={index + "weekday"}
-                >
-                  {weekday}
-                </button>
-              ))}
-            {!yearView &&
-              weekdaysArray.long.map((weekday, index) => (
-                <button
-                  className="month__weekdays__weekday"
-                  key={index + "weekday"}
-                >
-                  {weekday}
-                </button>
-              ))}
-          </div>
+          <Weekdays yearView={yearView} />
           <div className="month__cells">
             {monthArray &&
               monthArray.map((day, index) => {

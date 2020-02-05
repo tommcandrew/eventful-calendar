@@ -4,7 +4,9 @@ const HoverMessages = ({ hoverMessages }) => {
   return (
     <div className="cell__hover-messages">
       {hoverMessages.map((message, index) => (
-        <div key={index + "message"}>{message}</div>
+        <div key={index + "message"}>
+          <em>{message}</em>
+        </div>
       ))}
     </div>
   );

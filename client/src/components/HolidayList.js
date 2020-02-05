@@ -1,11 +1,11 @@
 import React from "react";
 
-const HolidayList = ({ holidayNames }) => {
+const HolidayList = ({ holidaysOnThisDay }) => {
   return (
     <div className="cell__holiday-names">
-      {holidayNames.map((holidayName, index) => (
+      {holidaysOnThisDay.map((holiday, index) => (
         <div key={index + "holiday-title"} className="cell__holiday-name">
-          {holidayName}
+          {holiday}
         </div>
       ))}
     </div>

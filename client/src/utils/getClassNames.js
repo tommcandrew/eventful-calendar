@@ -1,4 +1,4 @@
-const getClassNames = ({ index, day, holidaysOnThisDay }) => {
+const getClassNames = ({ index, day, holidaysOnThisDay, eventsOnThisDay }) => {
   let classNames = "cell ";
   const d = new Date();
 
@@ -30,6 +30,10 @@ const getClassNames = ({ index, day, holidaysOnThisDay }) => {
 
   if (holidaysOnThisDay.length > 0) {
     classNames = classNames.concat(" cell--with-holiday");
+  }
+
+  if (eventsOnThisDay.length > 0) {
+    classNames = classNames.concat(" cell--with-event");
   }
 
   return classNames;

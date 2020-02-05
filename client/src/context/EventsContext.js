@@ -101,6 +101,7 @@ export const EventsContextProvider = props => {
         event.time = editedEvent.time;
         event.title = editedEvent.title;
         event.date = editedEvent.date;
+        event.icon = editedEvent.icon;
       }
       return event;
     });

@@ -84,4 +84,9 @@
   &__time-preview {
     padding-top: 5px;
   }
+  &__error-message {
+    min-height: 20px;
+    color: red;
+    margin-top: 10px;
+  }
 }

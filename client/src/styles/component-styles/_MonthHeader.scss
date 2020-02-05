@@ -30,6 +30,9 @@
     right: 0;
     font-size: 1.5rem;
     cursor: pointer;
+    &:hover {
+      color: white;
+    }
   }
   &__whole-year-button {
     font-size: 1.2rem;
@@ -79,9 +82,6 @@
   }
   .month__cells {
     background: white;
-  }
-  .month__weekdays {
-    background: #eee;
   }
 }
 

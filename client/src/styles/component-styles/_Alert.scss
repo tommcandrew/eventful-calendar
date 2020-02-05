@@ -1,18 +1,26 @@
 /* The alert message box */
 .alert {
+  display: flex;
   padding: 10px;
   background-color: rgb(62, 163, 62);
-  color: white;
   margin-bottom: 15px;
   position: absolute;
-  top: -50px;
+  top: 50px;
   z-index: 10;
-  width: 30%;
-  text-align: center;
+  width: 25%;
   left: 50%;
   transform: translateX(-50%);
   font-size: 1.5rem;
   animation: bounce-in 3000ms forwards;
+  background: #2ecc71;
+
+  & span {
+    position: absolute;
+  }
+  & p {
+    flex-grow: 1;
+    text-align: center;
+  }
 }
 
 @keyframes bounce-in {

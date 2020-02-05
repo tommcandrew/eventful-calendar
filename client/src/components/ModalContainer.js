@@ -9,6 +9,7 @@ import ThemeContext from "../context/ThemeContext";
 import MyEvents from "./MyEvents";
 import uuid from "uuid";
 import Settings from "./Settings";
+import getDayEvents from "../utils/getDayEvents";
 
 const ModalContainer = ({
   closeModals,
@@ -24,6 +25,7 @@ const ModalContainer = ({
   //putting these here because I want modal content onClick (in this component) to hide icons/time list in EventForm
   const [showIcons, setShowIcons] = useState(false);
   const [showTimeList, setShowTimeList] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const { events, addEvent, editEvent, deleteEvent } = useContext(
     EventsContext
@@ -31,23 +33,7 @@ const ModalContainer = ({
   const { dateObj } = useContext(DateContext);
   const { theme } = useContext(ThemeContext);
 
-  const eventsOnThisDay = [];
-
-  if (events !== null) {
-    if (dateObj.date || dateObj.date === 0) {
-      for (let i = 0; i < events.length; i++) {
-        if (
-          events[i].month === dateObj.month &&
-          events[i].date === dateObj.date &&
-          events[i].year === dateObj.year
-        ) {
-          eventsOnThisDay.push(events[i]);
-        }
-      }
-    }
-  }
-
-  //MANAGING MODALS
+  const eventsOnThisDay = getDayEvents(events, dateObj);
 
   const handleGoBack = () => {
     setShowEventInfo(false);
@@ -66,7 +52,6 @@ const ModalContainer = ({
   };
 
   const handleShowEventInfo = (event, origin) => {
-    console.log(event);
     if (origin === "MyEvents") {
       setViaMyEvents(true);
       setShowMyEvents(false);
@@ -76,9 +61,6 @@ const ModalContainer = ({
     setShowEventInfo(true);
   };
 
-  //EVENT CRUD OPERATIONS
-
-  //ADD & EDIT
   const handleFormSubmit = (e, titleInput, timeInput, icon) => {
     const title = titleInput;
     const time = timeInput;
@@ -87,7 +69,7 @@ const ModalContainer = ({
     const year = dateObj.year;
 
     if (title === "") {
-      alert("you must provide a title");
+      setErrorMessage("You must provide a title");
       return;
     }
     let newEvent = {
@@ -157,6 +139,7 @@ const ModalContainer = ({
             setShowIcons={setShowIcons}
             showTimeList={showTimeList}
             setShowTimeList={setShowTimeList}
+            errorMessage={errorMessage}
           />
         )}
         {showEventInfo && (

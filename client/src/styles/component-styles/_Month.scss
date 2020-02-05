@@ -14,16 +14,7 @@
     flex-wrap: wrap;
     flex-grow: 1;
   }
-  &__weekdays {
-    display: flex;
-    width: 100%;
-    // background: #ddd;
-    &__weekday {
-      flex-basis: calc(100% / 7);
-      font-weight: bold;
-      padding: 10px 0;
-    }
-  }
+
   //year-view only
   &--year-view {
     outline: 1px solid rgba(0, 0, 0, 0.3);
@@ -53,11 +44,6 @@
   &--dark {
     background-color: #1b2938;
     transition: $themeTransition;
-
-    .month__weekdays__weekday {
-      color: #ddd;
-      transition: $themeTransition;
-    }
   }
 }
 

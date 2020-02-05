@@ -12,7 +12,8 @@ const EventForm = ({
   showIcons,
   setShowIcons,
   showTimeList,
-  setShowTimeList
+  setShowTimeList,
+  errorMessage
 }) => {
   const { language } = useContext(LanguageContext);
 
@@ -121,6 +122,7 @@ const EventForm = ({
             </span>
             {showIcons && <Icons handleSelectIcon={handleSelectIcon} />}
           </div>
+          <div className="event-form__error-message">{errorMessage}</div>
         </div>
         <button className="event-form__button" type="submit">
           {addTextOptions[language]}

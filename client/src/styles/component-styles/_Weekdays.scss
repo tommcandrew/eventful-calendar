@@ -1,0 +1,24 @@
+.month--month-view.month--light {
+  .weekdays {
+    background: #eee;
+  }
+}
+
+.weekdays {
+  display: flex;
+  width: 100%;
+  &__weekday {
+    flex-basis: calc(100% / 7);
+    font-weight: bold;
+    padding: 10px 0;
+  }
+}
+
+.month--dark .weekdays__weekday {
+  color: #ddd;
+  transition: $themeTransition;
+}
+
+.month--month-view.month--dark .weekdays {
+  background: #111;
+}

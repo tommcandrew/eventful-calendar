@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Login = ({ history }) => {
   const { register, errorMessage, setErrorMessage } = useContext(AuthContext);
 
-  //using custom validation because I want to check that passwords match and don't want to use mix of validation types (i.e. custom and HTML5)
+  //using both custom and HTML 5 validation
 
   const [nameInput, setNameInput] = useState("");
   const [emailInput, setEmailInput] = useState("");

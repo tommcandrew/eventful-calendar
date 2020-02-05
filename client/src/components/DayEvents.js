@@ -12,7 +12,6 @@ const DayEvents = ({
   eventsOnThisDay
 }) => {
   const { language } = useContext(LanguageContext);
-
   return (
     <div className="day-events">
       <h2>{eventsOnThisDayTextOptions[language]}:</h2>

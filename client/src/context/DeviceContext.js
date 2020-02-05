@@ -4,8 +4,17 @@ const DeviceContext = createContext();
 
 export const DeviceContextProvider = props => {
   const [device, setDevice] = useState(null);
+  const [windowSize, setWindowSize] = useState(null);
 
   useEffect(() => {
+    window.addEventListener("resize", e => {
+      console.log("window has resized");
+      setWindowSize(e.target.screen.width);
+    });
+  }, []);
+
+  useEffect(() => {
+    console.log("updating device");
     const w = window.innerWidth;
     if (w > 1264) {
       setDevice("desktop");
@@ -14,7 +23,7 @@ export const DeviceContextProvider = props => {
     } else {
       setDevice("mobile");
     }
-  }, []);
+  }, [windowSize]);
 
   return (
     <DeviceContext.Provider value={{ device }}>

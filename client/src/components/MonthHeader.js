@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import months from "../data/months";
 import DateContext from "../context/DateContext";
 import LanguageContext from "../context/LanguageContext";
 import DeviceContext from "../context/DeviceContext";
 import { wholeYearTextOptions } from "../data/otherText";
 import HeaderLinks from "./HeaderLinks";
+import MobileMenu from "./MobileMenu";
+import MyAccount from "./MyAccount";
 
 const MonthHeader = ({
   monthIndex,
@@ -18,6 +20,9 @@ const MonthHeader = ({
   const { language } = useContext(LanguageContext);
   const { device } = useContext(DeviceContext);
   const monthsArray = months[language];
+  const [showMenu, setShowMenu] = useState(false);
+  const [showMyAccount, setShowMyAccount] = useState(false);
+
   if (yearView) {
     return (
       <div className="month-header">
@@ -31,6 +36,16 @@ const MonthHeader = ({
   } else {
     return (
       <div className="month-header">
+        {device === "mobile" && (
+          <div
+            className="month-header__hamburger"
+            onClick={() => setShowMenu(true)}
+          >
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        )}
         {device !== "mobile" && (
           <button
             className="month-header__whole-year-button"
@@ -38,6 +53,14 @@ const MonthHeader = ({
           >
             &#11207;{wholeYearTextOptions[language]}
           </button>
+        )}
+        {showMenu && (
+          <MobileMenu
+            setShowMenu={setShowMenu}
+            handleShowSettings={handleShowSettings}
+            handleShowMyEvents={handleShowMyEvents}
+            setShowMyAccount={setShowMyAccount}
+          />
         )}
         <div className="month-header__content">
           <button
@@ -61,10 +84,15 @@ const MonthHeader = ({
           </button>
         </div>
 
-        <HeaderLinks
-          handleShowSettings={handleShowSettings}
-          handleShowMyEvents={handleShowMyEvents}
-        />
+        {device !== "mobile" && (
+          <HeaderLinks
+            handleShowSettings={handleShowSettings}
+            handleShowMyEvents={handleShowMyEvents}
+            showMyAccount={showMyAccount}
+            setShowMyAccount={setShowMyAccount}
+          />
+        )}
+        {showMyAccount && <MyAccount setShowMyAccount={setShowMyAccount} />}
       </div>
     );
   }

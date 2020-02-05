@@ -45,3 +45,10 @@
 .my-events__event .my-events__event-title {
   font-weight: bold;
 }
+
+.my-events__close-button {
+  position: absolute;
+  top: -15px;
+  right: 5px;
+  font-size: 4rem;
+}

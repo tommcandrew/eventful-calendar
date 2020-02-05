@@ -1,5 +1,4 @@
-import React, { useState, useContext } from "react";
-import MyAccount from "./MyAccount";
+import React, { useContext } from "react";
 import {
   myEventsTextOptions,
   settingsTextOptions,
@@ -13,9 +12,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import LanguageContext from "../context/LanguageContext";
 
-const HeaderLinks = ({ handleShowMyEvents, handleShowSettings }) => {
+const HeaderLinks = ({
+  handleShowMyEvents,
+  handleShowSettings,
+  showMyAccount,
+  setShowMyAccount
+}) => {
   const { language } = useContext(LanguageContext);
-  const [showMyAccount, setShowMyAccount] = useState(false);
   return (
     <div className="header-links">
       <div className="header-links__my-account-button">
@@ -24,7 +27,6 @@ const HeaderLinks = ({ handleShowMyEvents, handleShowSettings }) => {
           title={myAccountTextOptions[language]}
           onClick={() => setShowMyAccount(!showMyAccount)}
         />
-        {showMyAccount && <MyAccount />}
       </div>
       <div
         onClick={handleShowMyEvents}

@@ -2,7 +2,6 @@ import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 
 const EventBar = ({ index, event }) => {
-  console.log("eventbar");
   return (
     <Draggable index={index} draggableId={event.id} key={event.id}>
       {provided => (
@@ -13,9 +12,9 @@ const EventBar = ({ index, event }) => {
           key={index + "event-title"}
           className="cell__event-title"
         >
+          {event.icon && <span> {event.icon && event.icon}</span>}
           <span> {event.title}</span>
           {event.time && <span> {event.time && event.time}</span>}
-          {event.icon && <span> {event.icon && event.icon}</span>}
         </div>
       )}
     </Draggable>

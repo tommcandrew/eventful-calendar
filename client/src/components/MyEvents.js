@@ -3,12 +3,14 @@ import EventsContext from "../context/EventsContext";
 import LanguageContext from "../context/LanguageContext";
 import { myEventsTextOptions } from "../data/otherText";
 import { noEventsTextOptions } from "../data/otherText";
+import DeviceContext from "../context/DeviceContext";
 
-const MyEvents = ({ handleShowEventInfo }) => {
+const MyEvents = ({ handleShowEventInfo, closeModals }) => {
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [selectedEvents, setSelectedEvents] = useState(null);
   const { events } = useContext(EventsContext);
   const { language } = useContext(LanguageContext);
+  const { device } = useContext(DeviceContext);
 
   useEffect(() => {
     const filteredEvents = events.filter(event => event.year === selectedYear);
@@ -18,6 +20,11 @@ const MyEvents = ({ handleShowEventInfo }) => {
 
   return (
     <div className="my-events">
+      {device === "mobile" && (
+        <span className="my-events__close-button" onClick={e => closeModals(e)}>
+          &times;
+        </span>
+      )}
       <h1>{myEventsTextOptions[language]}</h1>
       <div className="my-events__nav">
         <div className="my-events__nav-content">

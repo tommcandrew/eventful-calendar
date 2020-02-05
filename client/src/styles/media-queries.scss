@@ -10,12 +10,17 @@
   }
   .month__content--month-view .month-header__content {
     width: 80%;
-    margin: 0 auto;
+    margin: 0 auto 0 45px;
   }
-  .month-header__month-name,
-  .month-header__year-name {
-    font-size: 2rem;
-    padding: 0 10px;
+
+  .month__content--month-view .month-header__month-name,
+  .month__content--month-view .month-header__year-name {
+    font-size: 1.5rem;
+    padding: 8px 10px 0 10px;
+    margin: 0;
+  }
+  .month-header__date-info {
+    align-items: center;
   }
   .month-header__arrow--left,
   .month-header__arrow--right {
@@ -30,11 +35,67 @@
     width: 22vw;
   }
   .my-account {
-    width: 45vw;
-    top: 6vh;
-    left: -39vw;
+    width: 90%;
+    left: 5%;
+    right: 5%;
+    height: 80vh;
   }
+
+  .my-account__profile-pic {
+    width: 120px;
+    height: 120px;
+    font-size: 3rem;
+  }
+
+  .my-account h3 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+
+  .my-account p {
+    font-size: 1.5rem;
+  }
+
   .settings {
     padding: 0;
+  }
+  .home__content {
+    width: 100%;
+  }
+  .home__buttons {
+    width: 80%;
+  }
+  .loginRegister__content {
+    width: 90%;
+  }
+  .loginRegister form {
+    width: 80%;
+  }
+  .event-form input {
+    width: 70%;
+    margin: 0 auto;
+  }
+  .modal-header__content {
+    width: 100%;
+  }
+  .event-info__buttons {
+    width: 70%;
+  }
+  .my-events__nav-content {
+    width: 70%;
+  }
+  .settings {
+    overflow: auto;
+  }
+  .settings__radio-groups {
+    flex-direction: column;
+    width: 60%;
+    margin: 0 auto;
+  }
+  .radio-group {
+    margin: 20px 0;
+  }
+  .alert {
+    width: 60%;
   }
 }

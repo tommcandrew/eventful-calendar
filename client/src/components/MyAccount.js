@@ -1,16 +1,26 @@
 import React, { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { withRouter } from "react-router-dom";
+import DeviceContext from "../context/DeviceContext";
 
-const MyAccount = withRouter(({ history }) => {
+const MyAccount = withRouter(({ history, setShowMyAccount }) => {
   const handleLogout = () => {
     setAuthenticated(false);
     localStorage.removeItem("my-token");
     history.push("/");
   };
+  const { device } = useContext(DeviceContext);
   const { userName, userEmail, setAuthenticated } = useContext(AuthContext);
   return (
     <div className="my-account">
+      {device === "mobile" && (
+        <span
+          className="my-account__close-button"
+          onClick={() => setShowMyAccount(false)}
+        >
+          &times;
+        </span>
+      )}
       <div className="my-account__profile-pic">{userName.substr(0, 1)}</div>
       <div className="my-account__user-details">
         <h3>{userName}</h3>

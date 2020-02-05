@@ -153,7 +153,12 @@ const ModalContainer = ({
             handleGoBack={handleGoBack}
           />
         )}
-        {showMyEvents && <MyEvents handleShowEventInfo={handleShowEventInfo} />}
+        {showMyEvents && (
+          <MyEvents
+            handleShowEventInfo={handleShowEventInfo}
+            closeModals={closeModals}
+          />
+        )}
         {showSettings && <Settings />}
       </div>
     </div>

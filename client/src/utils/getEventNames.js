@@ -1,16 +1,30 @@
-const getEventNames = eventsOnThisDay => {
-  let eventNames;
+const getEventNames = (eventsOnThisDay, device) => {
+  let charLimit;
+  if (device === "mobile") {
+    charLimit = 5;
+  } else {
+    charLimit = 17;
+  }
+
+  let eventLimit;
+  if (device === "mobile") {
+    eventLimit = 2;
+  } else {
+    eventLimit = 4;
+  }
+  let eventNames = [];
   if (eventsOnThisDay.length > 0) {
-    eventNames = eventsOnThisDay.map(event => {
-      if (event.title > 17) {
-        event.title = event.title.substr(0, 14) + "...";
-        return event;
+    for (let i = 0; i < eventsOnThisDay.length; i++) {
+      if (eventsOnThisDay[i].length > charLimit) {
+        let updatedEvent = eventsOnThisDay[i];
+        updatedEvent.title = eventsOnThisDay[i].title.substr(0, charLimit);
+        eventNames.push(updatedEvent);
       } else {
-        return event;
+        eventNames.push(eventsOnThisDay[i]);
       }
-    });
+    }
     //only space for 5 events in cell so, if more, just tell user how many there are (they can click to see list)
-    if (eventNames.length > 4) {
+    if (eventNames.length > eventLimit) {
       eventNames = [{ title: `${eventNames.length} events...` }];
     }
   }

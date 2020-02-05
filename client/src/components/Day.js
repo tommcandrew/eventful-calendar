@@ -11,6 +11,7 @@ import getDayHolidays from "../utils/getDayHolidays";
 import getEventNames from "../utils/getEventNames";
 import getDayHoverMessages from "../utils/getDayHoverMessages";
 import EventBar from "./EventBar";
+import DeviceContext from "../context/DeviceContext";
 
 const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
   const { events } = useContext(EventsContext);
@@ -19,6 +20,7 @@ const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
   const dayYearString = day.year.toString();
   const fullDayDateString =
     dayDateString + "-" + dayMonthString + "-" + dayYearString;
+  const { device } = useContext(DeviceContext);
 
   //get array of events on this day
   const eventsOnThisDay = getDayEvents(events, day);
@@ -29,10 +31,10 @@ const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
   }
 
   //get array of just names of events on this day (abbreviated if too long)
-  const eventNames = getEventNames(eventsOnThisDay);
+  const eventNames = getEventNames(eventsOnThisDay, device);
 
   //get array of holidays on this day
-  const holidaysOnThisDay = getDayHolidays(holidays, day);
+  const holidaysOnThisDay = getDayHolidays(holidays, day, device);
 
   //get array of classNames for this cell based on events, holidays etc.
   let classNames = getClassNames({

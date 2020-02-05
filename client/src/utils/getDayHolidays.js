@@ -1,5 +1,5 @@
-const getDayHolidays = (holidays, day) => {
-  const holidaysOnThisDay = [];
+const getDayHolidays = (holidays, day, device) => {
+  let holidaysOnThisDay = [];
   if (holidays && holidays.length > 0 && day.date !== -1) {
     for (let i = 0; i < holidays.length; i++) {
       if (
@@ -7,7 +7,13 @@ const getDayHolidays = (holidays, day) => {
         holidays[i].date.datetime.month === day.month + 1 &&
         holidays[i].date.datetime.day === day.date
       ) {
-        holidaysOnThisDay.push(holidays[i]);
+        if (device === "mobile") {
+          let abbreviatedHoliday = holidays[i];
+          abbreviatedHoliday.name = abbreviatedHoliday.name.substr(0, 5);
+          holidaysOnThisDay.push(abbreviatedHoliday);
+        } else {
+          holidaysOnThisDay.push(holidays[i]);
+        }
       }
     }
   }

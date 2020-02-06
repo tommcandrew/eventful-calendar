@@ -149,6 +149,7 @@ const ModalContainer = ({
             closeModals={closeModals}
           />
         )}
+
         {showEventInfo && (
           <EventInfo
             selectedEvent={selectedEvent}

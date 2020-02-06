@@ -20,11 +20,9 @@ const MyEvents = ({ handleShowEventInfo, closeModals }) => {
 
   return (
     <div className="my-events">
-      {device !== "desktop" && (
-        <span className="my-events__close-button" onClick={e => closeModals(e)}>
-          &times;
-        </span>
-      )}
+      <span className="my-events__close-button" onClick={e => closeModals(e)}>
+        &times;
+      </span>
       <h1>{myEventsTextOptions[language]}</h1>
       <div className="my-events__nav">
         <div className="my-events__nav-content">

@@ -1,5 +1,4 @@
 const getDayHolidays = (holidays, day) => {
-  debugger;
   let holidaysOnThisDay = [];
   if (holidays && holidays.length > 0 && day.date !== -1) {
     for (let i = 0; i < holidays.length; i++) {

@@ -9,8 +9,8 @@
     flex-direction: column;
   }
   .month__content--month-view .month-header__content {
-    width: 80%;
-    margin: 0 auto 0 45px;
+    width: 70%;
+    margin: 0 auto 0 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -105,6 +105,17 @@
     margin: 20px 0;
   }
   .alert {
-    width: 60%;
+    width: 70%;
+  }
+  .icons {
+    width: 70vw;
+  }
+  .day-events__close-button,
+  .event-form__close-button,
+  .my-events__close-button {
+    font-size: 3rem;
+  }
+  .my-events__events-container {
+    width: 80%;
   }
 }

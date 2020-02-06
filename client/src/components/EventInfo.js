@@ -12,14 +12,9 @@ const EventInfo = ({
 
   return (
     <div className="event-info">
-      {device !== "desktop" && (
-        <span
-          className="event-info__close-button"
-          onClick={e => closeModals(e)}
-        >
-          &times;
-        </span>
-      )}
+      <span className="event-info__close-button" onClick={e => closeModals(e)}>
+        &times;
+      </span>
       <button className="back-button--modal" onClick={handleGoBack}>
         ‹
       </button>

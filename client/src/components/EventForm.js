@@ -66,16 +66,15 @@ const EventForm = ({
     }
   };
 
+  const closeIcons = () => {
+    setShowIcons(false);
+  };
+
   return (
     <div className="event-form">
-      {device !== "desktop" && (
-        <span
-          className="event-form__close-button"
-          onClick={e => closeModals(e)}
-        >
-          &times;
-        </span>
-      )}
+      <span className="event-form__close-button" onClick={e => closeModals(e)}>
+        &times;
+      </span>
       <button
         className="back-button--modal"
         onClick={handleGoBack}
@@ -132,7 +131,12 @@ const EventForm = ({
             >
               &#127874;
             </span>
-            {showIcons && <Icons handleSelectIcon={handleSelectIcon} />}
+            {showIcons && (
+              <Icons
+                handleSelectIcon={handleSelectIcon}
+                closeIcons={closeIcons}
+              />
+            )}
           </div>
           <div className="event-form__error-message">{errorMessage}</div>
         </div>

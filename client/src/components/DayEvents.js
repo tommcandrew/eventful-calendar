@@ -21,14 +21,9 @@ const DayEvents = ({
 
   return (
     <div className="day-events">
-      {device !== "desktop" && (
-        <span
-          className="day-events__close-button"
-          onClick={e => closeModals(e)}
-        >
-          &times;
-        </span>
-      )}
+      <span className="day-events__close-button" onClick={e => closeModals(e)}>
+        &times;
+      </span>
       {holidaysOnThisDay &&
         holidaysOnThisDay.length > 0 &&
         showHolidays &&

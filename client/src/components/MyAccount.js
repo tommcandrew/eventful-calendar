@@ -13,14 +13,12 @@ const MyAccount = withRouter(({ history, setShowMyAccount }) => {
   const { userName, userEmail, setAuthenticated } = useContext(AuthContext);
   return (
     <div className="my-account">
-      {device !== "desktop" && (
-        <span
-          className="my-account__close-button"
-          onClick={() => setShowMyAccount(false)}
-        >
-          &times;
-        </span>
-      )}
+      <span
+        className="my-account__close-button"
+        onClick={() => setShowMyAccount(false)}
+      >
+        &times;
+      </span>
       <div className="my-account__profile-pic">
         <span className="my-account__user-initial">
           {userName.substr(0, 1)}

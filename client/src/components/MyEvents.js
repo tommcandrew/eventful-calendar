@@ -20,7 +20,7 @@ const MyEvents = ({ handleShowEventInfo, closeModals }) => {
 
   return (
     <div className="my-events">
-      {device === "mobile" && (
+      {device !== "desktop" && (
         <span className="my-events__close-button" onClick={e => closeModals(e)}>
           &times;
         </span>

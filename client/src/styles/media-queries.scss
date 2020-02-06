@@ -1,4 +1,4 @@
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 1264px) {
   .header-links {
     position: static;
     width: 100%;
@@ -11,6 +11,9 @@
   .month__content--month-view .month-header__content {
     width: 80%;
     margin: 0 auto 0 45px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .month__content--month-view .month-header__month-name,
@@ -21,10 +24,6 @@
   }
   .month-header__date-info {
     align-items: center;
-  }
-  .month-header__arrow--left,
-  .month-header__arrow--right {
-    font-size: 2rem;
   }
 
   .modal__content {
@@ -38,7 +37,7 @@
     width: 90%;
     left: 5%;
     right: 5%;
-    height: 80vh;
+    height: 60vh;
   }
 
   .my-account__profile-pic {
@@ -72,8 +71,18 @@
     width: 80%;
   }
   .event-form input {
-    width: 70%;
-    margin: 0 auto;
+    width: 50%;
+    margin: 10px auto 0 auto;
+  }
+  .event-form__preview {
+    width: 65%;
+    font-size: 1rem;
+    padding: 0;
+    align-items: center;
+  }
+  .event-form__preview span {
+    margin: 0;
+    flex-grow: 1;
   }
   .modal-header__content {
     width: 100%;
@@ -90,7 +99,7 @@
   .settings__radio-groups {
     flex-direction: column;
     width: 60%;
-    margin: 0 auto;
+    margin: 20px auto 0 auto;
   }
   .radio-group {
     margin: 20px 0;

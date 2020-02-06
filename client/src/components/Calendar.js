@@ -8,6 +8,7 @@ import { DragDropContext } from "react-beautiful-dnd";
 import EventsContext from "../context/EventsContext";
 import HolidaysContext from "../context/HolidaysContext";
 import Alert from "./Alert";
+import MyAccount from "./MyAccount";
 
 const Calendar = () => {
   const [yearArray, setYearArray] = useState(null);
@@ -19,6 +20,7 @@ const Calendar = () => {
   const { dateObj, setDateObj } = useContext(DateContext);
   const { moveEvent, alert } = useContext(EventsContext);
   const { showHolidays } = useContext(HolidaysContext);
+  const [showMyAccount, setShowMyAccount] = useState(false);
 
   useEffect(() => {
     if (showHolidays === "Hide") {
@@ -70,7 +72,10 @@ const Calendar = () => {
     if (
       e.target.classList.contains("modal") ||
       e.target.classList.contains("button--done") ||
-      e.target.classList.contains("my-events__close-button")
+      e.target.classList.contains("my-events__close-button") ||
+      e.target.classList.contains("day-events__close-button") ||
+      e.target.classList.contains("event-form__close-button") ||
+      e.target.classList.contains("event-info__close-button")
     ) {
       setShowModalContainer(false);
       setShowMyEvents(false);
@@ -123,6 +128,7 @@ const Calendar = () => {
         <DragDropContext onDragEnd={onDragEnd}>
           <div className="calendar">
             {alert && <Alert alert={alert} />}
+            {showMyAccount && <MyAccount setShowMyAccount={setShowMyAccount} />}
             <View
               yearArray={yearArray}
               setMonthView={setMonthView}
@@ -134,6 +140,8 @@ const Calendar = () => {
               handleShowMyEvents={handleShowMyEvents}
               handleShowSettings={handleShowSettings}
               holidays={holidays}
+              showMyAccount={showMyAccount}
+              setShowMyAccount={setShowMyAccount}
             />
           </div>
           {showModalContainer && (

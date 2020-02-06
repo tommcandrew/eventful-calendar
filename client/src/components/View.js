@@ -14,18 +14,22 @@ const View = ({
   handleShowModalContainer,
   handleShowMyEvents,
   handleShowSettings,
-  holidays
+  holidays,
+  showMyAccount,
+  setShowMyAccount
 }) => {
   const { dateObj } = useContext(DateContext);
   const { device } = useContext(DeviceContext);
 
-  if (showWholeYear && device !== "mobile") {
+  if (showWholeYear && device === "desktop") {
     return (
       <>
         <YearHeader
           setYear={setYear}
           handleShowMyEvents={handleShowMyEvents}
           handleShowSettings={handleShowSettings}
+          showMyAccount={showMyAccount}
+          setShowMyAccount={setShowMyAccount}
         />
 
         <div className="year-view">
@@ -39,6 +43,8 @@ const View = ({
               holidays={holidays}
               handleShowMyEvents={handleShowMyEvents}
               handleShowSettings={handleShowSettings}
+              showMyAccount={showMyAccount}
+              setShowMyAccount={setShowMyAccount}
             />
           ))}
         </div>
@@ -56,6 +62,8 @@ const View = ({
         holidays={holidays}
         handleShowSettings={handleShowSettings}
         handleShowMyEvents={handleShowMyEvents}
+        showMyAccount={showMyAccount}
+        setShowMyAccount={setShowMyAccount}
       />
     );
   }

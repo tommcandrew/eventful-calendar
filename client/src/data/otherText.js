@@ -81,3 +81,17 @@ export const eventsOnThisDayTextOptions = {
   Français: "Événements ce jour",
   Türkçe: "Bu günkü etkinlikler"
 };
+
+export const eventSavedTextOptions = {
+  English: "Event saved",
+  Español: "Evento guardado",
+  Français: "Événement enregistré",
+  Türkçe: "Etkinlik kaydedildi"
+};
+
+export const eventDeletedTextOptions = {
+  English: "Event deleted",
+  Español: "Evento eliminado",
+  Français: "Événement supprimé",
+  Türkçe: "Etkinlik silindi"
+};

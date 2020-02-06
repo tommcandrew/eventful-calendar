@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 const Login = ({ history }) => {
   const { register, errorMessage, setErrorMessage } = useContext(AuthContext);
-
   //using both custom and HTML 5 validation
 
   const [nameInput, setNameInput] = useState("");

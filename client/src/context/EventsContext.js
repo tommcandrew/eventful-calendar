@@ -1,11 +1,17 @@
 import React, { useState, createContext, useEffect, useContext } from "react";
 import axios from "axios";
 import AuthContext from "./AuthContext";
+import {
+  eventSavedTextOptions,
+  eventDeletedTextOptions
+} from "../data/otherText";
+import LanguageContext from "./LanguageContext";
 
 const EventsContext = createContext();
 
 export const EventsContextProvider = props => {
   const { authenticated } = useContext(AuthContext);
+  const { language } = useContext(LanguageContext);
   const [events, setEvents] = useState(null);
   const [alert, setAlert] = useState("");
 
@@ -46,7 +52,7 @@ export const EventsContextProvider = props => {
       })
       .then(() => {
         fetchEvents();
-        setAlert("Event saved");
+        setAlert(eventSavedTextOptions[language]);
       })
       .catch(err => {
         console.log(err);
@@ -74,7 +80,7 @@ export const EventsContextProvider = props => {
       )
       .then(() => {
         fetchEvents();
-        setAlert("Event saved");
+        setAlert(eventSavedTextOptions[language]);
       })
       .catch(err => {
         console.log(err);
@@ -91,7 +97,7 @@ export const EventsContextProvider = props => {
       })
       .then(() => {
         fetchEvents();
-        setAlert("Event deleted");
+        setAlert(eventDeletedTextOptions[language]);
       });
   };
 
@@ -114,7 +120,7 @@ export const EventsContextProvider = props => {
       })
       .then(() => {
         fetchEvents();
-        setAlert("Event saved");
+        setAlert(eventSavedTextOptions[language]);
       })
       .catch(err => {
         console.log(err);

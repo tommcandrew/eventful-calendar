@@ -9,7 +9,7 @@ const Weekdays = ({ yearView }) => {
   const { device } = useContext(DeviceContext);
 
   const weekdaysArray =
-    yearView || device === "mobile" ? weekdaysObj.short : weekdaysObj.long;
+    yearView || device !== "desktop" ? weekdaysObj.short : weekdaysObj.long;
 
   return (
     <div className="weekdays">

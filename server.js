@@ -141,7 +141,6 @@ app.post("/login", (req, res) => {
     } else {
       bcrypt.compare(password, user.password, (err, isSame) => {
         if (err) {
-          console.log("Problem comparing the passwords");
           res.status(201).send("Problem comparing the passwords");
         } else {
           if (!isSame) {

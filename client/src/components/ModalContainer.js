@@ -125,6 +125,7 @@ const ModalContainer = ({
             handleShowForm={handleShowForm}
             handleShowEventInfo={handleShowEventInfo}
             eventsOnThisDay={eventsOnThisDay}
+            closeModals={closeModals}
           />
         )}
 
@@ -140,6 +141,7 @@ const ModalContainer = ({
             showTimeList={showTimeList}
             setShowTimeList={setShowTimeList}
             errorMessage={errorMessage}
+            closeModals={closeModals}
           />
         )}
         {showEventInfo && (
@@ -151,6 +153,7 @@ const ModalContainer = ({
             handleDeleteEvent={handleDeleteEvent}
             handleShowForm={handleShowForm}
             handleGoBack={handleGoBack}
+            closeModals={closeModals}
           />
         )}
         {showMyEvents && (

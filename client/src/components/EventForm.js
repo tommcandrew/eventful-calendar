@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import TimeList from "./TimeList";
 import { eventTitleTextOptions } from "../data/otherText";
 import LanguageContext from "../context/LanguageContext";
+import DeviceContext from "../context/DeviceContext";
+
 import { addTextOptions } from "../data/otherText";
 import Icons from "./Icons";
 
@@ -13,9 +15,11 @@ const EventForm = ({
   setShowIcons,
   showTimeList,
   setShowTimeList,
-  errorMessage
+  errorMessage,
+  closeModals
 }) => {
   const { language } = useContext(LanguageContext);
+  const { device } = useContext(DeviceContext);
 
   const [titleInput, setTitleInput] = useState(
     selectedEvent ? selectedEvent.title : ""
@@ -64,6 +68,14 @@ const EventForm = ({
 
   return (
     <div className="event-form">
+      {device !== "desktop" && (
+        <span
+          className="event-form__close-button"
+          onClick={e => closeModals(e)}
+        >
+          &times;
+        </span>
+      )}
       <button
         className="back-button--modal"
         onClick={handleGoBack}

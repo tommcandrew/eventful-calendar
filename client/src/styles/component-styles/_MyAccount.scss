@@ -1,7 +1,7 @@
 .my-account {
   position: absolute;
   top: 6vh;
-  left: -12vw;
+  right: 0.5vw;
   min-height: 40vh;
   min-width: 20vw;
   z-index: 10;
@@ -13,6 +13,10 @@
   align-items: center;
   justify-content: space-around;
   cursor: default;
+}
+
+.my-account__user-initial {
+  padding-top: 5px;
 }
 
 .my-account__profile-pic {

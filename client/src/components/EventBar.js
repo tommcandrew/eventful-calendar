@@ -14,7 +14,7 @@ const EventBar = ({ index, event }) => {
         >
           {event.icon && <span> {event.icon && event.icon}</span>}
           <span> {event.title}</span>
-          {event.time && <span> {event.time && event.time}</span>}
+          {/* {event.time && <span> {event.time && event.time}</span>} */}
         </div>
       )}
     </Draggable>

@@ -3,7 +3,13 @@ import DateContext from "../context/DateContext";
 import ThemeContext from "../context/ThemeContext";
 import HeaderLinks from "./HeaderLinks";
 
-const YearHeader = ({ setYear, handleShowMyEvents, handleShowSettings }) => {
+const YearHeader = ({
+  setYear,
+  handleShowMyEvents,
+  handleShowSettings,
+  showMyAccount,
+  setShowMyAccount
+}) => {
   const { dateObj } = useContext(DateContext);
   const { theme } = useContext(ThemeContext);
 
@@ -18,22 +24,20 @@ const YearHeader = ({ setYear, handleShowMyEvents, handleShowSettings }) => {
       </div>
       <div className="year-header__content">
         <button
-          className="year-header__arrow"
+          className="year-header__arrow year-header__arrow--left"
           onClick={() => setYear(dateObj.year - 1)}
-        >
-          &#11207;
-        </button>
+        ></button>
         <button className="year-header__title">{dateObj.year}</button>
         <button
-          className="year-header__arrow"
+          className="year-header__arrow year-header__arrow--right"
           onClick={() => setYear(dateObj.year + 1)}
-        >
-          &#11208;
-        </button>
+        ></button>
       </div>
       <HeaderLinks
         handleShowMyEvents={handleShowMyEvents}
         handleShowSettings={handleShowSettings}
+        showMyAccount={showMyAccount}
+        setShowMyAccount={setShowMyAccount}
       />
     </div>
   );

@@ -6,7 +6,6 @@ import DeviceContext from "../context/DeviceContext";
 import { wholeYearTextOptions } from "../data/otherText";
 import HeaderLinks from "./HeaderLinks";
 import MobileMenu from "./MobileMenu";
-import MyAccount from "./MyAccount";
 
 const MonthHeader = ({
   monthIndex,
@@ -14,14 +13,15 @@ const MonthHeader = ({
   setMonth,
   setShowWholeYear,
   handleShowSettings,
-  handleShowMyEvents
+  handleShowMyEvents,
+  showMyAccount,
+  setShowMyAccount
 }) => {
   const { dateObj } = useContext(DateContext);
   const { language } = useContext(LanguageContext);
   const { device } = useContext(DeviceContext);
   const monthsArray = months[language];
   const [showMenu, setShowMenu] = useState(false);
-  const [showMyAccount, setShowMyAccount] = useState(false);
 
   if (yearView) {
     return (
@@ -36,7 +36,7 @@ const MonthHeader = ({
   } else {
     return (
       <div className="month-header">
-        {device === "mobile" && (
+        {device !== "desktop" && (
           <div
             className="month-header__hamburger"
             onClick={() => setShowMenu(true)}
@@ -46,7 +46,7 @@ const MonthHeader = ({
             <div></div>
           </div>
         )}
-        {device !== "mobile" && (
+        {device === "desktop" && (
           <button
             className="month-header__whole-year-button"
             onClick={() => setShowWholeYear(true)}
@@ -64,11 +64,9 @@ const MonthHeader = ({
         )}
         <div className="month-header__content">
           <button
-            className="month-header__arrow--left"
+            className="month-header__arrow month-header__arrow--left"
             onClick={() => setMonth(monthIndex - 1)}
-          >
-            &#11207;
-          </button>
+          ></button>
           <div className="month-header__date-info">
             <button className="month-header__month-name">
               {monthsArray[monthIndex]}
@@ -77,14 +75,12 @@ const MonthHeader = ({
           </div>
 
           <button
-            className="month-header__arrow--right"
+            className="month-header__arrow month-header__arrow--right"
             onClick={() => setMonth(monthIndex + 1)}
-          >
-            &#11208;
-          </button>
+          ></button>
         </div>
 
-        {device !== "mobile" && (
+        {device === "desktop" && (
           <HeaderLinks
             handleShowSettings={handleShowSettings}
             handleShowMyEvents={handleShowMyEvents}
@@ -92,7 +88,6 @@ const MonthHeader = ({
             setShowMyAccount={setShowMyAccount}
           />
         )}
-        {showMyAccount && <MyAccount setShowMyAccount={setShowMyAccount} />}
       </div>
     );
   }

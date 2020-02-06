@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
+import DeviceContext from "../context/DeviceContext";
 
 const EventInfo = ({
   selectedEvent,
   handleDeleteEvent,
   handleShowForm,
-  handleGoBack
+  handleGoBack,
+  closeModals
 }) => {
+  const { device } = useContext(DeviceContext);
+
   return (
     <div className="event-info">
+      {device !== "desktop" && (
+        <span
+          className="event-info__close-button"
+          onClick={e => closeModals(e)}
+        >
+          &times;
+        </span>
+      )}
       <button className="back-button--modal" onClick={handleGoBack}>
         ‹
       </button>

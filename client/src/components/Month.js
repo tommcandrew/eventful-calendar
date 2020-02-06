@@ -15,7 +15,9 @@ const Month = ({
   handleShowModalContainer,
   holidays,
   handleShowSettings,
-  handleShowMyEvents
+  handleShowMyEvents,
+  showMyAccount,
+  setShowMyAccount
 }) => {
   const { dateObj } = useContext(DateContext);
   const { theme } = useContext(ThemeContext);
@@ -42,6 +44,8 @@ const Month = ({
             setShowWholeYear={setShowWholeYear}
             handleShowSettings={handleShowSettings}
             handleShowMyEvents={handleShowMyEvents}
+            showMyAccount={showMyAccount}
+            setShowMyAccount={setShowMyAccount}
           />
           <Weekdays yearView={yearView} />
           <div className="month__cells">

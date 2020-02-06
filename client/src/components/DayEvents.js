@@ -5,15 +5,26 @@ import {
   eventsOnThisDayTextOptions,
   addEventTextOptions
 } from "../data/otherText";
+import DeviceContext from "../context/DeviceContext";
 
 const DayEvents = ({
   handleShowForm,
   handleShowEventInfo,
-  eventsOnThisDay
+  eventsOnThisDay,
+  closeModals
 }) => {
   const { language } = useContext(LanguageContext);
+  const { device } = useContext(DeviceContext);
   return (
     <div className="day-events">
+      {device !== "desktop" && (
+        <span
+          className="day-events__close-button"
+          onClick={e => closeModals(e)}
+        >
+          &times;
+        </span>
+      )}
       <h2>{eventsOnThisDayTextOptions[language]}:</h2>
       {!eventsOnThisDay ||
         (eventsOnThisDay.length === 0 && (

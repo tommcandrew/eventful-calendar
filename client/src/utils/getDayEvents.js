@@ -9,7 +9,8 @@ const getDayEvents = (events, day) => {
           events[i].date === day.date &&
           events[i].year === day.year
         ) {
-          eventsOnThisDay.push(events[i]);
+          const objCopy = { ...events[i] };
+          eventsOnThisDay.push(objCopy);
         }
       }
     }

@@ -4,26 +4,33 @@ const DeviceContext = createContext();
 
 export const DeviceContextProvider = props => {
   const [device, setDevice] = useState(null);
-  const [windowSize, setWindowSize] = useState(null);
+  const [windowSize, setWindowSize] = useState(getWidth());
 
   useEffect(() => {
     window.addEventListener("resize", e => {
       console.log("window has resized");
-      setWindowSize(e.target.screen.width);
+      setWindowSize(getWidth());
     });
   }, []);
 
   useEffect(() => {
-    console.log("updating device");
-    const w = window.innerWidth;
-    if (w > 1264) {
+    console.log(windowSize);
+    if (windowSize > 1264) {
       setDevice("desktop");
-    } else if (w < 1264 && w > 480) {
+      console.log("desktop");
+    } else if (windowSize < 1264 && windowSize > 480) {
       setDevice("tablet");
+      console.log("tablet");
     } else {
       setDevice("mobile");
+      console.log("mobile");
     }
   }, [windowSize]);
+
+  function getWidth() {
+    const width = window.innerWidth;
+    return width;
+  }
 
   return (
     <DeviceContext.Provider value={{ device }}>

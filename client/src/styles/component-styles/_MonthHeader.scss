@@ -3,25 +3,13 @@
   padding: 3px 0;
   justify-content: space-around;
   position: relative;
-  &__arrow--left {
-    left: 0;
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
+
   &__date-info {
     min-width: 55%;
     display: flex;
     justify-content: space-between;
   }
 
-  &__arrow--right {
-    right: 0;
-    font-size: 1.5rem;
-    cursor: pointer;
-    &:hover {
-      color: white;
-    }
-  }
   &__whole-year-button {
     font-size: 1.2rem;
     position: absolute;
@@ -95,4 +83,20 @@
   height: 4px;
   background-color: black;
   margin: 6px 0;
+}
+
+.month-header__arrow {
+  width: 0;
+  height: 0;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  cursor: pointer;
+}
+
+.month-header__arrow--left {
+  border-right: 12px solid black;
+}
+
+.month-header__arrow--right {
+  border-left: 12px solid black;
 }

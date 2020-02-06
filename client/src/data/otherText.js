@@ -95,3 +95,10 @@ export const eventDeletedTextOptions = {
   Français: "Événement supprimé",
   Türkçe: "Etkinlik silindi"
 };
+
+export const showHideTextOptions = {
+  English: ["Show", "Hide"],
+  Español: ["Mostrar", "Esconder"],
+  Français: ["Montre", "Cache"],
+  Türkçe: ["Göster", "Sakla"]
+};

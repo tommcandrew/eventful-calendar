@@ -1,15 +1,22 @@
 import React from "react";
 
-const RadioButton = props => {
+const RadioButton = ({ index, handler, text, isChecked, category }) => {
+  let label;
+  if (typeof text === "string") {
+    label = text;
+  } else {
+    label = text[index];
+  }
+
   return (
     <div
       className="radio-button__wrapper"
-      onClick={() => props.handler(props.index)}
+      onClick={() => handler(index, category)}
     >
-      <span>{props.text}</span>
+      <span>{label}</span>
       <div
         className={`radio-button__button ${
-          props.isChecked
+          isChecked
             ? "radio-button__button--checked"
             : "radio-button__button--unchecked"
         }`}

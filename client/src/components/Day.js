@@ -7,7 +7,7 @@ import HoverMessages from "./HoverMessages";
 import BlankCellContent from "./BlankCellContent";
 import HolidayList from "./HolidayList";
 import getDayEvents from "../utils/getDayEvents";
-import getDayHolidays from "../utils/getDayHolidays";
+import getHolidayNames from "../utils/getHolidayNames";
 import getEventNames from "../utils/getEventNames";
 import getDayHoverMessages from "../utils/getDayHoverMessages";
 import EventBar from "./EventBar";
@@ -34,19 +34,19 @@ const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
   const eventNames = getEventNames(eventsOnThisDay, device);
 
   //get array of holidays on this day
-  const holidaysOnThisDay = getDayHolidays(holidays, day, device);
+  const holidayNames = getHolidayNames(holidays, day, device);
 
   //get array of classNames for this cell based on events, holidays etc.
   let classNames = getClassNames({
     index,
     day,
-    holidaysOnThisDay,
+    holidayNames,
     eventsOnThisDay
   });
 
   //get array of hover messages (holidays, number of events)
   const hoverMessages = getDayHoverMessages(
-    holidaysOnThisDay,
+    holidayNames,
     eventsOnThisDay,
     yearView,
     classNames
@@ -71,8 +71,8 @@ const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
           <div className="cell__content">
             <div className="cell__date">{day.date}</div>
 
-            {!yearView && holidaysOnThisDay && (
-              <HolidayList holidaysOnThisDay={holidaysOnThisDay} />
+            {!yearView && holidayNames && (
+              <HolidayList holidayNames={holidayNames} />
             )}
 
             {!yearView && (

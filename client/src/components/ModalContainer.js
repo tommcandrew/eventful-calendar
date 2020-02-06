@@ -10,12 +10,15 @@ import MyEvents from "./MyEvents";
 import uuid from "uuid";
 import Settings from "./Settings";
 import getDayEvents from "../utils/getDayEvents";
+import HolidaysContext from "../context/HolidaysContext";
+import getDayHolidays from "../utils/getDayHolidays";
 
 const ModalContainer = ({
   closeModals,
   showMyEvents,
   setShowMyEvents,
-  showSettings
+  showSettings,
+  holidays
 }) => {
   const [showDayEvents, setShowDayEvents] = useState(!showMyEvents && true);
   const [showEventForm, setShowEventForm] = useState(false);
@@ -34,6 +37,7 @@ const ModalContainer = ({
   const { theme } = useContext(ThemeContext);
 
   const eventsOnThisDay = getDayEvents(events, dateObj);
+  const holidaysOnThisDay = getDayHolidays(holidays, dateObj);
 
   const handleGoBack = () => {
     setShowEventInfo(false);
@@ -126,6 +130,7 @@ const ModalContainer = ({
             handleShowEventInfo={handleShowEventInfo}
             eventsOnThisDay={eventsOnThisDay}
             closeModals={closeModals}
+            holidaysOnThisDay={holidaysOnThisDay}
           />
         )}
 

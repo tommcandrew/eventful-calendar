@@ -1,5 +1,5 @@
 const getDayHoverMessages = (
-  holidaysOnThisDay,
+  holidayNames,
   eventsOnThisDay,
   yearView,
   classNames
@@ -10,8 +10,8 @@ const getDayHoverMessages = (
       hoverMessages.push("Today");
     }
 
-    if (holidaysOnThisDay && holidaysOnThisDay.length > 0) {
-      holidaysOnThisDay.forEach((holiday, index) => {
+    if (holidayNames && holidayNames.length > 0) {
+      holidayNames.forEach((holiday, index) => {
         hoverMessages.push(holiday);
       });
     }

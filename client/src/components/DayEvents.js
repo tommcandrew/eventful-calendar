@@ -6,15 +6,19 @@ import {
   addEventTextOptions
 } from "../data/otherText";
 import DeviceContext from "../context/DeviceContext";
+import HolidaysContext from "../context/HolidaysContext";
 
 const DayEvents = ({
   handleShowForm,
   handleShowEventInfo,
   eventsOnThisDay,
-  closeModals
+  closeModals,
+  holidaysOnThisDay
 }) => {
   const { language } = useContext(LanguageContext);
   const { device } = useContext(DeviceContext);
+  const { showHolidays } = useContext(HolidaysContext);
+
   return (
     <div className="day-events">
       {device !== "desktop" && (
@@ -25,7 +29,12 @@ const DayEvents = ({
           &times;
         </span>
       )}
+      {holidaysOnThisDay &&
+        holidaysOnThisDay.length > 0 &&
+        showHolidays &&
+        holidaysOnThisDay.map(holiday => <span>{holiday}</span>)}
       <h2>{eventsOnThisDayTextOptions[language]}:</h2>
+
       {!eventsOnThisDay ||
         (eventsOnThisDay.length === 0 && (
           <h3>{noEventsTextOptions[language]}</h3>

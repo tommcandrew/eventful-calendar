@@ -151,6 +151,7 @@ const Calendar = () => {
               setShowMyEvents={setShowMyEvents}
               showSettings={showSettings}
               setShowSettings={setShowSettings}
+              holidays={holidays}
             />
           )}
         </DragDropContext>

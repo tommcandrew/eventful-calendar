@@ -42,6 +42,9 @@ const Settings = ({ closeModals }) => {
     <div className="modal" onClick={closeModals}>
       <div className="modal__content">
         <div className="settings">
+          <span className="settings__close-button" onClick={closeModals}>
+            &times;
+          </span>
           <h1>{settingsTextOptions[language]}</h1>
           <div className="settings__radio-groups">
             <div className="settings__radio-group">

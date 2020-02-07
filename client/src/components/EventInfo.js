@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import DeviceContext from "../context/DeviceContext";
+import React from "react";
 
 const EventInfo = ({
   selectedEvent,
@@ -8,16 +7,12 @@ const EventInfo = ({
   handleGoBack,
   closeModals
 }) => {
-  const { device } = useContext(DeviceContext);
-
   return (
     <div className="event-info">
       <span className="event-info__close-button" onClick={e => closeModals(e)}>
         &times;
       </span>
-      <button className="back-button--modal" onClick={handleGoBack}>
-        ‹
-      </button>
+      <button className="back-button--modal" onClick={handleGoBack}></button>
       <div className="event-info__content">
         <div className="event-info__event">
           <h2>{selectedEvent.title}</h2>

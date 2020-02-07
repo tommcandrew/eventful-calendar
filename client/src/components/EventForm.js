@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import TimeList from "./TimeList";
 import LanguageContext from "../context/LanguageContext";
 import DeviceContext from "../context/DeviceContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBirthdayCake, faClock } from "@fortawesome/free-solid-svg-icons";
 
 import {
   addTextOptions,
@@ -115,25 +117,44 @@ const EventForm = ({
             </p>
           </div>
           <div className="event-form__extra-inputs">
-            <span
-              role="img"
-              aria-label="add time"
+            <button
+              type="button"
+              // role="img"
+              // aria-label="add time"
               className="event-form__clock"
               title="Add time"
               onClick={() => setShowTimeList(!showTimeList)}
             >
-              &#128338;
-            </span>
-            {showTimeList && <TimeList handleSelectTime={handleSelectTime} />}
-            <span
-              role="img"
-              aria-label="add icon"
+              <FontAwesomeIcon
+                icon={faClock}
+                className="clock"
+                // onClick={() => setShowIcons(!showIcons)}
+              />
+            </button>
+            {showTimeList && (
+              <TimeList
+                handleSelectTime={handleSelectTime}
+                setShowTimeList={setShowTimeList}
+              />
+            )}
+
+            <button
+              type="button"
+              // role="img"
+              // aria-label="add icon"
               title="Add icon"
               className="event-form__icon-button"
-              onClick={() => setShowIcons(!showIcons)}
+              onClick={e => {
+                console.log(e.target.parentNode.classList);
+                setShowIcons(!showIcons);
+              }}
             >
-              &#127874;
-            </span>
+              <FontAwesomeIcon
+                icon={faBirthdayCake}
+                className="cake"
+                // onClick={() => setShowIcons(!showIcons)}
+              />
+            </button>
             {showIcons && (
               <Icons
                 handleSelectIcon={handleSelectIcon}

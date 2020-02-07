@@ -154,14 +154,9 @@
   .cell {
     background-color: #1b2938;
     transition: $themeTransition;
-    &--with-holiday {
-      background: rgb(43, 109, 43);
-      transition: $themeTransition;
-    }
 
     &--today {
       background: $mainColorDark;
-      color: black;
       transition: $themeTransition;
     }
     .cell__event-title {
@@ -175,7 +170,6 @@
 
     &--today {
       .cell__date {
-        color: black;
         transition: $themeTransition;
       }
     }
@@ -187,16 +181,24 @@
 }
 
 .month--year-view.month--dark {
-  .cell--with-event {
-    // background: rgb(21, 100, 21);
-    background: rgb(80, 5, 80);
+  .cell {
+    &--with-event {
+      // background: rgb(21, 100, 21);
+      background: rgb(80, 5, 80);
+    }
+    &--with-holiday {
+      background: rgb(43, 109, 43);
+      transition: $themeTransition;
+    }
   }
 }
 
 .month--month-view.month--dark {
   .cell__event-title {
-    background: #dfd8c3;
-    color: black;
+    // background: #dfd8c3;
+    background: rgb(100, 16, 100);
+
+    color: white;
   }
 }
 

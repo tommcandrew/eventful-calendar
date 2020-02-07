@@ -14,16 +14,23 @@
 @import "./component-styles/_View.scss";
 @import "./global/_back-button.scss";
 @import "./global/loader.scss";
-@import "./component-styles/EventForm";
+@import "./component-styles/_EventForm";
 //home extends button above but also overrides a rule so they must be in this order
 @import "./component-styles/_Home.scss";
-@import "./component-styles//Settings";
+@import "./component-styles/_Settings";
 @import "./component-styles/_YearHeader.scss";
-@import "./component-styles/MyAccount.scss";
-@import "./component-styles/Icons";
-@import "./component-styles/TimeList";
+@import "./component-styles/_MyAccount.scss";
+@import "./component-styles/_Icons";
+@import "./component-styles/_TimeList";
 @import "./component-styles/_Alert.scss";
-@import "./component-styles/Weekdays";
-@import "./component-styles/HeaderLinks";
+@import "./component-styles/_Weekdays";
+@import "./component-styles/_HeaderLinks";
 @import "./media-queries.scss";
-@import "./component-styles/MobileMenu";
+@import "./component-styles/_MobileMenu";
+@import "./component-styles/_DateSelect.scss";
+
+@media print {
+  @page {
+    size: landscape;
+  }
+}

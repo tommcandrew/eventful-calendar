@@ -109,7 +109,10 @@ const ModalContainer = ({
   const handleModalContentClick = e => {
     if (
       e.target.classList.contains("event-form__icon-button") ||
-      e.target.classList.contains("event-form__clock")
+      e.target.parentNode.classList.contains("event-form__icon-button") ||
+      e.target.parentNode.classList.contains("fa-birthday-cake") ||
+      e.target.classList.contains("event-form__clock") ||
+      e.target.parentNode.classList.contains("fa-clock")
     ) {
       return;
     } else {

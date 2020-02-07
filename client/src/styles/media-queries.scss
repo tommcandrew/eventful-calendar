@@ -71,11 +71,11 @@
     width: 80%;
   }
   .event-form input {
-    width: 50%;
+    width: 70%;
     margin: 20px auto 0 auto;
   }
   .event-form__preview {
-    width: 65%;
+    max-width: 65%;
     font-size: 1rem;
     padding: 0;
     align-items: center;

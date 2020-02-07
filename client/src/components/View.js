@@ -14,9 +14,10 @@ const View = ({
   handleShowModalContainer,
   handleShowMyEvents,
   handleShowSettings,
-  // holidays,
   showMyAccount,
-  setShowMyAccount
+  setShowMyAccount,
+  setShowDateSelect,
+  showDateSelect
 }) => {
   const { dateObj } = useContext(DateContext);
   const { device } = useContext(DeviceContext);
@@ -64,6 +65,8 @@ const View = ({
         handleShowMyEvents={handleShowMyEvents}
         showMyAccount={showMyAccount}
         setShowMyAccount={setShowMyAccount}
+        setShowDateSelect={setShowDateSelect}
+        showDateSelect={showDateSelect}
       />
     );
   }

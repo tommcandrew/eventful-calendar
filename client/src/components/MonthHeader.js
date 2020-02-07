@@ -15,7 +15,10 @@ const MonthHeader = ({
   handleShowSettings,
   handleShowMyEvents,
   showMyAccount,
-  setShowMyAccount
+  setShowMyAccount,
+  setShowDateSelect,
+  showDateSelect,
+  handleShowPrint
 }) => {
   const { dateObj } = useContext(DateContext);
   const { language } = useContext(LanguageContext);
@@ -67,7 +70,10 @@ const MonthHeader = ({
             className="month-header__arrow month-header__arrow--left"
             onClick={() => setMonth(monthIndex - 1)}
           ></button>
-          <div className="month-header__date-info">
+          <div
+            className="month-header__date-info"
+            onClick={() => setShowDateSelect(!showDateSelect)}
+          >
             <button className="month-header__month-name">
               {monthsArray[monthIndex]}
             </button>
@@ -86,6 +92,7 @@ const MonthHeader = ({
             handleShowMyEvents={handleShowMyEvents}
             showMyAccount={showMyAccount}
             setShowMyAccount={setShowMyAccount}
+            handleShowPrint={handleShowPrint}
           />
         )}
       </div>

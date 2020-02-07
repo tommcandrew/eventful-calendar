@@ -3,14 +3,12 @@ import EventsContext from "../context/EventsContext";
 import LanguageContext from "../context/LanguageContext";
 import { myEventsTextOptions } from "../data/otherText";
 import { noEventsTextOptions } from "../data/otherText";
-import DeviceContext from "../context/DeviceContext";
 
 const MyEvents = ({ handleShowEventInfo, closeModals }) => {
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [selectedEvents, setSelectedEvents] = useState(null);
   const { events } = useContext(EventsContext);
   const { language } = useContext(LanguageContext);
-  const { device } = useContext(DeviceContext);
 
   useEffect(() => {
     const filteredEvents = events.filter(event => event.year === selectedYear);
@@ -50,9 +48,9 @@ const MyEvents = ({ handleShowEventInfo, closeModals }) => {
                   className="my-events__event"
                   onClick={() => handleShowEventInfo(event, "MyEvents")}
                 >
+                  {event.icon && <span>{event.icon}</span>}
                   <span className="my-event__event-title">{event.title}</span>
                   {event.time && <span>{event.time}</span>}
-                  {event.timePeriod && <span>{event.timePeriod}</span>}
                 </div>
               </React.Fragment>
             );

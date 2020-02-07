@@ -1,6 +1,6 @@
 import React from "react";
 
-const TimeList = ({ handleSelectTime }) => {
+const TimeList = ({ handleSelectTime, setShowTimeList }) => {
   const timeChoices = [
     "",
     "All day",
@@ -56,17 +56,25 @@ const TimeList = ({ handleSelectTime }) => {
   ];
 
   return (
-    <ul className="time-list">
-      {timeChoices.map((time, index) => (
-        <li
-          key={index + "time"}
-          className="time-option"
-          onClick={handleSelectTime}
-        >
-          {time}
-        </li>
-      ))}
-    </ul>
+    <div className="time-list__wrapper">
+      <span
+        className="time-list__close-button"
+        onClick={() => setShowTimeList(false)}
+      >
+        &times;
+      </span>
+      <ul className="time-list">
+        {timeChoices.map((time, index) => (
+          <li
+            key={index + "time"}
+            className="time-option"
+            onClick={handleSelectTime}
+          >
+            {time}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 

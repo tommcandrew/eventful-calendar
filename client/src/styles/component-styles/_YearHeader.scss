@@ -49,3 +49,9 @@
 .year-header__arrow--right {
   border-left: 12px solid black;
 }
+
+@media print {
+  .year-header__arrow {
+    display: none;
+  }
+}

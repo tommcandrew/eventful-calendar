@@ -5,9 +5,9 @@ import DateContext from "../context/DateContext";
 import ModalContainer from "./ModalContainer";
 import { DragDropContext } from "react-beautiful-dnd";
 import EventsContext from "../context/EventsContext";
-import HolidaysContext from "../context/HolidaysContext";
 import Alert from "./Alert";
 import MyAccount from "./MyAccount";
+import DateSelect from "./DateSelect";
 
 const Calendar = () => {
   const [yearArray, setYearArray] = useState(null);
@@ -15,21 +15,10 @@ const Calendar = () => {
   const [showModalContainer, setShowModalContainer] = useState(false);
   const [showMyEvents, setShowMyEvents] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
-  // const [holidays, setHolidays] = useState([]);
   const { dateObj, setDateObj } = useContext(DateContext);
   const { moveEvent, alert } = useContext(EventsContext);
-  const { showHolidays } = useContext(HolidaysContext);
   const [showMyAccount, setShowMyAccount] = useState(false);
-
-  // useEffect(() => {
-  //   if (showHolidays === "Hide") {
-  //     setHolidays([]);
-  //   }
-  //   if (showHolidays === "Show") {
-  //     fetchHolidays();
-  //   }
-  //   //eslint-disable-next-line
-  // }, [showHolidays]);
+  const [showDateSelect, setShowDateSelect] = useState(false);
 
   const onDragEnd = result => {
     const { draggableId, destination } = result;
@@ -38,22 +27,6 @@ const Calendar = () => {
     }
     moveEvent(draggableId, destination.droppableId);
   };
-
-  // const fetchHolidays = () => {
-  //   axios
-  //     .get(
-  //       `https://calendarific.com/api/v2/holidays?&api_key=423d3eeb339e68f8ac6484808dbda88b657f40b8&country=Uk&year=${dateObj.year}`
-  //     )
-  //     .then(res => {
-  //       setHolidays(
-  //         res.data.response.holidays.filter(
-  //           holiday =>
-  //             holiday.type.includes("National holiday") ||
-  //             holiday.type.includes("Common local holiday")
-  //         )
-  //       );
-  //     });
-  // };
 
   useEffect(() => {
     if (dateObj) {
@@ -70,7 +43,8 @@ const Calendar = () => {
       e.target.classList.contains("my-events__close-button") ||
       e.target.classList.contains("day-events__close-button") ||
       e.target.classList.contains("event-form__close-button") ||
-      e.target.classList.contains("event-info__close-button")
+      e.target.classList.contains("event-info__close-button") ||
+      e.target.classList.contains("settings__close-button")
     ) {
       setShowModalContainer(false);
       setShowMyEvents(false);
@@ -85,6 +59,17 @@ const Calendar = () => {
 
   const setYear = year => {
     setDateObj({ ...dateObj, year });
+  };
+
+  const handleSelectYear = e => {
+    // setShowDateSelect(false);
+    const selectedYear = e.target.innerText;
+    setYear(selectedYear);
+  };
+
+  const handleSelectMonth = index => {
+    // setShowDateSelect(false);
+    setMonth(index);
   };
 
   const setMonth = monthIndex => {
@@ -117,13 +102,34 @@ const Calendar = () => {
     setShowModalContainer(true);
   };
 
+  const handleCalendarClick = e => {
+    if (
+      e.target.classList.contains("month-header__date-info") ||
+      e.target.classList.contains("month-header__month-name") ||
+      e.target.classList.contains("month-header__year-name")
+    ) {
+      console.log("returning");
+
+      return;
+    } else {
+      setShowDateSelect(false);
+    }
+  };
+
   if (dateObj && yearArray) {
     return (
       <>
         <DragDropContext onDragEnd={onDragEnd}>
-          <div className="calendar">
+          <div className="calendar" onClick={handleCalendarClick}>
             {alert && <Alert alert={alert} />}
             {showMyAccount && <MyAccount setShowMyAccount={setShowMyAccount} />}
+
+            {showDateSelect && (
+              <DateSelect
+                handleSelectYear={handleSelectYear}
+                handleSelectMonth={handleSelectMonth}
+              />
+            )}
             <View
               yearArray={yearArray}
               setMonthView={setMonthView}
@@ -134,9 +140,10 @@ const Calendar = () => {
               handleShowModalContainer={handleShowModalContainer}
               handleShowMyEvents={handleShowMyEvents}
               handleShowSettings={handleShowSettings}
-              // holidays={holidays}
               showMyAccount={showMyAccount}
               setShowMyAccount={setShowMyAccount}
+              setShowDateSelect={setShowDateSelect}
+              showDateSelect={showDateSelect}
             />
           </div>
           {showModalContainer && (
@@ -146,7 +153,6 @@ const Calendar = () => {
               setShowMyEvents={setShowMyEvents}
               showSettings={showSettings}
               setShowSettings={setShowSettings}
-              // holidays={holidays}
             />
           )}
         </DragDropContext>

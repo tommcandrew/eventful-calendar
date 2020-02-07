@@ -33,3 +33,14 @@
     padding: 20px;
   }
 }
+
+.event-info__close-button {
+  position: absolute;
+  top: -110px;
+  right: 3px;
+  font-size: 4rem;
+}
+
+.modal--dark .event-info {
+  color: #dfd8c3;
+}

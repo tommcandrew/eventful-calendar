@@ -27,7 +27,9 @@ const DayEvents = ({
       {holidaysOnThisDay &&
         holidaysOnThisDay.length > 0 &&
         showHolidays &&
-        holidaysOnThisDay.map(holiday => <span>{holiday}</span>)}
+        holidaysOnThisDay.map(holiday => (
+          <span className="day-events__holiday-name">{holiday}</span>
+        ))}
       <h2>{eventsOnThisDayTextOptions[language]}:</h2>
 
       {!eventsOnThisDay ||

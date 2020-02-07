@@ -1,22 +1,19 @@
-//adding wrapper div because animation overrides transform property otherwise
 .loader__wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .loader {
+  position: absolute;
   border: 16px solid #f3f3f3;
   border-top: 16px solid $mainColor;
   border-radius: 50%;
   width: 120px;
   height: 120px;
   animation: spin 2s linear infinite;
+  top: calc(50% - 60px);
+  left: calc(50% - 60px);
 }
 
 @keyframes spin {

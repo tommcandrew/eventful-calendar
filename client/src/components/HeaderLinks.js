@@ -8,7 +8,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUserCircle,
   faGlassMartiniAlt,
-  faCog
+  faCog,
+  faPrint
 } from "@fortawesome/free-solid-svg-icons";
 import LanguageContext from "../context/LanguageContext";
 
@@ -42,6 +43,12 @@ const HeaderLinks = ({
         className="header-links__settings-button"
       >
         <FontAwesomeIcon icon={faCog} title={settingsTextOptions[language]} />
+      </div>
+      <div
+        onClick={() => window.print()}
+        className="header-links__printer-button"
+      >
+        <FontAwesomeIcon icon={faPrint} />
       </div>
     </div>
   );

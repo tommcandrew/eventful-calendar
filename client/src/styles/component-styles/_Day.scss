@@ -138,11 +138,6 @@
       position: relative;
     }
 
-    &--with-holiday {
-      background: rgb(170, 255, 170);
-      transition: $themeTransition;
-    }
-
     &--today {
       background: $mainColorLight;
       // transition: $themeTransition;
@@ -193,12 +188,21 @@
 
 .month--year-view.month--dark {
   .cell--with-event {
-    background: rgb(21, 100, 21);
+    // background: rgb(21, 100, 21);
+    background: rgb(80, 5, 80);
   }
 }
 
 .month--month-view.month--dark {
   .cell__event-title {
-    background: rgb(21, 100, 21);
+    background: #dfd8c3;
+    color: black;
+  }
+}
+
+.month--year-view.month--light {
+  .cell--with-holiday {
+    background: rgb(170, 255, 170);
+    transition: $themeTransition;
   }
 }

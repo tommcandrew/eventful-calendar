@@ -14,7 +14,7 @@ const View = ({
   handleShowModalContainer,
   handleShowMyEvents,
   handleShowSettings,
-  holidays,
+  // holidays,
   showMyAccount,
   setShowMyAccount
 }) => {
@@ -40,7 +40,7 @@ const View = ({
               setMonthView={setMonthView}
               monthIndex={index}
               key={index + "month"}
-              holidays={holidays}
+              // holidays={holidays}
               handleShowMyEvents={handleShowMyEvents}
               handleShowSettings={handleShowSettings}
               showMyAccount={showMyAccount}
@@ -59,7 +59,7 @@ const View = ({
         monthIndex={dateObj.month}
         setMonth={setMonth}
         handleShowModalContainer={handleShowModalContainer}
-        holidays={holidays}
+        // holidays={holidays}
         handleShowSettings={handleShowSettings}
         handleShowMyEvents={handleShowMyEvents}
         showMyAccount={showMyAccount}

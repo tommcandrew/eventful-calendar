@@ -13,7 +13,7 @@ const Month = ({
   setShowWholeYear,
   setMonth,
   handleShowModalContainer,
-  holidays,
+  // holidays,
   handleShowSettings,
   handleShowMyEvents,
   showMyAccount,
@@ -58,7 +58,7 @@ const Month = ({
                     yearView={yearView}
                     handleShowModalContainer={handleShowModalContainer}
                     index={index}
-                    holidays={holidays}
+                    // holidays={holidays}
                     key={index + "day"}
                   />
                 );

@@ -12,8 +12,9 @@ import getEventNames from "../utils/getEventNames";
 import getDayHoverMessages from "../utils/getDayHoverMessages";
 import EventBar from "./EventBar";
 import DeviceContext from "../context/DeviceContext";
+import HolidaysContext from "../context/HolidaysContext";
 
-const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
+const Day = ({ day, yearView, handleShowModalContainer, index }) => {
   const { events } = useContext(EventsContext);
   const dayDateString = day.date.toString();
   const dayMonthString = day.month.toString();
@@ -21,6 +22,7 @@ const Day = ({ day, yearView, handleShowModalContainer, index, holidays }) => {
   const fullDayDateString =
     dayDateString + "-" + dayMonthString + "-" + dayYearString;
   const { device } = useContext(DeviceContext);
+  const { holidays } = useContext(HolidaysContext);
 
   //get array of events on this day
   const eventsOnThisDay = getDayEvents(events, day);

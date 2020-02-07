@@ -92,7 +92,7 @@ app.delete("/deleteevent/:id", verifyToken, (req, res) => {
 
 app.post("/editevent/:id", verifyToken, (req, res) => {
   const { id } = req.params;
-  const { title, time, date, icon } = req.body;
+  const { title, time, icon } = req.body;
   const email = req.tokenData.user.email;
   User.updateOne(
     { email: email, "events.id": id },
@@ -100,7 +100,7 @@ app.post("/editevent/:id", verifyToken, (req, res) => {
       $set: {
         "events.$.title": title,
         "events.$.time": time,
-        "events.$.location": location
+        "events.$.icon": icon
       }
     }
   )

@@ -9,7 +9,7 @@
   bottom: 0;
   background: rgba($color: $mainColorDark, $alpha: 0.95);
   z-index: 100;
-  animation: expand 1s ease-out;
+  animation: expand 750ms ease-out;
 }
 
 @keyframes expand {

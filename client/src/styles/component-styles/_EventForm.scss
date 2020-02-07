@@ -51,7 +51,6 @@
   &__extra-inputs {
     display: flex;
     justify-content: space-around;
-    // position: relative;
     width: 50%;
     margin: 0 auto;
   }
@@ -62,6 +61,8 @@
 }
 
 .event-form__preview {
+  display: flex;
+  flex-direction: column;
   font-family: $josefin;
   min-height: 55px;
   border-bottom: 5px solid $mainColor;

@@ -17,8 +17,8 @@ const ModalContainer = ({
   closeModals,
   showMyEvents,
   setShowMyEvents,
-  showSettings,
-  holidays
+  showSettings
+  // holidays
 }) => {
   const [showDayEvents, setShowDayEvents] = useState(!showMyEvents && true);
   const [showEventForm, setShowEventForm] = useState(false);
@@ -35,6 +35,7 @@ const ModalContainer = ({
   );
   const { dateObj } = useContext(DateContext);
   const { theme } = useContext(ThemeContext);
+  const { holidays } = useContext(HolidaysContext);
 
   const eventsOnThisDay = getDayEvents(events, dateObj);
   const holidaysOnThisDay = getDayHolidays(holidays, dateObj);

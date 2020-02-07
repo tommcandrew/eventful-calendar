@@ -1,9 +1,13 @@
-import React, { useState, createContext, useEffect } from "react";
+import React, { useState, createContext, useEffect, useContext } from "react";
+import axios from "axios";
+import DateContext from "../context/DateContext";
 
 const HolidaysContext = createContext();
 
 export const HolidaysContextProvider = props => {
   const [showHolidays, setShowHolidays] = useState(getInitialHolidaysPref);
+  const [holidays, setHolidays] = useState(null);
+  const { dateObj } = useContext(DateContext);
 
   function getInitialHolidaysPref() {
     const savedHolidaysPref = JSON.parse(localStorage.getItem("holidays"));
@@ -15,11 +19,45 @@ export const HolidaysContextProvider = props => {
   }
 
   useEffect(() => {
+    if (dateObj && showHolidays === "Show") {
+      fetchHolidays();
+    }
+
+    //eslint-disable-next-line
+  }, [dateObj]);
+
+  useEffect(() => {
     localStorage.setItem("holidays", JSON.stringify(showHolidays));
+
+    if (showHolidays === "Show" && dateObj) {
+      fetchHolidays();
+    } else {
+      if (showHolidays === "Hide") {
+        setHolidays([]);
+      }
+    }
   }, [showHolidays]);
 
+  const fetchHolidays = () => {
+    axios
+      .get(
+        `https://calendarific.com/api/v2/holidays?&api_key=423d3eeb339e68f8ac6484808dbda88b657f40b8&country=Uk&year=${dateObj.year}`
+      )
+      .then(res => {
+        setHolidays(
+          res.data.response.holidays.filter(
+            holiday =>
+              holiday.type.includes("National holiday") ||
+              holiday.type.includes("Common local holiday")
+          )
+        );
+      });
+  };
+
   return (
-    <HolidaysContext.Provider value={{ showHolidays, setShowHolidays }}>
+    <HolidaysContext.Provider
+      value={{ showHolidays, setShowHolidays, holidays }}
+    >
       {props.children}
     </HolidaysContext.Provider>
   );

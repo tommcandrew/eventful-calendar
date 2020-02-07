@@ -3,7 +3,6 @@ import createYearArray from "../utils/createYearArray";
 import View from "./View";
 import DateContext from "../context/DateContext";
 import ModalContainer from "./ModalContainer";
-import axios from "axios";
 import { DragDropContext } from "react-beautiful-dnd";
 import EventsContext from "../context/EventsContext";
 import HolidaysContext from "../context/HolidaysContext";
@@ -16,21 +15,21 @@ const Calendar = () => {
   const [showModalContainer, setShowModalContainer] = useState(false);
   const [showMyEvents, setShowMyEvents] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
-  const [holidays, setHolidays] = useState([]);
+  // const [holidays, setHolidays] = useState([]);
   const { dateObj, setDateObj } = useContext(DateContext);
   const { moveEvent, alert } = useContext(EventsContext);
   const { showHolidays } = useContext(HolidaysContext);
   const [showMyAccount, setShowMyAccount] = useState(false);
 
-  useEffect(() => {
-    if (showHolidays === "Hide") {
-      setHolidays([]);
-    }
-    if (showHolidays === "Show") {
-      fetchHolidays();
-    }
-    //eslint-disable-next-line
-  }, [showHolidays]);
+  // useEffect(() => {
+  //   if (showHolidays === "Hide") {
+  //     setHolidays([]);
+  //   }
+  //   if (showHolidays === "Show") {
+  //     fetchHolidays();
+  //   }
+  //   //eslint-disable-next-line
+  // }, [showHolidays]);
 
   const onDragEnd = result => {
     const { draggableId, destination } = result;
@@ -40,30 +39,26 @@ const Calendar = () => {
     moveEvent(draggableId, destination.droppableId);
   };
 
-  const fetchHolidays = () => {
-    axios
-      .get(
-        `https://calendarific.com/api/v2/holidays?&api_key=423d3eeb339e68f8ac6484808dbda88b657f40b8&country=Uk&year=${dateObj.year}`
-      )
-      .then(res => {
-        setHolidays(
-          res.data.response.holidays.filter(
-            holiday =>
-              holiday.type.includes("National holiday") ||
-              holiday.type.includes("Common local holiday")
-          )
-        );
-      });
-  };
+  // const fetchHolidays = () => {
+  //   axios
+  //     .get(
+  //       `https://calendarific.com/api/v2/holidays?&api_key=423d3eeb339e68f8ac6484808dbda88b657f40b8&country=Uk&year=${dateObj.year}`
+  //     )
+  //     .then(res => {
+  //       setHolidays(
+  //         res.data.response.holidays.filter(
+  //           holiday =>
+  //             holiday.type.includes("National holiday") ||
+  //             holiday.type.includes("Common local holiday")
+  //         )
+  //       );
+  //     });
+  // };
 
   useEffect(() => {
     if (dateObj) {
       const yearArray = createYearArray(dateObj.year);
       setYearArray(yearArray);
-
-      if (showHolidays === "True") {
-        fetchHolidays();
-      }
     }
     //eslint-disable-next-line
   }, [dateObj]);
@@ -139,7 +134,7 @@ const Calendar = () => {
               handleShowModalContainer={handleShowModalContainer}
               handleShowMyEvents={handleShowMyEvents}
               handleShowSettings={handleShowSettings}
-              holidays={holidays}
+              // holidays={holidays}
               showMyAccount={showMyAccount}
               setShowMyAccount={setShowMyAccount}
             />
@@ -151,14 +146,18 @@ const Calendar = () => {
               setShowMyEvents={setShowMyEvents}
               showSettings={showSettings}
               setShowSettings={setShowSettings}
-              holidays={holidays}
+              // holidays={holidays}
             />
           )}
         </DragDropContext>
       </>
     );
   } else {
-    return <div className="loader"></div>;
+    return (
+      <div className="loader__wrapper">
+        <div className="loader"></div>
+      </div>
+    );
   }
 };
 

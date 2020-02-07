@@ -27,6 +27,9 @@
 }
 
 .modal--dark .radio-button {
+  &__label {
+    color: #000;
+  }
   &__button {
     &--checked {
       background: white;
@@ -35,4 +38,12 @@
       background: #eee;
     }
   }
+}
+
+.modal--dark .fa-sun {
+  color: yellow;
+}
+
+.modal--dark .fa-moon {
+  color: yellow;
 }

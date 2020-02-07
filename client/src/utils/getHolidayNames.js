@@ -8,7 +8,7 @@ const getHolidayNames = (holidays, day, device) => {
         holidays[i].date.datetime.day === day.date
       ) {
         if (device === "mobile") {
-          let abbreviatedHoliday = holidays[i];
+          let abbreviatedHoliday = { ...holidays[i] };
           abbreviatedHoliday.name = abbreviatedHoliday.name.substr(0, 5);
           holidayNames.push(abbreviatedHoliday);
         } else {

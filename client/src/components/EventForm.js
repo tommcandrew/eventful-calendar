@@ -1,10 +1,13 @@
 import React, { useContext, useState } from "react";
 import TimeList from "./TimeList";
-import { eventTitleTextOptions } from "../data/otherText";
 import LanguageContext from "../context/LanguageContext";
 import DeviceContext from "../context/DeviceContext";
 
-import { addTextOptions } from "../data/otherText";
+import {
+  addTextOptions,
+  charLimitTextOptions,
+  eventTitleTextOptions
+} from "../data/otherText";
 import Icons from "./Icons";
 
 const EventForm = ({
@@ -41,7 +44,7 @@ const EventForm = ({
   };
 
   const handleTitleInput = value => {
-    if (value.length > 45) {
+    if (value.length > 40) {
       return;
     } else {
       setTitleInput(value);
@@ -79,16 +82,16 @@ const EventForm = ({
         className="back-button--modal"
         onClick={handleGoBack}
         title="Back"
-      >
-        ‹
-      </button>
+      ></button>
       <form className="event-form__form" onSubmit={getFormValues}>
         <div className="event-form__preview">
           {titleInput && (
             <span className="event-form__title-preview"> {titleInput}</span>
           )}
           {selectedTime && (
-            <span className="event-form__time-preview">{selectedTime}</span>
+            <span className="event-form__time-preview">
+              <em>{selectedTime}</em>
+            </span>
           )}
           {selectedIcon && <span>{selectedIcon}</span>}
         </div>
@@ -98,17 +101,17 @@ const EventForm = ({
               type="text"
               id="event-title"
               name="title"
-              maxLength="45"
+              maxLength="40"
               value={titleInput}
               onChange={e => handleTitleInput(e.target.value)}
               placeholder={eventTitleTextOptions[language]}
             />
             <p
               className={`event-form__char-limit-message${
-                titleInput.length > 44 ? "--show" : ""
+                titleInput.length > 39 ? "--show" : ""
               }`}
             >
-              *Maximum 45 characters
+              {charLimitTextOptions[language]}
             </p>
           </div>
           <div className="event-form__extra-inputs">

@@ -13,7 +13,7 @@ const RadioButton = ({ index, handler, text, isChecked, category }) => {
       className="radio-button__wrapper"
       onClick={() => handler(index, category)}
     >
-      <span>{label}</span>
+      <span className="radio-button__label">{label}</span>
       <div
         className={`radio-button__button ${
           isChecked

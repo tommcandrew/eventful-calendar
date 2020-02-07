@@ -83,17 +83,17 @@ export const eventsOnThisDayTextOptions = {
 };
 
 export const eventSavedTextOptions = {
-  English: "Event saved",
-  Español: "Evento guardado",
-  Français: "Événement enregistré",
-  Türkçe: "Etkinlik kaydedildi"
+  English: "Saved",
+  Español: "Guardado",
+  Français: "Enregistré",
+  Türkçe: "Kaydedildi"
 };
 
 export const eventDeletedTextOptions = {
-  English: "Event deleted",
-  Español: "Evento eliminado",
-  Français: "Événement supprimé",
-  Türkçe: "Etkinlik silindi"
+  English: "Deleted",
+  Español: "Eliminado",
+  Français: "Supprimé",
+  Türkçe: "Silindi"
 };
 
 export const showHideTextOptions = {
@@ -101,4 +101,11 @@ export const showHideTextOptions = {
   Español: ["Mostrar", "Esconder"],
   Français: ["Montre", "Cache"],
   Türkçe: ["Göster", "Sakla"]
+};
+
+export const charLimitTextOptions = {
+  English: "*Maximum 40 characters",
+  Español: "*Máximo 40 caracteres",
+  Français: "*40 caractères maximum",
+  Türkçe: "*Maksimum 40 karakter"
 };

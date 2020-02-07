@@ -8,22 +8,17 @@ export const DeviceContextProvider = props => {
 
   useEffect(() => {
     window.addEventListener("resize", e => {
-      console.log("window has resized");
       setWindowSize(getWidth());
     });
   }, []);
 
   useEffect(() => {
-    console.log(windowSize);
     if (windowSize > 1264) {
       setDevice("desktop");
-      console.log("desktop");
     } else if (windowSize < 1264 && windowSize > 480) {
       setDevice("tablet");
-      console.log("tablet");
     } else {
       setDevice("mobile");
-      console.log("mobile");
     }
   }, [windowSize]);
 

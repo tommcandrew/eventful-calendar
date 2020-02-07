@@ -31,7 +31,7 @@
   }
 
   .time-list {
-    width: 22vw;
+    width: 72vw;
   }
   .my-account {
     width: 90%;
@@ -72,7 +72,7 @@
   }
   .event-form input {
     width: 50%;
-    margin: 10px auto 0 auto;
+    margin: 20px auto 0 auto;
   }
   .event-form__preview {
     width: 65%;
@@ -117,5 +117,8 @@
   }
   .my-events__events-container {
     width: 80%;
+  }
+  .event-form input {
+    font-size: 1rem;
   }
 }

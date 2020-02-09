@@ -20,6 +20,9 @@
   &--dark {
     background: $mainColorDark;
     transition: $themeTransition;
+    .year-header__app-name {
+      color: white;
+    }
   }
 
   &__links {

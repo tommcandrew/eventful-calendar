@@ -2,8 +2,11 @@ import React, { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { withRouter } from "react-router-dom";
 import DeviceContext from "../context/DeviceContext";
+import { logOutTextOptions } from "../data/otherText";
+import LanguageContext from "../context/LanguageContext";
 
 const MyAccount = withRouter(({ history, setShowMyAccount }) => {
+  const { language } = useContext(LanguageContext);
   const handleLogout = () => {
     setAuthenticated(false);
     localStorage.removeItem("my-token");
@@ -29,7 +32,7 @@ const MyAccount = withRouter(({ history, setShowMyAccount }) => {
         <p>{userEmail}</p>
       </div>
       <button className="my-account__logout" onClick={handleLogout}>
-        Log out
+        {logOutTextOptions[language]}
       </button>
     </div>
   );

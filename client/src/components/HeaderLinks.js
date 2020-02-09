@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import {
   myEventsTextOptions,
   settingsTextOptions,
-  myAccountTextOptions
+  myAccountTextOptions,
+  printTextOptions
 } from "../data/otherText";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -48,7 +49,7 @@ const HeaderLinks = ({
         onClick={() => window.print()}
         className="header-links__printer-button"
       >
-        <FontAwesomeIcon icon={faPrint} />
+        <FontAwesomeIcon icon={faPrint} title={printTextOptions[language]} />
       </div>
     </div>
   );

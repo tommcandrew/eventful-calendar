@@ -109,3 +109,31 @@ export const charLimitTextOptions = {
   Français: "*40 caractères maximum",
   Türkçe: "*Maksimum 40 karakter"
 };
+
+export const printTextOptions = {
+  English: "Print",
+  Español: "Imprime",
+  Français: "Imprimer",
+  Türkçe: "Yazdır"
+};
+
+export const logOutTextOptions = {
+  English: "Log out",
+  Español: "Cerrar sesión",
+  Français: "Se déconnecter",
+  Türkçe: "Çıkış yap"
+};
+
+export const deleteTextOptions = {
+  English: "Delete",
+  Español: "Borrar",
+  Français: "Supprime",
+  Türkçe: "Sil"
+};
+
+export const editTextOptions = {
+  English: "Edit",
+  Español: "Editar",
+  Français: "Éditer",
+  Türkçe: "Düzenle"
+};

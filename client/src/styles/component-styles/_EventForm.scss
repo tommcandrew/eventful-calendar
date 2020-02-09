@@ -99,6 +99,7 @@
   top: -100px;
   right: 5px;
   font-size: 4rem;
+  cursor: pointer;
 }
 
 .modal--dark .event-form {
@@ -107,7 +108,7 @@
 
 .event-form__clock,
 .event-form__icon-button {
-  background-color: DodgerBlue; /* Blue background */
+  background-color: $mainColor; /* Blue background */
   border: none; /* Remove borders */
   color: white; /* White text */
   padding: 12px 16px; /* Some padding */
@@ -118,9 +119,9 @@
 
 /* Darker background on mouse-over */
 .event-form__clock:hover {
-  background-color: RoyalBlue;
+  background-color: $mainColorDark;
 }
 
 .event-form__icon-button:hover {
-  background-color: RoyalBlue;
+  background-color: $mainColorDark;
 }

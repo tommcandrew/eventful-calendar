@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const User = require("./models/User.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const PORT = process.env.PORT;
+const PORT = 3000;
 const path = require("path");
 
 app.listen(PORT, () => {
@@ -13,7 +13,7 @@ app.listen(PORT, () => {
 });
 
 mongoose.connect(
-  process.env.MONGODB_URI,
+  "mongodb://127.0.0.1:27017/eventful-calendar",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,

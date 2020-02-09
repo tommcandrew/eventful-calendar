@@ -12,6 +12,7 @@ const ModalHeader = () => {
   return (
     <div className="modal-header">
       <div className="modal-header__content">
+        <span>{dateObj.weekday}</span>
         <span>{dateObj.date}</span>
         <span>{monthsArray[dateObj.month]}</span>
         <span>{dateObj.year}</span>

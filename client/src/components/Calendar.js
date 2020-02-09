@@ -8,6 +8,7 @@ import EventsContext from "../context/EventsContext";
 import Alert from "./Alert";
 import MyAccount from "./MyAccount";
 import DateSelect from "./DateSelect";
+import weekdays from "../data/weekdays";
 
 const Calendar = () => {
   const [yearArray, setYearArray] = useState(null);
@@ -88,7 +89,12 @@ const Calendar = () => {
     const selectedDate = parseInt(
       e.currentTarget.firstChild.firstChild.textContent
     );
-    setDateObj({ ...dateObj, date: selectedDate });
+    const newDateObj = new Date(dateObj.year, dateObj.month, selectedDate);
+    const dayIndex = newDateObj.getDay();
+    const weekday = weekdays.English.long[dayIndex - 1];
+
+    setDateObj({ ...dateObj, date: selectedDate, weekday: weekday });
+
     setShowModalContainer(true);
   };
 

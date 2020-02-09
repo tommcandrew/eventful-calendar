@@ -31,7 +31,7 @@ export const HolidaysContextProvider = props => {
     localStorage.setItem("holidays", JSON.stringify(showHolidays));
 
     if (showHolidays === "Show" && dateObj) {
-      if (savedHolidays.length > 0) {
+      if (savedHolidays && savedHolidays.length > 0) {
         setHolidays([...savedHolidays]);
       } else {
         fetchHolidays();

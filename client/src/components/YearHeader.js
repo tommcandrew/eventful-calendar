@@ -20,7 +20,7 @@ const YearHeader = ({
       }`}
     >
       <div className="year-header__links--left">
-        <h1>Eventful</h1>
+        <h1 className="year-header__app-name">Eventful</h1>
       </div>
       <div className="year-header__content">
         <button

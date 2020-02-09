@@ -18,8 +18,9 @@ const getDayHoverMessages = (
 
     if (eventsOnThisDay && eventsOnThisDay.length > 0) {
       hoverMessages.push(
-        `You have ${eventsOnThisDay.length} event
-          ${eventsOnThisDay.length > 1 ? "s" : ""} on this day.`
+        `You have ${eventsOnThisDay.length} event${
+          eventsOnThisDay.length > 1 ? "s" : ""
+        } on this day.`
       );
     }
   }

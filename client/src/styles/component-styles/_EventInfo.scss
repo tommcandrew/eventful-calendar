@@ -24,6 +24,10 @@
     border-radius: 6px;
     padding: 5px 30px;
     min-width: 60%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
   }
   &__content {
     flex-grow: 9;
@@ -39,6 +43,7 @@
   top: -110px;
   right: 3px;
   font-size: 4rem;
+  cursor: pointer;
 }
 
 .modal--dark .event-info {

@@ -41,6 +41,7 @@ const ModalContainer = ({
   const holidaysOnThisDay = getDayHolidays(holidays, dateObj);
 
   const handleGoBack = () => {
+    setSelectedEvent(null);
     setShowEventInfo(false);
     setShowEventForm(false);
     if (viaMyEvents) {

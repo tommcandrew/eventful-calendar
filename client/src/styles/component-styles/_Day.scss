@@ -131,7 +131,7 @@
 
 .month--light {
   .cell {
-    &:hover {
+    &--day:hover {
       background: #eee;
     }
     &--with-event {

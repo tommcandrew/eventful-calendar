@@ -12,9 +12,6 @@ const EventInfo = ({
   const { language } = useContext(LanguageContext);
   return (
     <div className="event-info">
-      <span className="event-info__close-button" onClick={e => closeModals(e)}>
-        &times;
-      </span>
       <button className="back-button--modal" onClick={handleGoBack}></button>
       <div className="event-info__content">
         <div className="event-info__event">

@@ -28,6 +28,7 @@
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
+    color: white;
   }
   &__content {
     flex-grow: 9;
@@ -36,14 +37,6 @@
     align-items: center;
     padding: 20px;
   }
-}
-
-.event-info__close-button {
-  position: absolute;
-  top: -110px;
-  right: 3px;
-  font-size: 4rem;
-  cursor: pointer;
 }
 
 .modal--dark .event-info {

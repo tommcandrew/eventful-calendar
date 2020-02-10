@@ -17,7 +17,9 @@ const View = ({
   showMyAccount,
   setShowMyAccount,
   setShowDateSelect,
-  showDateSelect
+  showDateSelect,
+  handleSelectYear,
+  handleSelectMonth
 }) => {
   const { dateObj } = useContext(DateContext);
   const { device } = useContext(DeviceContext);
@@ -41,11 +43,12 @@ const View = ({
               setMonthView={setMonthView}
               monthIndex={index}
               key={index + "month"}
-              // holidays={holidays}
               handleShowMyEvents={handleShowMyEvents}
               handleShowSettings={handleShowSettings}
               showMyAccount={showMyAccount}
               setShowMyAccount={setShowMyAccount}
+              handleSelectYear={handleSelectYear}
+              handleSelectMonth={handleSelectMonth}
             />
           ))}
         </div>

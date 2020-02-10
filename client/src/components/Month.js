@@ -18,7 +18,9 @@ const Month = ({
   showMyAccount,
   setShowMyAccount,
   setShowDateSelect,
-  showDateSelect
+  showDateSelect,
+  handleSelectYear,
+  handleSelectMonth
 }) => {
   const { dateObj } = useContext(DateContext);
   const { theme } = useContext(ThemeContext);
@@ -49,6 +51,8 @@ const Month = ({
             setShowMyAccount={setShowMyAccount}
             setShowDateSelect={setShowDateSelect}
             showDateSelect={showDateSelect}
+            handleSelectYear={handleSelectYear}
+            handleSelectMonth={handleSelectMonth}
           />
           <Weekdays yearView={yearView} />
           <div className="month__cells">
@@ -61,7 +65,6 @@ const Month = ({
                     yearView={yearView}
                     handleShowModalContainer={handleShowModalContainer}
                     index={index}
-                    // holidays={holidays}
                     key={index + "day"}
                   />
                 );

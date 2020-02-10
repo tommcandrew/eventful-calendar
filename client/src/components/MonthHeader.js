@@ -6,6 +6,7 @@ import DeviceContext from "../context/DeviceContext";
 import { wholeYearTextOptions } from "../data/otherText";
 import HeaderLinks from "./HeaderLinks";
 import MobileMenu from "./MobileMenu";
+import DateSelect from "./DateSelect";
 
 const MonthHeader = ({
   monthIndex,
@@ -18,7 +19,9 @@ const MonthHeader = ({
   setShowMyAccount,
   setShowDateSelect,
   showDateSelect,
-  handleShowPrint
+  handleShowPrint,
+  handleSelectYear,
+  handleSelectMonth
 }) => {
   const { dateObj } = useContext(DateContext);
   const { language } = useContext(LanguageContext);
@@ -85,6 +88,12 @@ const MonthHeader = ({
             onClick={() => setMonth(monthIndex + 1)}
           ></button>
         </div>
+        {showDateSelect && (
+          <DateSelect
+            handleSelectYear={handleSelectYear}
+            handleSelectMonth={handleSelectMonth}
+          />
+        )}
 
         {device === "desktop" && (
           <HeaderLinks

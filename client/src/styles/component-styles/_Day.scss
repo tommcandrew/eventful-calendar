@@ -58,6 +58,7 @@
       margin-left: 5px;
     }
     &__event-titles {
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       font-size: 0.9rem;
@@ -67,6 +68,7 @@
       border-radius: 6px;
       width: 100%;
       margin: 0 auto 5px auto;
+      white-space: nowrap;
     }
     &__event-title {
       border: 1px solid rgba(0, 0, 0, 0.3);

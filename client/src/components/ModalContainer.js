@@ -128,6 +128,9 @@ const ModalContainer = ({
       onClick={closeModals}
     >
       <div className="modal__content" onClick={handleModalContentClick}>
+        <span className="modal__close-button" onClick={e => closeModals(e)}>
+          &times;
+        </span>
         {!showMyEvents && !showSettings && <ModalHeader />}
         {showDayEvents && (
           <DayEvents

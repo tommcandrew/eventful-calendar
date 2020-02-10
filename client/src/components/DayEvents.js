@@ -21,9 +21,6 @@ const DayEvents = ({
 
   return (
     <div className="day-events">
-      <span className="day-events__close-button" onClick={e => closeModals(e)}>
-        &times;
-      </span>
       {holidaysOnThisDay &&
         holidaysOnThisDay.length > 0 &&
         showHolidays &&

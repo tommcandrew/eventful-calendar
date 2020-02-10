@@ -1,5 +1,5 @@
 .event-form {
-  position: relative;
+  // position: relative;
   flex: 5;
   display: flex;
   flex-direction: column;
@@ -92,14 +92,6 @@
     color: red;
     margin-top: 10px;
   }
-}
-
-.event-form__close-button {
-  position: absolute;
-  top: -100px;
-  right: 5px;
-  font-size: 4rem;
-  cursor: pointer;
 }
 
 .modal--dark .event-form {

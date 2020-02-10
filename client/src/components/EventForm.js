@@ -24,7 +24,6 @@ const EventForm = ({
   closeModals
 }) => {
   const { language } = useContext(LanguageContext);
-  const { device } = useContext(DeviceContext);
 
   const [titleInput, setTitleInput] = useState(
     selectedEvent ? selectedEvent.title : ""
@@ -77,9 +76,6 @@ const EventForm = ({
 
   return (
     <div className="event-form">
-      <span className="event-form__close-button" onClick={e => closeModals(e)}>
-        &times;
-      </span>
       <button
         className="back-button--modal"
         onClick={handleGoBack}

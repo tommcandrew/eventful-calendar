@@ -5,6 +5,7 @@ import DateContext from "../context/DateContext";
 const HolidaysContext = createContext();
 
 export const HolidaysContextProvider = props => {
+  const [country, setCountry] = useState();
   const [showHolidays, setShowHolidays] = useState(getInitialHolidaysPref);
   const [holidays, setHolidays] = useState(null);
   const [savedHolidays, setSavedHolidays] = useState(null);
@@ -19,8 +20,37 @@ export const HolidaysContextProvider = props => {
     }
   }
 
+  function getLocation() {
+    navigator.geolocation.getCurrentPosition(pos => {
+      var countryCode;
+      var apikey = "eb95dcf585ee4842a2c5879447ca1840";
+      var latitude = pos.coords.latitude;
+      var longitude = pos.coords.longitude;
+
+      var api_url = "https://api.opencagedata.com/geocode/v1/json";
+
+      var request_url =
+        api_url +
+        "?" +
+        "key=" +
+        apikey +
+        "&q=" +
+        encodeURIComponent(latitude + "," + longitude) +
+        "&pretty=1" +
+        "&no_annotations=1";
+      axios.get(request_url).then(res => {
+        countryCode = res.data.results[0].components["ISO_3166-1_alpha-2"];
+        setCountry(countryCode);
+      });
+    });
+  }
+
   useEffect(() => {
-    if (dateObj && showHolidays === "Show") {
+    getLocation();
+  }, []);
+
+  useEffect(() => {
+    if (dateObj && country && showHolidays === "Show") {
       fetchHolidays();
     }
 
@@ -41,7 +71,7 @@ export const HolidaysContextProvider = props => {
         setHolidays([]);
       }
     }
-  }, [showHolidays]);
+  }, [showHolidays, country]);
 
   useEffect(() => {
     if (showHolidays && savedHolidays && savedHolidays.length > 0) {
@@ -50,12 +80,13 @@ export const HolidaysContextProvider = props => {
   }, [savedHolidays]);
 
   const fetchHolidays = () => {
-    console.log("making API call");
+    console.log("calling holidays api");
     axios
       .get(
-        `https://calendarific.com/api/v2/holidays?&api_key=423d3eeb339e68f8ac6484808dbda88b657f40b8&country=Uk&year=${dateObj.year}`
+        `https://calendarific.com/api/v2/holidays?&api_key=423d3eeb339e68f8ac6484808dbda88b657f40b8&country=${country}&year=${dateObj.year}`
       )
       .then(res => {
+        console.log(res);
         setSavedHolidays(
           res.data.response.holidays.filter(
             holiday =>

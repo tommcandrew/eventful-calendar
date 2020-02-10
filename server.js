@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const User = require("./models/User.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const PORT = 3000;
+const PORT = 5000;
 const path = require("path");
 
 app.listen(PORT, () => {

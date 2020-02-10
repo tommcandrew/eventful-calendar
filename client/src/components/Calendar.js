@@ -7,7 +7,6 @@ import { DragDropContext } from "react-beautiful-dnd";
 import EventsContext from "../context/EventsContext";
 import Alert from "./Alert";
 import MyAccount from "./MyAccount";
-import DateSelect from "./DateSelect";
 import weekdays from "../data/weekdays";
 
 const Calendar = () => {
@@ -41,11 +40,8 @@ const Calendar = () => {
     if (
       e.target.classList.contains("modal") ||
       e.target.classList.contains("button--done") ||
-      e.target.classList.contains("my-events__close-button") ||
-      e.target.classList.contains("day-events__close-button") ||
-      e.target.classList.contains("event-form__close-button") ||
-      e.target.classList.contains("event-info__close-button") ||
-      e.target.classList.contains("settings__close-button")
+      e.target.classList.contains("settings__close-button") ||
+      e.target.classList.contains("modal__close-button")
     ) {
       setShowModalContainer(false);
       setShowMyEvents(false);
@@ -130,12 +126,6 @@ const Calendar = () => {
             {alert && <Alert alert={alert} />}
             {showMyAccount && <MyAccount setShowMyAccount={setShowMyAccount} />}
 
-            {showDateSelect && (
-              <DateSelect
-                handleSelectYear={handleSelectYear}
-                handleSelectMonth={handleSelectMonth}
-              />
-            )}
             <View
               yearArray={yearArray}
               setMonthView={setMonthView}
@@ -150,6 +140,8 @@ const Calendar = () => {
               setShowMyAccount={setShowMyAccount}
               setShowDateSelect={setShowDateSelect}
               showDateSelect={showDateSelect}
+              handleSelectYear={handleSelectYear}
+              handleSelectMonth={handleSelectMonth}
             />
           </div>
           {showModalContainer && (

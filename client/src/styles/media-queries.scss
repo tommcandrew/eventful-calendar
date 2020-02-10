@@ -30,8 +30,8 @@
     width: 80%;
   }
 
-  .time-list {
-    width: 72vw;
+  .time-list__wrapper {
+    width: 70vw;
   }
   .my-account {
     width: 90%;
@@ -63,6 +63,8 @@
   }
   .home__buttons {
     width: 80%;
+    flex-direction: column;
+    height: 20vh;
   }
   .loginRegister__content {
     width: 90%;
@@ -120,5 +122,14 @@
   }
   .event-form input {
     font-size: 1rem;
+  }
+  .calendar {
+    height: 100vh;
+  }
+  .modal-header__content {
+    font-size: 1.1rem;
+  }
+  .event-form__extra-inputs {
+    width: 70%;
   }
 }

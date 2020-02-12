@@ -88,21 +88,9 @@ export const HolidaysContextProvider = props => {
   const fetchHolidays = () => {
     if (country && dateObj) {
       axios
-        .get(
-          `https://calendarific.com/api/v2/holidays?&api_key=423d3eeb339e68f8ac6484808dbda88b657f40b8&country=${country}&year=${dateObj.year}`
-        )
+        .post("/holidays", { country: country, year: dateObj.year })
         .then(res => {
-          const allHolidays = res.data.response.holidays;
-          const selectHolidays = allHolidays.filter(
-            holiday =>
-              holiday.type.includes("National holiday") ||
-              holiday.type.includes("Common local holiday") ||
-              holiday.type.includes("Clock change/Daylight Saving Time") ||
-              (holiday.type.includes("Observance") &&
-                //not including Scottish holidays because of duplicates (e.g. Easter Monday)
-                !holiday.locations.includes("SCT"))
-          );
-          setSavedHolidays(selectHolidays);
+          setSavedHolidays(res.data);
           setHolidaysYear(dateObj.year);
         });
     }

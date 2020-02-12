@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const PORT = 5000;
 const path = require("path");
+const axios = require("axios");
 
 app.listen(PORT, () => {
   console.log("listening on port " + PORT);
@@ -80,7 +81,6 @@ app.delete("/deleteevent/:id", verifyToken, (req, res) => {
     { safe: true, multi: true }
   )
     .then(() => {
-      console.log("event deleted");
       res.status(200).send("Event deleted");
     })
     .catch(err => {
@@ -157,23 +157,19 @@ app.post("/login", (req, res) => {
 app.post("/register", (req, res) => {
   const { name, email, password, password2 } = req.body;
   if (password.length < 8) {
-    console.log("password must be at least 8 characters");
     res.status(500).send();
     return;
   }
   if (/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$/.test(email) === false) {
-    console.log("please enter valid email");
     res.status(201).send("Please enter a valid email address");
     return;
   }
   if (password !== password2) {
-    console.log("passwords must match");
     res.status(201).send("Passwords must match");
     return;
   }
   User.findOne({ email }).then(user => {
     if (user) {
-      console.log("already registered");
       res.status(201).send("That email is already registered");
       return;
     }
@@ -184,12 +180,32 @@ app.post("/register", (req, res) => {
       user.password = hash;
       user.save().then(user => {
         jwt.sign({ user }, "secretkey", (err, token) => {
-          console.log("sending token");
           res.send(token);
         });
       });
     });
   });
+});
+
+app.post("/holidays", (req, res) => {
+  const { country, year } = req.body;
+  axios
+    .get(
+      `https://calendarific.com/api/v2/holidays?&api_key=423d3eeb339e68f8ac6484808dbda88b657f40b8&country=${country}&year=${year}`
+    )
+    .then(response => {
+      const allHolidays = response.data.response.holidays;
+      const selectHolidays = allHolidays.filter(
+        holiday =>
+          holiday.type.includes("National holiday") ||
+          holiday.type.includes("Common local holiday") ||
+          holiday.type.includes("Clock change/Daylight Saving Time") ||
+          (holiday.type.includes("Observance") &&
+            //not including Scottish holidays because of duplicates (e.g. Easter Monday)
+            !holiday.locations.includes("SCT"))
+      );
+      res.status(200).send(selectHolidays);
+    });
 });
 
 app.get("/checkAuth", verifyToken, (req, res) => {

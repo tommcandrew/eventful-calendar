@@ -1,0 +1,14 @@
+.back-button--modal {
+  //triangle made out of borders
+  border-top: 25px solid transparent;
+  border-bottom: 25px solid transparent;
+  border-right: 25px solid $mainColor;
+  border-radius: 6px;
+  cursor: pointer;
+  height: 0;
+  left: 10px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+}

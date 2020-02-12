@@ -1,0 +1,16 @@
+.event-bar {
+  align-items: center;
+  background: $secondaryColor;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  display: flex;
+  min-height: 20px;
+  overflow: hidden;
+
+  & span {
+    margin: 0 8px;
+  }
+  &__title {
+    font-weight: bold;
+  }
+}

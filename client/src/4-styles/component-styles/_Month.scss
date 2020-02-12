@@ -1,0 +1,53 @@
+//GENERAL
+.month {
+  cursor: pointer;
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+  &__cells {
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+  }
+}
+
+//MONTH VIEW ONLY
+.month--month-view {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  position: relative;
+  .month__content {
+    height: 100%;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+//YEAR VIEW
+.month--year-view {
+  display: flex;
+  flex-basis: calc(100% / 4);
+  outline: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+//LIGHT
+.calendar--light .month {
+  background-color: white;
+  transition: $themeTransition;
+}
+
+//YEAR VIEW (LIGHT)
+.calendar--light .month--year-view {
+  &:hover {
+    background: #eee;
+  }
+}
+
+//DARK
+.calendar--dark .month {
+  background-color: #1b2938;
+  transition: $themeTransition;
+}

@@ -1,0 +1,56 @@
+.my-account {
+  align-items: center;
+  background: white;
+  border-radius: 6px;
+  box-shadow: $boxShadow;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  min-height: 40vh;
+  min-width: 20vw;
+  position: absolute;
+  right: 0.5vw;
+  top: 6vh;
+  z-index: 10;
+  &__close-button {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    font-size: 4rem;
+    cursor: pointer;
+  }
+  &__profile-pic {
+    align-items: center;
+    background: $mainColor;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    height: 80px;
+    justify-content: center;
+    //not sure why it's not centering without this
+    padding-top: 3%;
+    width: 80px;
+  }
+  &__user-initial {
+    font-size: 4rem;
+  }
+  &__user-name {
+    font-size: 1.2rem;
+    margin-bottom: 10%;
+    text-align: center;
+  }
+  &__user-email {
+    color: rgb(112, 111, 111);
+    font-size: 1rem;
+    margin-top: 3px;
+  }
+  &__logout {
+    @include button($mainColor, 1.3rem);
+    color: white;
+    &:hover,
+    &:focus {
+      background: $mainColorDark;
+    }
+  }
+}

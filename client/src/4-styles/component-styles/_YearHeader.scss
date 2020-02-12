@@ -1,0 +1,62 @@
+.year-header {
+  display: flex;
+  padding: 3px 10px;
+  position: relative;
+  &__content {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 20%;
+  }
+  &__year-title {
+    flex-grow: 4;
+    font-size: 2rem;
+  }
+  &__app-name {
+    padding-top: 3px;
+  }
+  &__links {
+    &--left {
+      display: flex;
+      // outline: 2px solid red;
+    }
+  }
+}
+
+.year-header__arrow {
+  width: 0;
+  height: 0;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  cursor: pointer;
+}
+
+.year-header__arrow--left {
+  border-right: 12px solid black;
+}
+
+.year-header__arrow--right {
+  border-left: 12px solid black;
+}
+
+@media print {
+  .year-header__arrow {
+    display: none;
+  }
+}
+
+//LIGHT
+.calendar--light .year-header {
+  background: $mainColor;
+  transition: all 400ms ease-out;
+}
+
+//DARK
+.calendar--dark .year-header {
+  background: $mainColorDark;
+  transition: $themeTransition;
+  .year-header__app-name {
+    color: white;
+  }
+}

@@ -1,0 +1,38 @@
+.mobile-menu {
+  animation: expand 750ms ease-out;
+  background: rgba($color: $mainColorDark, $alpha: 0.95);
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 100;
+  &__close-button {
+    color: white;
+    font-size: 5rem;
+    position: absolute;
+    right: 15px;
+    top: -10px;
+  }
+  &__links {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    font-size: 2rem;
+    height: 60%;
+    justify-content: space-around;
+    text-align: center;
+  }
+}
+
+@keyframes expand {
+  from {
+    clip-path: circle(100px at -15% -15%);
+  }
+  to {
+    clip-path: circle(800px at 0% 0%);
+  }
+}

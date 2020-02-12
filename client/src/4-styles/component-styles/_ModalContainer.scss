@@ -1,0 +1,49 @@
+//GENERAL
+.modal {
+  animation: fade-in 200ms ease-in-out;
+  background: rgba(0, 0, 0, 0.5);
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  &__content {
+    background: white;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    height: 60%;
+    margin: 0 auto;
+    margin-top: 20vh;
+    //stop contents spilling out on vertical resize
+    overflow: hidden;
+    padding: 30px 0;
+    position: relative;
+    text-align: center;
+    width: 35%;
+  }
+  &__close-button {
+    cursor: pointer;
+    font-size: 4rem;
+    position: absolute;
+    right: 5px;
+    top: -10px;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+//DARK
+.calendar--dark .modal {
+  .modal__content {
+    background: $mainColorDark;
+    transition: $themeTransition;
+  }
+}

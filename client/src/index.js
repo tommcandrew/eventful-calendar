@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { DateContextProvider } from "./2-context/DateContext";
+import { EventsContextProvider } from "./2-context/EventsContext";
+import { LanguageContextProvider } from "./2-context/LanguageContext";
+import { ThemeContextProvider } from "./2-context/ThemeContext";
+import { AuthContextProvider } from "./2-context/AuthContext";
+import { HolidaysContextProvider } from "./2-context/HolidaysContext";
+import { DeviceContextProvider } from "./2-context/DeviceContext";
 import App from "./App";
-import { DateContextProvider } from "./context/DateContext";
-import { EventsContextProvider } from "./context/EventsContext";
-import { LanguageContextProvider } from "./context/LanguageContext";
-import { ThemeContextProvider } from "./context/ThemeContext";
-import { AuthContextProvider } from "./context/AuthContext";
-import { HolidaysContextProvider } from "./context/HolidaysContext";
-import { DeviceContextProvider } from "./context/DeviceContext";
-import "./styles/styles.scss";
+import "./4-styles/styles.scss";
 
 ReactDOM.render(
   <DateContextProvider>

@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Calendar from "./components/Calendar";
-import Home from "./components/Home";
-import ProtectedRoute from "./components/ProtectedRoute";
-import Login from "./components/Login";
-import Register from "./components/Register";
+import Calendar from "./0-components/Calendar";
+import Home from "./0-components/Home";
+import ProtectedRoute from "./0-components/ProtectedRoute";
+import Login from "./0-components/Login";
+import Register from "./0-components/Register";
 
 const App = () => {
   return (

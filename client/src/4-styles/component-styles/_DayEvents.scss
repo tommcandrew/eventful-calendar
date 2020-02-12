@@ -1,0 +1,60 @@
+//GENERAL
+.day-events {
+  align-items: center;
+  display: flex;
+  flex: 5;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 20px;
+  &__holiday-name {
+    background: rgb(49, 114, 49);
+    border-radius: 6px;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 5px 10px;
+  }
+  &__title {
+    font-family: $josefin;
+  }
+  &__event {
+    background: $mainColor;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px 0;
+    width: 75%;
+    & span {
+      margin: 0 10px;
+    }
+  }
+  &__event-title,
+  &__event-time {
+    padding-top: 5px;
+  }
+  &__event-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  &__event-time {
+    font-size: 1.1rem;
+  }
+  &__button {
+    @include button($mainColor, 1.5rem);
+    color: white;
+    &:hover,
+    &:focus {
+      background: $mainColorDark;
+    }
+  }
+}
+
+//DARK
+.calendar--dark .modal {
+  .day-events {
+    color: #dfd8c3;
+  }
+}

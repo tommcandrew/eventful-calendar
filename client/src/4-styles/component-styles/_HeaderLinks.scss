@@ -1,0 +1,21 @@
+.header-links {
+  display: flex;
+  &__my-account-button,
+  &__my-events-button,
+  &__settings-button,
+  &__printer-button {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    font-size: 1.6rem;
+    justify-content: center;
+    margin: 3px 0 0 15px;
+    position: relative;
+  }
+}
+
+@media print {
+  .header-links {
+    display: none;
+  }
+}

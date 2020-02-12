@@ -55,10 +55,8 @@ app.get("/events", verifyToken, (req, res) => {
 });
 
 app.post("/addevent", verifyToken, (req, res) => {
-  console.log(JSON.stringify(req.body));
   const { title, time, icon, date, month, year, id } = req.body;
   const event = { title, time, icon, date, month, year, id };
-  console.log(JSON.stringify(event));
   const email = req.tokenData.user.email;
   User.findOne({ email })
     .then(user => {
@@ -163,6 +161,11 @@ app.post("/register", (req, res) => {
     res.status(500).send();
     return;
   }
+  if (/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$/.test(email) === false) {
+    console.log("please enter valid email");
+    res.status(201).send("Please enter a valid email address");
+    return;
+  }
   if (password !== password2) {
     console.log("passwords must match");
     res.status(201).send("Passwords must match");
@@ -181,6 +184,7 @@ app.post("/register", (req, res) => {
       user.password = hash;
       user.save().then(user => {
         jwt.sign({ user }, "secretkey", (err, token) => {
+          console.log("sending token");
           res.send(token);
         });
       });

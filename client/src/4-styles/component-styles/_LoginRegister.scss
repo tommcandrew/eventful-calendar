@@ -1,0 +1,83 @@
+.loginRegister {
+  background: white;
+  width: 100%;
+  &__header {
+    background: $mainColor;
+    padding: 10px;
+  }
+  &__app-title {
+    color: white;
+    margin-left: 10px;
+  }
+  &__content {
+    background: white;
+    border-radius: 6px;
+    box-shadow: $boxShadow;
+    margin: 0 auto;
+    min-height: 60%;
+    margin-top: 60px;
+    padding: 20px;
+    width: 40%;
+  }
+  &__form-title {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 2rem;
+    padding: 10px 0;
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: 60%;
+    align-items: center;
+    margin: 0 auto;
+    justify-content: space-around;
+    padding: 10px 0;
+    & input {
+      padding: 5px 10px;
+      width: 100%;
+      margin: 5px 0;
+      font-size: 1.2rem;
+      border: 3px solid $mainColor;
+      border-radius: 5px;
+      color: black;
+      &.valid {
+        background-color: lightgreen;
+      }
+      &.invalid {
+        background-color: pink;
+      }
+      //overrides default autfill styles (default is light blue background)
+      &:-webkit-autofill.valid {
+        -webkit-box-shadow: 0 0 0px 1000px lightgreen inset;
+      }
+      &:-webkit-autofill.invalid {
+        -webkit-box-shadow: 0 0 0px 1000px pink inset;
+      }
+    }
+  }
+  &__link-container {
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 40px;
+    & p {
+      margin-bottom: 5px;
+    }
+  }
+  &__button {
+    @include button($mainColor, 1.5rem);
+    color: white;
+    margin-top: 30px;
+    &:hover,
+    &:focus {
+      background: $mainColorDark;
+    }
+  }
+  &__error-message {
+    color: red;
+    margin-top: 10px;
+    min-height: 20px;
+  }
+}

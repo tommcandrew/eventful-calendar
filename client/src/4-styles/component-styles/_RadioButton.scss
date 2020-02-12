@@ -1,0 +1,47 @@
+.radio-button {
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  & > * {
+    margin: 10px 0;
+  }
+  &__label {
+    font-size: 1.5rem;
+  }
+  &__button {
+    border: 2px solid black;
+    border-radius: 50%;
+    height: 25px;
+    margin-left: 10px;
+    width: 25px;
+    &--checked {
+      background: rgb(107, 107, 199);
+    }
+    &--unchecked:hover {
+      background: rgb(178, 178, 235);
+    }
+  }
+}
+
+//DARK
+.calendar--dark .modal .radio-button {
+  &__label {
+    color: #dfd8c3;
+  }
+  &__button {
+    &--checked {
+      background: white;
+    }
+    &--unchecked:hover {
+      background: #eee;
+    }
+  }
+}
+
+.calendar--dark .modal {
+  .fa-sun,
+  .fa-moon {
+    color: yellow;
+  }
+}

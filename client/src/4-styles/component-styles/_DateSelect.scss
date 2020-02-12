@@ -1,0 +1,61 @@
+.date-select {
+  background-color: $mainColor;
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
+  display: flex;
+  left: 50%;
+  min-width: 16vw;
+  padding: 0 10px;
+  position: absolute;
+  top: 100%;
+  transform: translateX(-50%);
+  z-index: 100000;
+  &__month-list,
+  &__year-list {
+    background-color: $mainColor;
+    font-size: 1.3rem;
+    height: 40vh;
+    list-style: none;
+    margin: 0 auto;
+    overflow: auto;
+    padding: 45px 0;
+    position: relative;
+    text-align: center;
+    width: 100%;
+  }
+  & li {
+    cursor: pointer;
+    padding: 10px 0;
+    &:hover,
+    &:focus {
+      transform: scale(1.25);
+      transition: transform 300ms ease-in-out;
+    }
+  }
+  &__month-list::-webkit-scrollbar,
+  &__year-list::-webkit-scrollbar {
+    display: none;
+  }
+  //for the fade out effect at each end of list
+  &::after,
+  &::before {
+    position: absolute;
+    content: "";
+    left: 0;
+    right: 0;
+    height: 20%;
+    z-index: 10000;
+  }
+  &::before {
+    background: linear-gradient(to top, rgba(107, 107, 199, 0.4), $mainColor);
+    top: 0;
+  }
+  &::after {
+    background: linear-gradient(
+      to bottom,
+      rgba(107, 107, 199, 0.4),
+      $mainColor
+    );
+    bottom: 0;
+  }
+}

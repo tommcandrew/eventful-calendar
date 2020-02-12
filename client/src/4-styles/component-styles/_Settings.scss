@@ -1,0 +1,37 @@
+//GENERAL
+.settings {
+  padding: 0 20px;
+  &__radio-groups {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 10px 0 10px;
+  }
+  &__close-button {
+    cursor: pointer;
+    font-size: 4rem;
+    position: absolute;
+    right: 10px;
+    top: -10px;
+  }
+  &__ok-button {
+    @include button($mainColor, 1.5rem);
+    color: white;
+    &:hover,
+    &:focus {
+      background: $mainColorDark;
+    }
+  }
+}
+
+//DARK
+.calendar--dark .modal .settings {
+  color: #dfd8c3;
+  &__ok-button {
+    &:hover,
+    &:focus {
+      background-color: yellow;
+      color: black;
+      transition: all 150ms ease-in-out;
+    }
+  }
+}

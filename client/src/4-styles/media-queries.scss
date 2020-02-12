@@ -1,0 +1,134 @@
+@media only screen and (max-width: 1264px) {
+  .alert {
+    width: 70%;
+  }
+  .event-form {
+    input {
+      font-size: 1rem;
+      margin: 20px auto 0 auto;
+      width: 70%;
+    }
+    &__preview {
+      align-items: center;
+      font-size: 1rem;
+      max-width: 65%;
+      padding: 0;
+      span {
+        flex-grow: 1;
+        margin: 0;
+      }
+    }
+    &__extra-inputs {
+      width: 70%;
+    }
+  }
+  .event-info {
+    &__button {
+      width: 45%;
+    }
+  }
+  .header-links {
+    justify-content: center;
+    padding: 10px;
+    position: static;
+    width: 100%;
+  }
+  .home {
+    &__content {
+      width: 100%;
+    }
+    &__buttons {
+      flex-direction: column;
+      height: 20vh;
+      width: 80%;
+    }
+    &__button {
+      width: 35vw;
+    }
+  }
+  .icons {
+    width: 70vw;
+  }
+  .loginRegister {
+    &__content {
+      width: 90%;
+    }
+    &__form {
+      width: 80%;
+    }
+  }
+  .modal {
+    &__close-button {
+      font-size: 3rem;
+    }
+    &__content {
+      width: 80%;
+    }
+  }
+  .modal-header {
+    &__content {
+      font-size: 1.3rem;
+      flex-direction: column;
+    }
+  }
+  //adding specificity, otherwise not overriding main styles
+  .calendar .month .month-header {
+    padding: 0 10px;
+    &__content {
+      align-items: center;
+      display: flex;
+      justify-content: space-around;
+      padding: 0 10px;
+      flex-grow: 1;
+    }
+    &__month-name,
+    &__year-name {
+      font-size: 1.5rem;
+      margin: 0;
+      padding: 8px 10px 0 10px;
+    }
+  }
+  .my-account {
+    height: 60vh;
+    left: 5%;
+    right: 5%;
+    width: 90%;
+    &__profile-pic {
+      font-size: 3rem;
+      height: 120px;
+      width: 120px;
+    }
+    &__user-name {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    &__user-email {
+      font-size: 1.5rem;
+    }
+  }
+  .my-events {
+    &__nav-content {
+      width: 70%;
+    }
+    &__events-container {
+      width: 80%;
+    }
+  }
+  .settings {
+    padding: 0;
+    overflow: auto;
+  }
+  .settings {
+    &__radio-groups {
+      flex-direction: column;
+      margin: 20px auto 0 auto;
+      width: 60%;
+    }
+    &__radio-group {
+      margin: 20px 0;
+    }
+  }
+  .time-list {
+    width: 70vw;
+  }
+}

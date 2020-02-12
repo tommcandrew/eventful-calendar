@@ -1,0 +1,78 @@
+.my-events {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: auto;
+  position: relative;
+  &__nav {
+    margin: 10px 0;
+    width: 100%;
+  }
+  &__nav-content {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    width: 30%;
+  }
+  &__arrow-left,
+  &__arrow-right {
+    font-size: 3rem;
+  }
+  &__year-name {
+    font-size: 1.8rem;
+  }
+  &__events {
+    height: 70%;
+    overflow: auto;
+    width: 90%;
+  }
+  &__event {
+    align-items: center;
+    background: $mainColor;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1.5rem;
+    justify-content: space-around;
+    margin: 10px 0;
+    // margin-right: 3px;
+    padding: 5px;
+  }
+  &__event-icon,
+  &__event-title,
+  &__event-time {
+    margin: 0 10px;
+  }
+  &__event-title {
+    font-weight: bold;
+  }
+  &__no-events {
+    margin: 10px 0;
+  }
+}
+
+//DARK
+.calendar--dark .modal .my-events {
+  color: #dfd8c3;
+}
+
+//custom scrollbar
+.my-events__events {
+  &::-webkit-scrollbar {
+    width: 0.5em;
+  }
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #ddd;
+    outline: 1px solid black;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  }
+}

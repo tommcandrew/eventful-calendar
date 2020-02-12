@@ -1,0 +1,111 @@
+//GENERAL
+.month-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  position: relative;
+  &__date-info {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    min-width: 55%;
+    button {
+      cursor: pointer;
+    }
+  }
+  &__whole-year-button {
+    font-size: 1.2rem;
+    cursor: pointer;
+    &:hover,
+    &:focus {
+      color: white;
+    }
+  }
+  &__hamburger {
+    cursor: pointer;
+    & div {
+      width: 35px;
+      height: 5px;
+      background-color: black;
+      margin: 6px 0;
+    }
+  }
+  &__arrow {
+    border-bottom: 12px solid transparent;
+    border-top: 12px solid transparent;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  &__arrow--left {
+    border-right: 12px solid black;
+  }
+  &__arrow--right {
+    border-left: 12px solid black;
+  }
+}
+
+//MONTH VIEW
+.month--month-view .month-header {
+  background: $mainColor;
+  &__month-name,
+  &__year-name {
+    font-size: 1.5rem;
+    margin: 0 10px;
+  }
+  .month__cells {
+    background: white;
+  }
+  &__content {
+    width: 20%;
+
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+//YEAR VIEW
+.month--year-view .month-header {
+  outline: 1px solid rgba(0, 0, 0, 0.3);
+  justify-content: center;
+  &__month-name {
+    font-size: 1.1rem;
+  }
+}
+
+//MONTH VIEW (DARK)
+.calendar--dark .month--month-view .month-header {
+  background: $mainColorDark;
+  transition: $themeTransition;
+  &__month-name,
+  &__year-name {
+    color: #eee;
+  }
+}
+
+//YEAR VIEW (DARK)
+.calendar--dark .month--year-view .month-header {
+  background: #111;
+  transition: $themeTransition;
+  &__month-name {
+    color: #eee;
+    transition: $themeTransition;
+  }
+}
+
+//YEAR VIEW (LIGHT)
+.calendar--light .month--year-view .month-header {
+  background: #ddd;
+  transition: $themeTransition;
+}
+
+@media print {
+  .month-header {
+    &__arrow--left,
+    &__arrow--right,
+    &__whole-year-button {
+      display: none;
+    }
+  }
+}

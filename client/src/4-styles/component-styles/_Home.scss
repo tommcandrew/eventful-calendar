@@ -1,0 +1,43 @@
+.home {
+  align-items: center;
+  background: $mainColor;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 100%;
+  &__content {
+    display: flex;
+    padding: 50px;
+    text-align: center;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    width: 40%;
+  }
+  &__header {
+    text-align: center;
+    height: 40%;
+  }
+  &__app-title {
+    color: white;
+    font-size: 4rem;
+    padding: 20px;
+  }
+  &__app-slogan {
+    color: white;
+  }
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 60%;
+  }
+  &__button {
+    @include button(white, 1.5rem);
+    &:hover,
+    &:focus {
+      background: #ddd;
+    }
+  }
+}

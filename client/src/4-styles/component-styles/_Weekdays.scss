@@ -1,0 +1,28 @@
+//GENERAL
+.weekdays {
+  display: flex;
+  width: 100%;
+  &__weekday {
+    flex-basis: calc(100% / 7);
+    font-weight: bold;
+    padding: 10px 0;
+  }
+}
+
+//MONTH VIEW (LIGHT)
+.calendar--light .month--month-view .weekdays {
+  background: #eee;
+}
+
+//MONTH VIEW (DARK)
+.calendar--dark .month--month-view .weekdays {
+  background: #111;
+}
+
+//DARK
+.calendar--dark .month .weekdays {
+  &__weekday {
+    color: #ddd;
+    transition: $themeTransition;
+  }
+}

@@ -1,0 +1,97 @@
+.event-form {
+  display: flex;
+  flex: 5;
+  flex-direction: column;
+  &__preview {
+    border: 5px solid $mainColor;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    font-family: $josefin;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 10px;
+    min-height: 100px;
+    padding-top: 10px;
+    width: 60%;
+    & span {
+      margin: 0 10px;
+    }
+  }
+  &__title-preview,
+  &__time-preview {
+    font-size: 1.2rem;
+    padding-top: 5px;
+  }
+  &__time-preview {
+    font-style: italic;
+    font-weight: normal;
+  }
+  &__form {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-around;
+  }
+  &__form-fields {
+    display: flex;
+    flex-direction: column;
+  }
+  &__form-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    & input {
+      font-size: 1.3rem;
+      margin-top: 20px;
+      padding: 0 5px;
+    }
+  }
+  &__char-limit-message {
+    color: red;
+    font-size: 1rem;
+    padding-top: 10px;
+    visibility: hidden;
+    &--show {
+      visibility: visible;
+    }
+  }
+  &__extra-inputs {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    width: 50%;
+  }
+  &__clock,
+  &__icon-button {
+    background-color: $mainColor;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 6px 8px;
+    &:hover {
+      background-color: $mainColorDark;
+    }
+  }
+  &__error-message {
+    color: red;
+    margin-top: 10px;
+    min-height: 20px;
+  }
+  &__button {
+    @include button($mainColor, 1.5rem);
+    color: white;
+    &:hover,
+    &:focus {
+      background: $mainColorDark;
+    }
+  }
+}
+
+//DARK
+.calendar--dark .modal .event-form {
+  color: #dfd8c3;
+}

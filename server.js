@@ -1,4 +1,3 @@
-require("dotenv").config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -6,7 +5,6 @@ const User = require("./models/User.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const PORT = 5000;
-const path = require("path");
 const axios = require("axios");
 
 app.listen(PORT, () => {
@@ -14,7 +12,7 @@ app.listen(PORT, () => {
 });
 
 mongoose.connect(
-  "mongodb://127.0.0.1:27017/eventful-calendar",
+  "mongodb://localhost:27017/eventful-calendar",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -24,8 +22,6 @@ mongoose.connect(
 );
 
 app.use(express.json());
-
-app.use(express.static(path.join(__dirname, "client/build")));
 
 const verifyToken = (req, res, next) => {
   const bearer = req.headers["authorization"];

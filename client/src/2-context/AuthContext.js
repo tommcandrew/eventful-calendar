@@ -14,7 +14,7 @@ export const AuthContextProvider = props => {
     const token = localStorage.getItem("my-token");
     if (token) {
       axios
-        .get("/checkAuth", {
+        .get("/api/checkAuth", {
           headers: {
             Authorization: "Bearer " + token
           }
@@ -41,7 +41,7 @@ export const AuthContextProvider = props => {
     let errorMessage;
     const email = e.target.email.value;
     const password = e.target.password.value;
-    axios.post("/login", { email, password }).then(res => {
+    axios.post("/api/login", { email, password }).then(res => {
       if (res.status === 200) {
         const { token, userName } = res.data;
         localStorage.setItem("my-token", token);
@@ -62,19 +62,21 @@ export const AuthContextProvider = props => {
     const password = e.target.password.value;
     const password2 = e.target.password2.value;
     let errorMessage;
-    axios.post("/register", { name, email, password, password2 }).then(res => {
-      if (res.status === 200) {
-        const token = res.data;
-        localStorage.setItem("my-token", token);
-        setAuthenticated(true);
-        setUserEmail(email);
-        setUserName(name);
-        cb();
-      } else {
-        errorMessage = res.data;
-        setErrorMessage(errorMessage);
-      }
-    });
+    axios
+      .post("/api/register", { name, email, password, password2 })
+      .then(res => {
+        if (res.status === 200) {
+          const token = res.data;
+          localStorage.setItem("my-token", token);
+          setAuthenticated(true);
+          setUserEmail(email);
+          setUserName(name);
+          cb();
+        } else {
+          errorMessage = res.data;
+          setErrorMessage(errorMessage);
+        }
+      });
   };
 
   const logout = cb => {

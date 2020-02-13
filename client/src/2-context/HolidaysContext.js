@@ -88,7 +88,7 @@ export const HolidaysContextProvider = props => {
   const fetchHolidays = () => {
     if (country && dateObj) {
       axios
-        .post("/holidays", { country: country, year: dateObj.year })
+        .post("/api/holidays", { country: country, year: dateObj.year })
         .then(res => {
           setSavedHolidays(res.data);
           setHolidaysYear(dateObj.year);

@@ -32,7 +32,7 @@ export const EventsContextProvider = props => {
 
   const fetchEvents = async () => {
     const token = localStorage.getItem("my-token");
-    const res = await axios.get("/events", {
+    const res = await axios.get("/api/events", {
       headers: {
         Authorization: "Bearer " + token
       }
@@ -45,7 +45,7 @@ export const EventsContextProvider = props => {
     setEvents([...events, newEvent]);
     const token = localStorage.getItem("my-token");
     axios
-      .post("/addevent", newEvent, {
+      .post("/api/addevent", newEvent, {
         headers: { authorization: "Bearer " + token }
       })
       .then(() => {
@@ -72,7 +72,7 @@ export const EventsContextProvider = props => {
     const token = localStorage.getItem("my-token");
     axios
       .post(
-        "/moveevent/" + id,
+        "/api/moveevent/" + id,
         { newDay },
         {
           headers: { authorization: "Bearer " + token }
@@ -92,7 +92,7 @@ export const EventsContextProvider = props => {
     setEvents(updatedEvents);
     const token = localStorage.getItem("my-token");
     axios
-      .delete(`/deleteevent/${id}`, {
+      .delete(`/api/deleteevent/${id}`, {
         headers: { authorization: "Bearer " + token }
       })
       .then(() => {
@@ -115,7 +115,7 @@ export const EventsContextProvider = props => {
 
     const token = localStorage.getItem("my-token");
     axios
-      .post("/editevent/" + id, editedEvent, {
+      .post("/api/editevent/" + id, editedEvent, {
         headers: { authorization: "Bearer " + token }
       })
       .then(() => {

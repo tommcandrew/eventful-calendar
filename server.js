@@ -243,6 +243,23 @@ app.post("/countryInfo", (req, res) => {
     });
 });
 
+app.delete("/removeDemoEvents", (req, res) => {
+  User.updateOne(
+    { email: "demouser@gmail.com" },
+    {
+      $set: {
+        events: []
+      }
+    }
+  )
+    .then(() => {
+      res.status(200).send("Demo user events deleted");
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
 app.get("/checkAuth", verifyToken, (req, res) => {
   res.status(200).send(req.tokenData);
 });

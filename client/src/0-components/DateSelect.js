@@ -16,12 +16,16 @@ const DateSelect = ({ setMonth, setYear }) => {
     <div className="date-select">
       <ul className="date-select__month-list">
         {months[language].map((month, index) => (
-          <li onClick={() => setMonth(index)}>{month}</li>
+          <li key={"month" + index} onClick={() => setMonth(index)}>
+            {month}
+          </li>
         ))}
       </ul>
       <ul className="date-select__year-list">
-        {yearList.map(year => (
-          <li onClick={e => setYear(e.target.innerText)}>{year}</li>
+        {yearList.map((year, index) => (
+          <li key={"year" + index} onClick={e => setYear(e.target.innerText)}>
+            {year}
+          </li>
         ))}
       </ul>
     </div>

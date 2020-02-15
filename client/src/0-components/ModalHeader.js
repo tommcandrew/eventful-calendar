@@ -10,11 +10,19 @@ const ModalHeader = () => {
 
   const monthsArray = months[language];
 
+  //because Sunday's index is 0 by default
+  let weekdayIndex;
+  if (dateObj.dayIndex - 1 !== -1) {
+    weekdayIndex = dateObj.dayIndex - 1;
+  } else {
+    weekdayIndex = 6;
+  }
+
   return (
     <div className="modal-header">
       <div className="modal-header__content">
         <span className="modal-header__weekday">
-          {weekdays[language].long[dateObj.dayIndex - 1]}
+          {weekdays[language].long[weekdayIndex]}
         </span>
         <div className="modal-header__date-info">
           <span className="modal-header__date">{dateObj.date}</span>

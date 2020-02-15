@@ -28,14 +28,6 @@ const Day = ({ day, handleShowModalContainer, index, yearView }) => {
   //get array of events on this day
   const eventsOnThisDay = getDayEvents(events, day);
 
-  //only space for 4 events so, if more, render just one EventBar with message saying number of events (user can click to see list)
-  let eventsToDisplay;
-  if (eventsOnThisDay.length <= 4) {
-    eventsToDisplay = [...eventsOnThisDay];
-  } else {
-    eventsToDisplay = [{ title: `${eventsOnThisDay.length} events...` }];
-  }
-
   //order events chronologically
   if (eventsOnThisDay && eventsOnThisDay.length > 1) {
     sortEvents(eventsOnThisDay);
@@ -43,6 +35,14 @@ const Day = ({ day, handleShowModalContainer, index, yearView }) => {
 
   //get array of holidays on this day
   const holidayNames = getHolidayNames(holidays, day, device);
+
+  //only space for 4 events so, if more, render just one EventBar with message saying number of events (user can click to see list)
+  let eventsToDisplay;
+  if (eventsOnThisDay.length + holidayNames.length <= 4) {
+    eventsToDisplay = [...eventsOnThisDay];
+  } else {
+    eventsToDisplay = [{ title: `${eventsOnThisDay.length} events...` }];
+  }
 
   //get array of classNames for this cell based on events, holidays etc.
   let classNames = getCellClassNames({

@@ -85,16 +85,21 @@ const Calendar = () => {
     setShowModalContainer(true);
   };
 
-  //close DateSelect by clicking anywhere outside it
+  //close DateSelect/MyAccount by clicking anywhere outside them
   const handleCalendarClick = e => {
     if (
       e.target.classList.contains("month-header__date-info") ||
       e.target.classList.contains("month-header__month-name") ||
-      e.target.classList.contains("month-header__year-name")
+      e.target.classList.contains("month-header__year-name") ||
+      e.target.classList.contains("my-account") ||
+      e.target.classList.contains("header-links__my-account-button") ||
+      e.target.classList.contains("fa-user-circle") ||
+      e.target.parentNode.classList.contains("fa-user-circle")
     ) {
       return;
     } else {
       setShowDateSelect(false);
+      setShowMyAccount(false);
     }
   };
 

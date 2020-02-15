@@ -3,7 +3,7 @@
   flex: 5;
   flex-direction: column;
   &__preview {
-    border: 5px solid $mainColor;
+    // border: 5px solid $mainColor;
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -11,7 +11,6 @@
     font-size: 1.5rem;
     font-weight: bold;
     margin-top: 10px;
-    min-height: 100px;
     padding-top: 10px;
     width: 60%;
     & span {

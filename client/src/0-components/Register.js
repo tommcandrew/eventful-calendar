@@ -1,9 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
 import AuthContext from "../2-context/AuthContext";
-import { Link, withRouter } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
-const Register = ({ history }) => {
-  const { register, errorMessage, setErrorMessage } = useContext(AuthContext);
+const Register = () => {
+  const { register, errorMessage, setErrorMessage, authenticated } = useContext(
+    AuthContext
+  );
   //using both custom and HTML 5 validation
   const [nameInput, setNameInput] = useState("");
   const [emailInput, setEmailInput] = useState("");
@@ -25,6 +27,10 @@ const Register = ({ history }) => {
     }
     //eslint-disable-next-line
   }, [nameInput, emailInput, passwordInput, confirmPasswordInput]);
+
+  if (authenticated) {
+    return <Redirect to="/calendar" />;
+  }
 
   const handleNameInput = e => {
     const text = e.target.value;
@@ -69,10 +75,7 @@ const Register = ({ history }) => {
 
   const handleRegister = e => {
     e.preventDefault();
-    register(e, () => {
-      //why does <Redirect /> not work here?
-      history.push("/calendar");
-    });
+    register(e);
   };
   return (
     <div className="loginRegister">
@@ -135,4 +138,4 @@ const Register = ({ history }) => {
   );
 };
 
-export default withRouter(Register);
+export default Register;

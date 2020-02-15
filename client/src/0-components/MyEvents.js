@@ -4,6 +4,8 @@ import LanguageContext from "../2-context/LanguageContext";
 import DateContext from "../2-context/DateContext";
 import { myEventsTextOptions } from "../3-data/otherText";
 import { noEventsTextOptions } from "../3-data/otherText";
+import months from "../3-data/months";
+import sortEvents from "../1-utils/sortEvents";
 
 const MyEvents = ({ handleShowEventInfo }) => {
   const { events } = useContext(EventsContext);
@@ -14,7 +16,8 @@ const MyEvents = ({ handleShowEventInfo }) => {
 
   useEffect(() => {
     const filteredEvents = events.filter(event => event.year === selectedYear);
-    setSelectedEvents(filteredEvents);
+    const orderedEvents = sortEvents(filteredEvents);
+    setSelectedEvents(orderedEvents);
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedYear]);
 
@@ -54,6 +57,12 @@ const MyEvents = ({ handleShowEventInfo }) => {
                   {event.time && (
                     <span className="my-events__event-time">{event.time}</span>
                   )}
+                  <div className="my-events__event-date-info">
+                    <span className="my-events__event-date">{event.date}</span>
+                    <span className="my-events__event-month">
+                      {months[language][event.month + 1]}
+                    </span>
+                  </div>
                 </div>
               </React.Fragment>
             );

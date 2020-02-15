@@ -1,20 +1,24 @@
 import React, { useContext, useEffect } from "react";
 import AuthContext from "../2-context/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
-const Login = ({ history }) => {
-  const { login, errorMessage, setErrorMessage } = useContext(AuthContext);
+const Login = () => {
+  const { login, errorMessage, setErrorMessage, authenticated } = useContext(
+    AuthContext
+  );
   const handleLogin = e => {
     e.preventDefault();
-    login(e, () => {
-      history.push("/calendar");
-    });
+    login(e);
   };
 
   useEffect(() => {
     setErrorMessage();
     //eslint-disable-next-line
   }, []);
+
+  if (authenticated) {
+    return <Redirect to="/calendar" />;
+  }
 
   return (
     <div className="loginRegister">

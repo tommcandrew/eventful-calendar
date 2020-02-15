@@ -3,12 +3,16 @@ import AuthContext from "../2-context/AuthContext";
 import LanguageContext from "../2-context/LanguageContext";
 import { logOutTextOptions } from "../3-data/otherText";
 import { Redirect } from "react-router-dom";
+import axios from "axios";
 
 const MyAccount = ({ setShowMyAccount }) => {
   const { language } = useContext(LanguageContext);
   const { userName, userEmail, setAuthenticated } = useContext(AuthContext);
 
   const handleLogout = () => {
+    if (userEmail === "demouser@gmail.com") {
+      axios.delete("/removeDemoEvents");
+    }
     setAuthenticated(false);
     localStorage.removeItem("my-token");
     return <Redirect to="/" />;

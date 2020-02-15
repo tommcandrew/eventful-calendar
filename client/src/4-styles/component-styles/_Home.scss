@@ -41,4 +41,15 @@
       background: #ddd;
     }
   }
+  &__link-container {
+    margin: 0 auto;
+    margin-top: 40px;
+    text-align: center;
+    width: 60%;
+    & span {
+      color: white;
+      cursor: pointer;
+      margin-bottom: 5px;
+    }
+  }
 }

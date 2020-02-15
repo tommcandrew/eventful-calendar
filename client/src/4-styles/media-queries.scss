@@ -72,8 +72,6 @@
     }
     &__content {
       width: 80%;
-      //for some reason settings modal content is unscrollable in mobile view without this
-      max-height: 70vh;
     }
   }
   .modal-header {
@@ -137,6 +135,11 @@
     }
     &__radio-group {
       margin: 20px 0;
+    }
+    &__radio-group--location {
+      //these are fixed in destop view
+      height: 40vh;
+      width: auto;
     }
   }
   .time-list {

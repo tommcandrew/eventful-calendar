@@ -3,7 +3,11 @@ import AuthContext from "../2-context/AuthContext";
 import { Redirect, Link } from "react-router-dom";
 
 const Home = () => {
-  const { authenticated, loading } = useContext(AuthContext);
+  const { authenticated, loading, loginDemo } = useContext(AuthContext);
+
+  const handleLoginDemo = () => {
+    loginDemo();
+  };
 
   if (loading) {
     return <div className="loader"></div>;
@@ -25,6 +29,9 @@ const Home = () => {
           <Link to="/register">
             <button className="home__button">Register</button>
           </Link>
+        </div>
+        <div className="home__link-container">
+          <span onClick={handleLoginDemo}>Log in as demo user</span>
         </div>
       </div>
     </div>

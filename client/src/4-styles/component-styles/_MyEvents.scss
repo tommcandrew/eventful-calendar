@@ -17,6 +17,7 @@
   }
   &__arrow-left,
   &__arrow-right {
+    cursor: pointer;
     font-size: 3rem;
   }
   &__year-name {
@@ -37,13 +38,28 @@
     font-size: 1.5rem;
     justify-content: space-around;
     margin: 10px 0;
-    // margin-right: 3px;
     padding: 5px;
   }
   &__event-icon,
   &__event-title,
   &__event-time {
     margin: 0 10px;
+  }
+  &__event-time {
+    font-style: italic;
+    font-size: 1.3rem;
+  }
+  &__event-date-info {
+    background: $secondaryColor;
+    border-radius: 6px;
+    display: flex;
+    font-size: 1.3rem;
+    font-weight: bold;
+    justify-content: space-between;
+    padding: 3px 0;
+    & span {
+      margin: 0 0.5rem;
+    }
   }
   &__event-title {
     font-weight: bold;

@@ -1,8 +1,10 @@
 //GENERAL
 .modal {
+  align-items: center;
   animation: fade-in 200ms ease-in-out;
   background: rgba(0, 0, 0, 0.5);
   bottom: 0;
+  display: flex;
   left: 0;
   position: fixed;
   right: 0;
@@ -13,11 +15,11 @@
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    margin-top: 20vh;
-    max-width: 50%;
+    max-height: 70vh;
     //stop contents spilling out on vertical resize
     min-height: 60vh;
     min-width: 35%;
+    overflow: auto;
     padding: 30px 0;
     position: relative;
     text-align: center;

@@ -37,7 +37,7 @@ export const AuthContextProvider = props => {
   }, []);
 
   //login and register are called from Home component
-  const login = (e, cb) => {
+  const login = e => {
     let errorMessage;
     const email = e.target.email.value;
     const password = e.target.password.value;
@@ -49,7 +49,6 @@ export const AuthContextProvider = props => {
         setAuthenticated(true);
         setUserEmail(email);
         setUserName(userName);
-        cb();
       })
       .catch(err => {
         errorMessage = err.response.data;
@@ -57,7 +56,7 @@ export const AuthContextProvider = props => {
       });
   };
 
-  const register = (e, cb) => {
+  const register = e => {
     const name = e.target.name.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
@@ -71,7 +70,6 @@ export const AuthContextProvider = props => {
         setAuthenticated(true);
         setUserEmail(email);
         setUserName(name);
-        cb();
       })
       .catch(err => {
         errorMessage = err.response.data;
@@ -79,9 +77,21 @@ export const AuthContextProvider = props => {
       });
   };
 
-  const logout = cb => {
-    localStorage.removeItem("my-token");
-    setAuthenticated(false);
+  const loginDemo = () => {
+    const email = "demouser@gmail.com";
+    const password = "demo12345";
+    axios
+      .post("/login", { email, password })
+      .then(res => {
+        const { token, userName } = res.data;
+        localStorage.setItem("my-token", token);
+        setAuthenticated(true);
+        setUserEmail(email);
+        setUserName(userName);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   return (
@@ -91,12 +101,12 @@ export const AuthContextProvider = props => {
         errorMessage,
         loading,
         login,
-        logout,
         register,
         setAuthenticated,
         setErrorMessage,
         userEmail,
-        userName
+        userName,
+        loginDemo
       }}
     >
       {props.children}

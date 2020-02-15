@@ -14,7 +14,7 @@ export const AuthContextProvider = props => {
     const token = localStorage.getItem("my-token");
     if (token) {
       axios
-        .get("/api/checkAuth", {
+        .get("/checkAuth", {
           headers: {
             Authorization: "Bearer " + token
           }
@@ -41,19 +41,20 @@ export const AuthContextProvider = props => {
     let errorMessage;
     const email = e.target.email.value;
     const password = e.target.password.value;
-    axios.post("/api/login", { email, password }).then(res => {
-      if (res.status === 200) {
+    axios
+      .post("/login", { email, password })
+      .then(res => {
         const { token, userName } = res.data;
         localStorage.setItem("my-token", token);
         setAuthenticated(true);
         setUserEmail(email);
         setUserName(userName);
         cb();
-      } else {
-        errorMessage = res.data;
+      })
+      .catch(err => {
+        errorMessage = err.response.data;
         setErrorMessage(errorMessage);
-      }
-    });
+      });
   };
 
   const register = (e, cb) => {
@@ -63,19 +64,18 @@ export const AuthContextProvider = props => {
     const password2 = e.target.password2.value;
     let errorMessage;
     axios
-      .post("/api/register", { name, email, password, password2 })
+      .post("/register", { name, email, password, password2 })
       .then(res => {
-        if (res.status === 200) {
-          const token = res.data;
-          localStorage.setItem("my-token", token);
-          setAuthenticated(true);
-          setUserEmail(email);
-          setUserName(name);
-          cb();
-        } else {
-          errorMessage = res.data;
-          setErrorMessage(errorMessage);
-        }
+        const token = res.data;
+        localStorage.setItem("my-token", token);
+        setAuthenticated(true);
+        setUserEmail(email);
+        setUserName(name);
+        cb();
+      })
+      .catch(err => {
+        errorMessage = err.response.data;
+        setErrorMessage(errorMessage);
       });
   };
 

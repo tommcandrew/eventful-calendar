@@ -6,6 +6,10 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const PORT = 5000;
 const axios = require("axios");
+const CALENDARIFIC_KEY =
+  require("./secrets").CALENDARIFIC_KEY || process.env.CALENDARIFIC_KEY;
+const OPENCAGE_KEY =
+  require("./secrets").OPENCAGE_KEY || process.env.OPENCAGE_KEY;
 
 app.listen(PORT, () => {
   console.log("listening on port " + PORT);
@@ -59,6 +63,7 @@ app.post("/addevent", verifyToken, (req, res) => {
     .then(user => {
       user.events.push(event);
       user.save().then(() => {
+        console.log("event saved");
         res.status(200).send("Event saved");
       });
     })
@@ -98,7 +103,7 @@ app.post("/editevent/:id", verifyToken, (req, res) => {
       }
     }
   )
-    .then(user => {
+    .then(() => {
       res.status(200).send("Event updated");
     })
     .catch(err => {
@@ -130,15 +135,14 @@ app.post("/login", (req, res) => {
   const { email, password } = req.body;
   User.findOne({ email }).then(user => {
     if (!user) {
-      //some status codes allow to send back data (message) and others don't (e.g. 403)
-      res.status(201).send("That email is not registered");
+      res.status(403).send("That email is not registered");
     } else {
       bcrypt.compare(password, user.password, (err, isSame) => {
         if (err) {
-          res.status(201).send("Problem comparing the passwords");
+          res.status(403).send("Problem comparing the passwords");
         } else {
           if (!isSame) {
-            res.status(201).send("Wrong password");
+            res.status(403).send("Wrong password");
           } else {
             jwt.sign({ user }, "secretkey", (err, token) => {
               res.status(200).send({ token: token, userName: user.name });
@@ -157,16 +161,16 @@ app.post("/register", (req, res) => {
     return;
   }
   if (/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$/.test(email) === false) {
-    res.status(201).send("Please enter a valid email address");
+    res.status(400).send("Please enter a valid email address");
     return;
   }
   if (password !== password2) {
-    res.status(201).send("Passwords must match");
+    res.status(400).send("Passwords must match");
     return;
   }
   User.findOne({ email }).then(user => {
     if (user) {
-      res.status(201).send("That email is already registered");
+      res.status(403).send("That email is already registered");
       return;
     }
   });
@@ -187,7 +191,7 @@ app.post("/holidays", (req, res) => {
   const { country, year } = req.body;
   axios
     .get(
-      `https://calendarific.com/api/v2/holidays?&api_key=423d3eeb339e68f8ac6484808dbda88b657f40b8&country=${country}&year=${year}`
+      `https://calendarific.com/api/v2/holidays?&api_key=${CALENDARIFIC_KEY}&country=${country}&year=${year}`
     )
     .then(response => {
       const allHolidays = response.data.response.holidays;
@@ -201,6 +205,41 @@ app.post("/holidays", (req, res) => {
             !holiday.locations.includes("SCT"))
       );
       res.status(200).send(selectHolidays);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
+app.get("/supportedCountries", (req, res) => {
+  axios
+    .get(
+      `https://calendarific.com/api/v2/countries?&api_key=${CALENDARIFIC_KEY}`
+    )
+    .then(response => {
+      const countries = response.data.response.countries;
+
+      res.status(200).send(countries);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
+app.post("/countryInfo", (req, res) => {
+  const { latitude, longitude } = req.body;
+  axios
+    .get(
+      `https://api.opencagedata.com/geocode/v1/json?key=${OPENCAGE_KEY}&q=${latitude},${longitude}&pretty=1&no_annotations=1`
+    )
+    .then(response => {
+      const countryName = response.data.results[0].components.country;
+      const countryCode =
+        response.data.results[0].components["ISO_3166-1_alpha-2"];
+      res.status(200).send({ countryName, countryCode });
+    })
+    .catch(err => {
+      console.log(err);
     });
 });
 

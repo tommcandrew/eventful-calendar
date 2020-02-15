@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import RadioButton from "./RadioButton";
 import LanguageContext from "../2-context/LanguageContext";
 import ThemeContext from "../2-context/ThemeContext";
@@ -12,11 +12,25 @@ import {
 } from "../3-data/otherText";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
+import AutoComplete from "./AutoComplete";
 
-const Settings = ({ closeModals }) => {
+const Settings = () => {
   const { language, setLanguage } = useContext(LanguageContext);
   const { theme, setTheme } = useContext(ThemeContext);
-  const { showHolidays, setShowHolidays } = useContext(HolidaysContext);
+  const {
+    showHolidays,
+    setShowHolidays,
+    supportedCountries,
+    countryObj,
+    setCountryObj
+  } = useContext(HolidaysContext);
+
+  const supportedCountryNames = supportedCountries.map(countryObj => {
+    return countryObj.country_name;
+  });
+
+  //provide autocomplete component with whatever location is currently set as input value
+  const [countryInput, setCountryInput] = useState(countryObj.name);
 
   const settingsOptions = {
     Language: ["English", "Español", "Français", "Türkçe"],
@@ -43,6 +57,18 @@ const Settings = ({ closeModals }) => {
       return;
     }
   };
+
+  //this actually only applies country setting as other settings are applied as soon as user clicks radio buttons
+  const handleApplySettings = () => {
+    const selectedCountryObj = supportedCountries.filter(
+      country => country.country_name === countryInput
+    )[0];
+    setCountryObj({
+      name: selectedCountryObj.country_name,
+      code: selectedCountryObj["iso-3166"]
+    });
+  };
+
   return (
     <div className="settings">
       <h1>{settingsTextOptions[language]}</h1>
@@ -92,8 +118,17 @@ const Settings = ({ closeModals }) => {
             );
           })}
         </div>
+
+        <div className="settings__radio-group settings__radio-group--location">
+          <h2>Location:</h2>
+          <AutoComplete
+            options={supportedCountryNames}
+            inputValue={countryInput}
+            setInputValue={setCountryInput}
+          />
+        </div>
       </div>
-      <button onClick={closeModals} className="settings__ok-button">
+      <button onClick={handleApplySettings} className="settings__ok-button">
         OK
       </button>
     </div>

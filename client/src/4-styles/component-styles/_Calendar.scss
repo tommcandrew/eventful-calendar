@@ -1,6 +1,8 @@
 .calendar {
   display: flex;
   flex-direction: column;
+  //to prevent the hover messages from forcing the screen to expand to the side (better solution?)
+  overflow: hidden;
   position: relative;
   width: 100%;
 }

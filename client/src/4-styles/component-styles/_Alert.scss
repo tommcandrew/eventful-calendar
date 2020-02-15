@@ -1,7 +1,6 @@
 .alert {
   animation: bounce-in 3000ms forwards;
   border-radius: 6px;
-  background: #2ecc71;
   display: flex;
   flex-grow: 1;
   font-size: 1.5rem;
@@ -13,6 +12,12 @@
   transform: translateX(-50%);
   width: 20%;
   z-index: 10;
+  &--success {
+    background: #2ecc71;
+  }
+  &--failure {
+    background: red;
+  }
   &__icon-wrapper {
     flex-grow: 1;
     position: absolute;

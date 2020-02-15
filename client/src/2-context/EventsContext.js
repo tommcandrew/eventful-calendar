@@ -10,8 +10,8 @@ import axios from "axios";
 const EventsContext = createContext();
 
 export const EventsContextProvider = props => {
-  const [events, setEvents] = useState(null);
-  const [alertText, setAlertText] = useState("");
+  const [events, setEvents] = useState([]);
+  const [alertInfo, setAlertInfo] = useState(null);
   const { authenticated } = useContext(AuthContext);
   const { language } = useContext(LanguageContext);
 
@@ -23,16 +23,16 @@ export const EventsContextProvider = props => {
 
   useEffect(() => {
     const alertTimer = setTimeout(() => {
-      setAlertText("");
+      setAlertInfo(null);
     }, 5000);
     return () => {
       clearTimeout(alertTimer);
     };
-  }, [alertText]);
+  }, [alertInfo]);
 
   const fetchEvents = async () => {
     const token = localStorage.getItem("my-token");
-    const res = await axios.get("/api/events", {
+    const res = await axios.get("/events", {
       headers: {
         Authorization: "Bearer " + token
       }
@@ -45,16 +45,22 @@ export const EventsContextProvider = props => {
     setEvents([...events, newEvent]);
     const token = localStorage.getItem("my-token");
     axios
-      .post("/api/addevent", newEvent, {
-        headers: { authorization: "Bearer " + token }
-      })
+      .post(
+        "/addevent",
+        newEvent,
+
+        {
+          headers: { authorization: "Bearer " + token },
+          timeout: 2500
+        }
+      )
       .then(() => {
         //fetch and set events again (do I need to do any check/comparison here?)
         fetchEvents();
-        setAlertText(eventSavedTextOptions[language]);
+        setAlertInfo({ text: eventSavedTextOptions[language], success: true });
       })
       .catch(err => {
-        console.log(err);
+        setAlertInfo({ text: "Event not saved.", success: false });
       });
   };
 
@@ -72,7 +78,7 @@ export const EventsContextProvider = props => {
     const token = localStorage.getItem("my-token");
     axios
       .post(
-        "/api/moveevent/" + id,
+        "/moveevent/" + id,
         { newDay },
         {
           headers: { authorization: "Bearer " + token }
@@ -80,10 +86,10 @@ export const EventsContextProvider = props => {
       )
       .then(() => {
         fetchEvents();
-        setAlertText(eventSavedTextOptions[language]);
+        setAlertInfo({ text: eventSavedTextOptions[language], success: true });
       })
       .catch(err => {
-        console.log(err);
+        console.log("err: " + err);
       });
   };
 
@@ -92,12 +98,18 @@ export const EventsContextProvider = props => {
     setEvents(updatedEvents);
     const token = localStorage.getItem("my-token");
     axios
-      .delete(`/api/deleteevent/${id}`, {
+      .delete(`/deleteevent/${id}`, {
         headers: { authorization: "Bearer " + token }
       })
       .then(() => {
         fetchEvents();
-        setAlertText(eventDeletedTextOptions[language]);
+        setAlertInfo({
+          text: eventDeletedTextOptions[language],
+          success: true
+        });
+      })
+      .catch(err => {
+        console.log("err: " + err);
       });
   };
 
@@ -115,12 +127,12 @@ export const EventsContextProvider = props => {
 
     const token = localStorage.getItem("my-token");
     axios
-      .post("/api/editevent/" + id, editedEvent, {
+      .post("/editevent/" + id, editedEvent, {
         headers: { authorization: "Bearer " + token }
       })
       .then(() => {
         fetchEvents();
-        setAlertText(eventSavedTextOptions[language]);
+        setAlertInfo({ text: eventSavedTextOptions[language], success: true });
       })
       .catch(err => {
         console.log(err);
@@ -135,7 +147,7 @@ export const EventsContextProvider = props => {
         deleteEvent,
         editEvent,
         moveEvent,
-        alertText
+        alertInfo
       }}
     >
       {props.children}

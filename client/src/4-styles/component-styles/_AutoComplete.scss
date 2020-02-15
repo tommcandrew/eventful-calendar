@@ -1,0 +1,26 @@
+.auto-complete {
+  &__input {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    padding: 0.3rem;
+    width: 100%;
+  }
+  &__list {
+    border: 1px solid #999;
+    border-top: none;
+    list-style: none;
+    max-height: 28vh;
+    overflow: auto;
+    width: 100%;
+  }
+  &__list-item {
+    padding: 0.5rem;
+    &:hover,
+    &--active {
+      background-color: $mainColor;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+    }
+  }
+}

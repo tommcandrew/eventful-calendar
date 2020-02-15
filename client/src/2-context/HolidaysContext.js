@@ -1,104 +1,170 @@
 import React, { useState, createContext, useEffect, useContext } from "react";
 import axios from "axios";
 import DateContext from "../2-context/DateContext";
+import AuthContext from "../2-context/AuthContext";
 
 const HolidaysContext = createContext();
 
 export const HolidaysContextProvider = props => {
-  const [country, setCountry] = useState();
-  const [showHolidays, setShowHolidays] = useState(getInitialHolidaysPref);
+  const [countryObj, setCountryObj] = useState();
+  const [showHolidays, setShowHolidays] = useState();
   const [holidays, setHolidays] = useState(null);
-  const [savedHolidays, setSavedHolidays] = useState(null);
+  const [storedHolidays, setStoredHolidays] = useState(null);
   const [holidaysYear, setHolidaysYear] = useState(null);
+  const [supportedCountries, setSupportedCountries] = useState([]);
   const { dateObj } = useContext(DateContext);
-
-  function getInitialHolidaysPref() {
-    const savedHolidaysPref = JSON.parse(localStorage.getItem("holidays"));
-    if (savedHolidaysPref !== null) {
-      return savedHolidaysPref;
-    } else {
-      return "Show";
-    }
-  }
-
-  function getLocation() {
-    navigator.geolocation.getCurrentPosition(pos => {
-      var countryCode;
-      var apikey = "eb95dcf585ee4842a2c5879447ca1840";
-      var latitude = pos.coords.latitude;
-      var longitude = pos.coords.longitude;
-      var api_url = "https://api.opencagedata.com/geocode/v1/json";
-      var request_url =
-        api_url +
-        "?" +
-        "key=" +
-        apikey +
-        "&q=" +
-        encodeURIComponent(latitude + "," + longitude) +
-        "&pretty=1" +
-        "&no_annotations=1";
-      axios.get(request_url).then(res => {
-        countryCode = res.data.results[0].components["ISO_3166-1_alpha-2"];
-        setCountry(countryCode);
-      });
-    });
-  }
-
-  //can't seem to get it to work by passing in getLocation as arg to useState so doing it like this
-  useEffect(() => {
-    getLocation();
-  }, []);
+  const { authenticated } = useContext(AuthContext);
 
   useEffect(() => {
-    if (showHolidays === "Show" && dateObj && country) {
-      //instead of making another call to API, check if already saved
-      if (savedHolidays && savedHolidays.length > 0) {
-        setHolidays([...savedHolidays]);
-      } else {
-        fetchHolidays();
-      }
-    } else {
-      if (showHolidays === "Hide") {
-        setHolidays([]);
-      }
+    if (authenticated) {
+      getSupportedCountries();
+      getInitialHolidaysPref();
     }
     //eslint-disable-next-line
-  }, [showHolidays, country]);
+  }, [authenticated]);
+
+  //1. Check LS if already saved there and, if so, save to state, else make API call to get list and save to state
+  const getSupportedCountries = () => {
+    const savedSupportedCountries = JSON.parse(
+      localStorage.getItem("supportedCountries")
+    );
+    if (savedSupportedCountries) {
+      setSupportedCountries(savedSupportedCountries);
+    } else {
+      axios
+        .get("/supportedCountries")
+        .then(res => {
+          setSupportedCountries(res.data);
+          localStorage.setItem("supportedCountries", JSON.stringify(res.data));
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  };
+
+  //2. Check LS for saved preference and save to state, else set to default ('Show')
+  const getInitialHolidaysPref = () => {
+    const savedHolidaysPref = JSON.parse(localStorage.getItem("holidaysPref"));
+    if (savedHolidaysPref) {
+      setShowHolidays(savedHolidaysPref);
+    } else {
+      setShowHolidays("Show");
+    }
+  };
+
+  //3. If holidays preference changes, save new preference to LS. If 'Hide', set holidays to empty array. Else check LS for saved country and save to state
+  //If no location in LS, get location from setLocation()
+  useEffect(() => {
+    if (showHolidays) {
+      localStorage.setItem("holidaysPref", JSON.stringify(showHolidays));
+      if (showHolidays === "Hide") {
+        setHolidays([]);
+        return;
+      } else {
+        const savedLocation = JSON.parse(localStorage.getItem("country"));
+        if (!savedLocation) {
+          setLocation();
+        } else {
+          setCountryObj({ name: savedLocation.name, code: savedLocation.code });
+        }
+      }
+    }
+  }, [showHolidays]);
+
+  //4. Try to get user's GPS coordinates. If permission given, make API call to get country info from coordinates and set. Else set default (UK)
+  const setLocation = () => {
+    navigator.geolocation.getCurrentPosition(
+      pos => {
+        const latitude = pos.coords.latitude;
+        const longitude = pos.coords.longitude;
+        axios
+          .post("/countryInfo", { latitude, longitude })
+          .then(res => {
+            setCountryObj({
+              name: res.data.countryName,
+              code: res.data.countryCode
+            });
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      },
+      () => {
+        setCountryObj({ name: "United Kingdom", code: "GB" });
+      }
+    );
+  };
+
+  //5. When countryObj changes, save to LS. Before making API call, check both state and LS for that country's holidays. If not there, call fetchHolidays().
+  useEffect(() => {
+    if (countryObj && countryObj.code) {
+      localStorage.setItem("country", JSON.stringify(countryObj));
+      if (
+        storedHolidays &&
+        storedHolidays.holidays.length > 0 &&
+        storedHolidays.code === countryObj.code
+      ) {
+        setHolidays(storedHolidays.holidays);
+        return;
+      }
+      const savedHolidays = JSON.parse(localStorage.getItem("holidays"));
+      if (savedHolidays && savedHolidays.code === countryObj.code) {
+        setHolidays(savedHolidays.holidays);
+        setStoredHolidays(savedHolidays);
+        return;
+      }
+      fetchHolidays();
+    }
+
+    //eslint-disable-next-line
+  }, [countryObj]);
+
+  //6. Make API call for holidays using year and country
+  const fetchHolidays = () => {
+    if (countryObj && countryObj.code && dateObj.year) {
+      axios
+        .post("/holidays", { country: countryObj.code, year: dateObj.year })
+        .then(res => {
+          //this variable used to populate calendar
+          setHolidays(res.data);
+          //another copy saved in this variable in case user toggles holidays (no need to call API again)
+          setStoredHolidays({ code: countryObj.code, holidays: res.data });
+          setHolidaysYear(dateObj.year);
+          localStorage.setItem(
+            "holidays",
+            JSON.stringify({ code: countryObj.code, holidays: res.data })
+          );
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  };
 
   useEffect(() => {
-    //check whether user has changed year (so fetch again) or only changed month (no fetch)
-    if (dateObj && holidaysYear && dateObj.year !== holidaysYear) {
+    //7. if user changes date while using calendar, fetch holidays from API if they changed the year
+    if (
+      dateObj &&
+      countryObj &&
+      holidaysYear &&
+      dateObj.year !== holidaysYear
+    ) {
       fetchHolidays();
     }
     //eslint-disable-next-line
   }, [dateObj]);
 
-  useEffect(() => {
-    //save user's preference when changed
-    localStorage.setItem("holidays", JSON.stringify(showHolidays));
-  }, [showHolidays]);
-
-  useEffect(() => {
-    if (showHolidays && savedHolidays && savedHolidays.length > 0) {
-      setHolidays([...savedHolidays]);
-    }
-    //eslint-disable-next-line
-  }, [savedHolidays]);
-
-  const fetchHolidays = () => {
-    if (country && dateObj) {
-      axios
-        .post("/api/holidays", { country: country, year: dateObj.year })
-        .then(res => {
-          setSavedHolidays(res.data);
-          setHolidaysYear(dateObj.year);
-        });
-    }
-  };
-
   return (
     <HolidaysContext.Provider
-      value={{ showHolidays, setShowHolidays, holidays }}
+      value={{
+        showHolidays,
+        setShowHolidays,
+        holidays,
+        countryObj,
+        setCountryObj,
+        supportedCountries
+      }}
     >
       {props.children}
     </HolidaysContext.Provider>

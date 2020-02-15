@@ -6,6 +6,16 @@
     justify-content: space-between;
     margin: 20px 10px 0 10px;
   }
+  &__radio-group {
+    flex-grow: 1;
+    margin: 0 30px;
+  }
+  &__radio-group--location {
+    height: 35vh;
+
+    //width of list changing depending on results so needs to be fixed
+    width: 25%;
+  }
   &__close-button {
     cursor: pointer;
     font-size: 4rem;

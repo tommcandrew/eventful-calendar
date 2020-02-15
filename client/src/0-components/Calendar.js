@@ -10,7 +10,7 @@ import MyAccount from "./MyAccount";
 
 const Calendar = () => {
   const { dateObj, setDateObj } = useContext(DateContext);
-  const { alertText } = useContext(EventsContext);
+  const { alertInfo } = useContext(EventsContext);
   const [showDateSelect, setShowDateSelect] = useState(false);
   const [showModalContainer, setShowModalContainer] = useState(false);
   const [showMyAccount, setShowMyAccount] = useState(false);
@@ -107,7 +107,7 @@ const Calendar = () => {
           }`}
           onClick={handleCalendarClick}
         >
-          {alertText && <Alert alertText={alertText} />}
+          {alertInfo && <Alert alertInfo={alertInfo} />}
           {showMyAccount && <MyAccount setShowMyAccount={setShowMyAccount} />}
           <View
             handleShowModalContainer={handleShowModalContainer}

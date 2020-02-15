@@ -32,7 +32,7 @@ export const HolidaysContextProvider = props => {
       setSupportedCountries(savedSupportedCountries);
     } else {
       axios
-        .get("/supportedCountries")
+        .get("/api/supportedCountries")
         .then(res => {
           setSupportedCountries(res.data);
           localStorage.setItem("supportedCountries", JSON.stringify(res.data));
@@ -79,7 +79,7 @@ export const HolidaysContextProvider = props => {
         const latitude = pos.coords.latitude;
         const longitude = pos.coords.longitude;
         axios
-          .post("/countryInfo", { latitude, longitude })
+          .post("/api/countryInfo", { latitude, longitude })
           .then(res => {
             setCountryObj({
               name: res.data.countryName,
@@ -124,7 +124,7 @@ export const HolidaysContextProvider = props => {
   const fetchHolidays = () => {
     if (countryObj && countryObj.code && dateObj.year) {
       axios
-        .post("/holidays", { country: countryObj.code, year: dateObj.year })
+        .post("/api/holidays", { country: countryObj.code, year: dateObj.year })
         .then(res => {
           //this variable used to populate calendar
           setHolidays(res.data);

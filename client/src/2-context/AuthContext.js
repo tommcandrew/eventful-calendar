@@ -14,7 +14,7 @@ export const AuthContextProvider = props => {
     const token = localStorage.getItem("my-token");
     if (token) {
       axios
-        .get("/checkAuth", {
+        .get("/api/checkAuth", {
           headers: {
             Authorization: "Bearer " + token
           }
@@ -42,7 +42,7 @@ export const AuthContextProvider = props => {
     const email = e.target.email.value;
     const password = e.target.password.value;
     axios
-      .post("/login", { email, password })
+      .post("/api/login", { email, password })
       .then(res => {
         const { token, userName } = res.data;
         localStorage.setItem("my-token", token);
@@ -63,7 +63,7 @@ export const AuthContextProvider = props => {
     const password2 = e.target.password2.value;
     let errorMessage;
     axios
-      .post("/register", { name, email, password, password2 })
+      .post("/api/register", { name, email, password, password2 })
       .then(res => {
         const token = res.data;
         localStorage.setItem("my-token", token);
@@ -81,7 +81,7 @@ export const AuthContextProvider = props => {
     const email = "demouser@gmail.com";
     const password = "demo12345";
     axios
-      .post("/login", { email, password })
+      .post("/api/login", { email, password })
       .then(res => {
         const { token, userName } = res.data;
         localStorage.setItem("my-token", token);

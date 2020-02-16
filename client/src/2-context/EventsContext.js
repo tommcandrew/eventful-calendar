@@ -46,7 +46,7 @@ export const EventsContextProvider = props => {
     const token = localStorage.getItem("my-token");
     axios
       .post(
-        "/addevent",
+        "/api/addevent",
         newEvent,
 
         {
@@ -78,7 +78,7 @@ export const EventsContextProvider = props => {
     const token = localStorage.getItem("my-token");
     axios
       .post(
-        "/moveevent/" + id,
+        "/api/moveevent/" + id,
         { newDay },
         {
           headers: { authorization: "Bearer " + token }
@@ -89,7 +89,7 @@ export const EventsContextProvider = props => {
         setAlertInfo({ text: eventSavedTextOptions[language], success: true });
       })
       .catch(err => {
-        console.log("err: " + err);
+        console.log(err);
       });
   };
 
@@ -98,7 +98,7 @@ export const EventsContextProvider = props => {
     setEvents(updatedEvents);
     const token = localStorage.getItem("my-token");
     axios
-      .delete(`/deleteevent/${id}`, {
+      .delete(`/api/deleteevent/${id}`, {
         headers: { authorization: "Bearer " + token }
       })
       .then(() => {
@@ -109,7 +109,7 @@ export const EventsContextProvider = props => {
         });
       })
       .catch(err => {
-        console.log("err: " + err);
+        console.log(err);
       });
   };
 

@@ -53,8 +53,7 @@
     transition: $themeTransition;
     &:hover,
     &:focus {
-      background: white;
-      color: black;
+      background: $mainColorDark;
     }
   }
 }

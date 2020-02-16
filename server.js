@@ -9,19 +9,13 @@ const axios = require("axios");
 const CALENDARIFIC_KEY = process.env.CALENDARIFIC_KEY;
 const OPENCAGE_KEY = process.env.OPENCAGE_KEY;
 
-app.listen(PORT, () => {
-  console.log("listening on port " + PORT);
-});
+app.listen(PORT);
 
-mongoose.connect(
-  "mongodb://localhost:27017/eventful-calendar",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false
-  },
-  () => console.log("Connected to db")
-);
+mongoose.connect("mongodb://localhost:27017/eventful-calendar", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false
+});
 
 app.use(express.json());
 
@@ -32,7 +26,6 @@ const verifyToken = (req, res, next) => {
   if (token) {
     jwt.verify(token, "secretkey", (err, tokenData) => {
       if (err) {
-        console.log(err);
         res.status(403).send("Forbidden");
       } else {
         req.tokenData = tokenData;

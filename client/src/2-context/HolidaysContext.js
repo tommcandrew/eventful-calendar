@@ -38,7 +38,7 @@ export const HolidaysContextProvider = props => {
           localStorage.setItem("supportedCountries", JSON.stringify(res.data));
         })
         .catch(err => {
-          console.log("getSupportedCountries:" + err);
+          console.log(err);
         });
     }
   };
@@ -126,7 +126,7 @@ export const HolidaysContextProvider = props => {
     if (countryObj && countryObj.code && dateObj.year) {
       axios
         .post(
-          "/holidays",
+          "/api/holidays",
           { country: countryObj.code, year: dateObj.year },
           { timeout: 5000 }
         )

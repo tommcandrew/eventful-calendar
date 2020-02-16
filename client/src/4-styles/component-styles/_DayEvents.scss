@@ -63,10 +63,12 @@
   color: #dfd8c3;
   &__event {
     transition: $themeTransition;
-
-    &:hover {
-      background: black;
-      color: white;
+    &__button {
+      transition: $themeTransition;
+      &:hover {
+        background: black;
+        color: white;
+      }
     }
   }
 }

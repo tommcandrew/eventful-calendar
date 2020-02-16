@@ -10,7 +10,7 @@
   }
   .event-form {
     input {
-      font-size: 1rem;
+      font-size: 1.3rem;
       margin: 20px auto 0 auto;
       width: 70%;
     }
@@ -78,6 +78,9 @@
     &__content {
       font-size: 1.3rem;
       flex-direction: column;
+    }
+    &__date-info {
+      margin-top: 0.3rem;
     }
   }
   //adding specificity, otherwise not overriding main styles

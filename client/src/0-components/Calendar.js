@@ -86,7 +86,9 @@ const Calendar = () => {
   };
 
   //close DateSelect/MyAccount by clicking anywhere outside them
+  //there has to be a better way to do this!
   const handleCalendarClick = e => {
+    console.log(e.target);
     if (
       e.target.classList.contains("month-header__date-info") ||
       e.target.classList.contains("month-header__month-name") ||
@@ -94,7 +96,8 @@ const Calendar = () => {
       e.target.classList.contains("my-account") ||
       e.target.classList.contains("header-links__my-account-button") ||
       e.target.classList.contains("fa-user-circle") ||
-      e.target.parentNode.classList.contains("fa-user-circle")
+      e.target.parentNode.classList.contains("fa-user-circle") ||
+      e.target.classList.contains("mobile-menu__my-account-button")
     ) {
       return;
     } else {

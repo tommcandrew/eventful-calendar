@@ -2,6 +2,7 @@
 .modal-header {
   align-items: center;
   background: $secondaryColor;
+  border-radius: 6px;
   display: flex;
   flex: 0.5;
   margin: 0 auto;
@@ -30,7 +31,7 @@
 //DARK
 .calendar--dark .modal {
   .modal-header {
-    background: $mainColor;
+    background: rgb(224, 224, 248);
     transition: $themeTransition;
   }
 }

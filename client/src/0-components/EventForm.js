@@ -123,7 +123,6 @@ const EventForm = ({
                 icon={faBirthdayCake}
                 className="cake"
                 onClick={e => {
-                  console.log(e.target.parentNode.classList);
                   setShowIcons(!showIcons);
                 }}
               />

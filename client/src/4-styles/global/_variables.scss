@@ -3,11 +3,11 @@
 $josefin: "Josefin Sans", sans-serif;
 $mainColor: #6b6bc7;
 $mainColorLight: lighten(rgb(107, 107, 199), 20%);
-$mainColorDark: darken(rgb(107, 107, 199), 20%);
+$mainColorDark: darken(hsl(240, 45%, 60%), 20%);
 $darkThemeColor: #1b2938;
 $darkThemeColorDark: darken(#1b2938, 3%);
-
 $secondaryColor: rgb(255, 207, 207);
+$myYellow: lighten(yellow, 20%);
 $themeTransition: all 400ms ease-out;
 $boxShadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
 

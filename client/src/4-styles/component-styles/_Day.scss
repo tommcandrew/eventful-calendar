@@ -136,8 +136,11 @@
     &--day:hover {
       background: $darkThemeColorDark;
     }
+    &--today:hover {
+      background: $mainColor;
+    }
     &__event-title {
-      background: rgb(100, 16, 100);
+      background: rgb(100, 22, 100);
       color: white;
     }
   }
@@ -177,10 +180,10 @@
 .calendar--dark .month--year-view {
   .cell {
     &--with-event {
-      background: rgb(80, 5, 80);
+      background: rgb(100, 22, 100);
     }
     &--with-holiday {
-      background: rgb(43, 109, 43);
+      background: rgb(50, 82, 50);
       transition: $themeTransition;
     }
   }

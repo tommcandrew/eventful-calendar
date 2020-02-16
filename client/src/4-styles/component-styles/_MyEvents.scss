@@ -72,6 +72,9 @@
 //DARK
 .calendar--dark .modal .my-events {
   color: #dfd8c3;
+  &__event-date-info {
+    color: black;
+  }
 }
 
 //custom scrollbar

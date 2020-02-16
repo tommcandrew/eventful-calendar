@@ -40,10 +40,12 @@
   &__button {
     @include button($mainColor, 1.3rem);
     color: white;
+    transition: $themeTransition;
     width: 30%;
     &:hover,
     &:focus {
-      background: $mainColorDark;
+      background: white;
+      color: black;
     }
   }
 }

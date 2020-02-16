@@ -81,7 +81,7 @@ const Register = () => {
     <div className="loginRegister">
       <div className="loginRegister__header">
         <Link to="/">
-          <h1>Eventful</h1>
+          <h1 className="loginRegister__app-title">Eventful</h1>
         </Link>
       </div>
       <div className="loginRegister__content">

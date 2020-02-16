@@ -50,16 +50,24 @@
   &__button {
     @include button($mainColor, 1.5rem);
     color: white;
+    transition: $themeTransition;
     &:hover,
     &:focus {
-      background: $mainColorDark;
+      background: white;
+      color: black;
     }
   }
 }
 
 //DARK
-.calendar--dark .modal {
-  .day-events {
-    color: #dfd8c3;
+.calendar--dark .modal .day-events {
+  color: #dfd8c3;
+  &__event {
+    transition: $themeTransition;
+
+    &:hover {
+      background: black;
+      color: white;
+    }
   }
 }

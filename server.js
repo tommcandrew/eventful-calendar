@@ -6,10 +6,8 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const PORT = 5000;
 const axios = require("axios");
-const CALENDARIFIC_KEY =
-  require("./secrets").CALENDARIFIC_KEY || process.env.CALENDARIFIC_KEY;
-const OPENCAGE_KEY =
-  require("./secrets").OPENCAGE_KEY || process.env.OPENCAGE_KEY;
+const CALENDARIFIC_KEY = process.env.CALENDARIFIC_KEY;
+const OPENCAGE_KEY = process.env.OPENCAGE_KEY;
 
 app.listen(PORT, () => {
   console.log("listening on port " + PORT);
@@ -63,7 +61,6 @@ app.post("/addevent", verifyToken, (req, res) => {
     .then(user => {
       user.events.push(event);
       user.save().then(() => {
-        console.log("event saved");
         res.status(200).send("Event saved");
       });
     })

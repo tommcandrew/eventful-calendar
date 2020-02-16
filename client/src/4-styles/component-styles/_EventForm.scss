@@ -3,15 +3,16 @@
   flex: 5;
   flex-direction: column;
   &__preview {
-    // border: 5px solid $mainColor;
     cursor: pointer;
+    background: $myYellow;
     display: flex;
+    border-radius: 6px;
     flex-direction: column;
     font-family: $josefin;
     font-size: 1.5rem;
     font-weight: bold;
-    margin-top: 10px;
-    padding-top: 10px;
+    height: 13vh;
+    margin: 10px 0;
     width: 60%;
     & span {
       margin: 0 10px;
@@ -42,9 +43,7 @@
     flex-direction: column;
     justify-content: center;
     & input {
-      font-size: 1.3rem;
-      margin-top: 20px;
-      padding: 0 5px;
+      font-size: 1.7rem;
     }
   }
   &__char-limit-message {
@@ -69,7 +68,7 @@
     border-radius: 4px;
     color: white;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1.5rem;
     padding: 6px 8px;
     &:hover {
       background-color: $mainColorDark;
@@ -83,6 +82,7 @@
   &__button {
     @include button($mainColor, 1.5rem);
     color: white;
+    transition: $themeTransition;
     &:hover,
     &:focus {
       background: $mainColorDark;
@@ -93,4 +93,15 @@
 //DARK
 .calendar--dark .modal .event-form {
   color: #dfd8c3;
+  &__preview {
+    background: #111;
+  }
+  &__clock,
+  &__icon-button,
+  &__button {
+    &:hover {
+      background-color: white;
+      color: black;
+    }
+  }
 }

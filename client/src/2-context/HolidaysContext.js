@@ -1,4 +1,10 @@
-import React, { useState, createContext, useEffect, useContext } from "react";
+import React, {
+  useState,
+  createContext,
+  useEffect,
+  useContext,
+  useRef
+} from "react";
 import axios from "axios";
 import DateContext from "../2-context/DateContext";
 import AuthContext from "../2-context/AuthContext";
@@ -10,10 +16,19 @@ export const HolidaysContextProvider = props => {
   const [showHolidays, setShowHolidays] = useState();
   const [holidays, setHolidays] = useState(null);
   const [storedHolidays, setStoredHolidays] = useState(null);
-  const [holidaysYear, setHolidaysYear] = useState(null);
   const [supportedCountries, setSupportedCountries] = useState([]);
   const { dateObj } = useContext(DateContext);
   const { authenticated } = useContext(AuthContext);
+
+  //needed for comparison to check whether user has changed year (in which case holidays must be fetched) or just month (see #7)
+  const usePrevious = value => {
+    const ref = useRef();
+    useEffect(() => {
+      ref.current = value;
+    });
+    return ref.current;
+  };
+  const prevDateObj = usePrevious(dateObj);
 
   useEffect(() => {
     if (authenticated) {
@@ -104,13 +119,18 @@ export const HolidaysContextProvider = props => {
       if (
         storedHolidays &&
         storedHolidays.holidays.length > 0 &&
-        storedHolidays.code === countryObj.code
+        storedHolidays.code === countryObj.code &&
+        storedHolidays.year === dateObj.year
       ) {
         setHolidays(storedHolidays.holidays);
         return;
       }
       const savedHolidays = JSON.parse(localStorage.getItem("holidays"));
-      if (savedHolidays && savedHolidays.code === countryObj.code) {
+      if (
+        savedHolidays &&
+        savedHolidays.code === countryObj.code &&
+        savedHolidays.year === dateObj.year
+      ) {
         setHolidays(savedHolidays.holidays);
         setStoredHolidays(savedHolidays);
         return;
@@ -134,11 +154,19 @@ export const HolidaysContextProvider = props => {
           //this variable used to populate calendar
           setHolidays(res.data);
           //another copy saved in this variable in case user toggles holidays (no need to call API again)
-          setStoredHolidays({ code: countryObj.code, holidays: res.data });
-          setHolidaysYear(dateObj.year);
+          setStoredHolidays({
+            code: countryObj.code,
+            year: dateObj.year,
+            holidays: res.data
+          });
+          // setHolidaysYear(dateObj.year);
           localStorage.setItem(
             "holidays",
-            JSON.stringify({ code: countryObj.code, holidays: res.data })
+            JSON.stringify({
+              code: countryObj.code,
+              year: dateObj.year,
+              holidays: res.data
+            })
           );
         })
         .catch(err => {
@@ -152,8 +180,8 @@ export const HolidaysContextProvider = props => {
     if (
       dateObj &&
       countryObj &&
-      holidaysYear &&
-      dateObj.year !== holidaysYear
+      prevDateObj &&
+      dateObj.year !== prevDateObj.year
     ) {
       fetchHolidays();
     }

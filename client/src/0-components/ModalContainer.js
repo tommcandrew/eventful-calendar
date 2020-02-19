@@ -104,7 +104,11 @@ const ModalContainer = ({
     deleteEvent(selectedEvent.id);
     setShowEventInfo(false);
     setSelectedEvent(null);
-    setShowDayEvents(true);
+    if (viaMyEvents) {
+      setShowMyEvents(true);
+    } else {
+      setShowDayEvents(true);
+    }
   };
 
   //close Icons and TimeList if user clicks anywhere outside

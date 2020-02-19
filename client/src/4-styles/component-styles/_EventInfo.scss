@@ -44,8 +44,7 @@
     width: 30%;
     &:hover,
     &:focus {
-      background: white;
-      color: black;
+      background: $mainColorDark;
     }
   }
 }

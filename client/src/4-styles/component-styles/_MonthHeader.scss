@@ -17,10 +17,8 @@
     font-size: 1.2rem;
     cursor: pointer;
     width: 10%;
-    &:hover,
-    &:focus {
-      color: white;
-    }
+
+    color: white;
   }
   &__hamburger {
     cursor: pointer;
@@ -39,10 +37,10 @@
     width: 0;
   }
   &__arrow--left {
-    border-right: 12px solid black;
+    border-right: 12px solid white;
   }
   &__arrow--right {
-    border-left: 12px solid black;
+    border-left: 12px solid white;
   }
 }
 
@@ -53,6 +51,7 @@
   &__year-name {
     font-size: 1.5rem;
     margin: 0 10px;
+    color: white;
   }
   .month__cells {
     background: white;

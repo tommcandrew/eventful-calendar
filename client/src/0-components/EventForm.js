@@ -101,12 +101,9 @@ const EventForm = ({
               className="event-form__clock"
               title="Add time"
               type="button"
+              onClick={() => setShowTimeList(!showTimeList)}
             >
-              <FontAwesomeIcon
-                icon={faClock}
-                className="clock"
-                onClick={() => setShowTimeList(!showTimeList)}
-              />
+              <FontAwesomeIcon icon={faClock} className="clock" />
             </button>
             {showTimeList && (
               <TimeList
@@ -118,14 +115,11 @@ const EventForm = ({
               className="event-form__icon-button"
               title="Add icon"
               type="button"
+              onClick={e => {
+                setShowIcons(!showIcons);
+              }}
             >
-              <FontAwesomeIcon
-                icon={faBirthdayCake}
-                className="cake"
-                onClick={e => {
-                  setShowIcons(!showIcons);
-                }}
-              />
+              <FontAwesomeIcon icon={faBirthdayCake} className="cake" />
             </button>
             {showIcons && (
               <Icons

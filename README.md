@@ -1,8 +1,8 @@
 [<p align="center"><img src="./client/src/5-images/calendar-icon.png" width="200px"></p>](http://eventful-calendar.co.uk/)
 
-<h1 style="text-align: center">Eventful</h1>
+<div style="text-align: center"><h1 >Eventful</h1></div>
 
-<h2 style="text-align: center">A calendar app built with React, Node.js, Express and MongoDB.</h2>
+<div style="text-align: center"><h2>A calendar app built with React, Node.js, Express and MongoDB.</h2></div>
 
 ---
 
@@ -39,7 +39,6 @@
   - [Languages](#languages)
   - [Light and dark mode](#light-and-dark)
   - [Modals](#modals)
-  - [My Events](#my-events)
   - [Printing](#printing)
   - [Responsive design](#responsive)
 
@@ -111,6 +110,8 @@ To edit an event's info, the user just clicks on the event and then clicks the E
 
 #### CALENDAR STRUCTURE
 
+<span id="calendar-structure" />
+
 The calendar itself is composed using two functions - [createYearArray()](./client/src/1-utils/createYearArray) and [createMonthArray()](./client/src/1-utils/createMonthArray). The first is triggered with an [effect hook](https://github.com/tommcandrew/eventful-calendar/blob/04fbde7f288f9b78c8406865443c042e6d5f4c7b/client/src/0-components/Calendar.js#L23-L30) in the Calendar component which runs when the _*dateObj*_ in context is set. This createYearArray simply calls the createMonthArray twelve times, passing in the year of the _*dateObj*_ and the value of _*i*_ from the for loop to represent the month, and pushes the returned arrays into a single year array. The createMonthArray function uses these arguments to get the date of the first day of the month, get the day index (e.g. 3 for Wednesday) and then count the number of days from the previous Sunday - these will be blank cells in the calendar. The JavaScript date object counts Sunday as the start of the week with an index of 0 so the function gives Sundays an index of 7 instead, so that there are 6 blanks before it if the month starts on a Sunday.
 
 Similarly, the function finds the date of the last day of the month and creates blanks for the end of the month by subtracting the number of preceding days and blanks already pushed onto the month array from 42 (the total number of cells).
@@ -126,6 +127,8 @@ There are three ways to change date in the calendar. In month-view, the user can
 In year-view, there are also arrows in the header which move the year either forward or back. A faster alternative to the arrows (if changing more than just a few years) is to click on the date between the arrows in the header in month-view. A drop down menu will appear with two scrollable lists - one for months and the other for years. The user can quickly jump to any month/year in the last century.
 
 #### COMPOSITION OF CALENDAR DAYS
+
+<span id="days" />
 
 Months are composed by [mapping](https://github.com/tommcandrew/eventful-calendar/blob/04fbde7f288f9b78c8406865443c042e6d5f4c7b/client/src/0-components/Month.js#L61-L72) over the month arrays produced by the [createMonthArray()](./client/src/1-utils/createMonthArray) function and returning a [Day](./client/src/0-components/Day.js) component.
 
@@ -145,6 +148,8 @@ In year-view, as the cells are so small, event bars and holiday bars cannot be d
 
 #### DATABASE
 
+<span id="database" />
+
 MongoDB is used to store data and Mongoose is used as a framework for interacting with the database. The app [connects](https://github.com/tommcandrew/eventful-calendar/blob/04fbde7f288f9b78c8406865443c042e6d5f4c7b/server.js#L15-L19) to the database in [server.js](./server.js). Only one Mongoose schema is used - [User](./mocels/User.model.js). This schema has 4 keys - name, email, password and events. The events key is set to an array which contains objects for each event.
 
 #### DRAG AND DROP
@@ -153,7 +158,7 @@ MongoDB is used to store data and Mongoose is used as a framework for interactin
 
 Thanks to the react-beautiful-dnd library, events can be easily dragged and dropped in a different day. A function called [onDragEnd()](https://github.com/tommcandrew/eventful-calendar/blob/04fbde7f288f9b78c8406865443c042e6d5f4c7b/client/src/0-components/Month.js#L26-L32) is called in the Month component when the user drops the event. This function calls the [moveEvent](https://github.com/tommcandrew/eventful-calendar/blob/04fbde7f288f9b78c8406865443c042e6d5f4c7b/client/src/2-context/EventsContext.js#L67-L94) function in EventsContext.
 
-The react-beautiful-dnd library provides a Draggable component (for events) and a Droppable component (for days). Droppables require a unique id. A [date string](https://github.com/tommcandrew/eventful-calendar/blob/04fbde7f288f9b78c8406865443c042e6d5f4c7b/client/src/0-components/Day.js#L90) has been used for these ids. The moveEvent function extracts the date of the destination day from this id, then maps over all the events (from context) and replaces the data of the matching event when it finds it. It then updates the local version of events before calling the moveEvent function on the backend which updates the database. Updates are performed in this order (local first, then database) because, otherwise, there would be a visible lag when the user drops the event.
+The react-beautiful-dnd library provides a Draggable component (for events) and a Droppable component (for days). Droppables require a unique id. A [date string](https://github.com/tommcandrew/eventful-calendar/blob/04fbde7f288f9b78c8406865443c042e6d5f4c7b/client/src/0-components/Day.js#L90) has been used for these ids. The moveEvent function extracts the date of the destination day from this id, then maps over all the events (from context) and replaces the date of the matching event when it finds it. It then updates the local version of events before calling the moveEvent function on the backend which updates the database. Updates are performed in this order (local first, then database) because, otherwise, there would be a visible lag when the user drops the event.
 
 #### HOLIDAYS
 
@@ -175,31 +180,63 @@ The list can also be navigated using the arrow keys. This is done by help of the
 
 <span id="languages" />
 
-Users can choose between four languages - English (default), French, Spanish and Turkish. The file siteText.js contains translations of each piece of text used in the app in the four languages. The correct option is retrived using bracket notation with the language value passed down from LanguageContext. There are separate files for the months and weekdays, also in the the four languages.
+Users can choose between four languages in [settings](./client/src/0-components/Settings.js) - English (default), French, Spanish and Turkish. The value of _*language*_ in [LanguageContext](./client/src/2-context/LanguageContext) is set with the function getInitialLanguage() which checks local storage for a saved preference and saves it to state if found, else sets the language as English. The [siteText](./client/src/3-data/siteText.js) file contains translations of each piece of text used in the app in the four languages. The correct option is retrieved within components using bracket notation with the language value passed down from LanguageContext. E.g. (the button element in the EventForm component):
+
+```javascript
+<button className="event-form__button" type="submit">
+  {addTextOptions[language]}
+</button>
+```
+
+This will retrieve one of the four translations of 'Add Event' found in the siteText file:
+
+```javascript
+export const addEventTextOptions = {
+  English: "Add Event",
+  Español: "Agrega Evento",
+  Français: "Ajouter Évènement",
+  Türkçe: "Etkinlik Ekle"
+};
+```
 
 #### LIGHT AND DARK MODE
 
 <img src="./gifs/change-theme.gif" width="600" id="light-and-dark">
 
-One of the options in settings is to choose between a light mode and dark mode. Light mode is the default and, with this set, days and modals will have a white background. In dark mode, the background color of days and modals is dark blue/purple. The styling is controlled using the Context API which tells each component which mode is currently set. This is then used to conditionally add classNames, e.g. month--dark. When the user changes this setting, the new preference is saved in local storage so it will be the same the next time they log in.
+One of the options in settings is to choose between a light mode and dark mode. Light mode is the default and, with this set, days and modals will have a white background. In dark mode, the background color of days and modals is dark blue/purple. The styling is controlled using context which tells each component which theme is currently set. This is then used to conditionally add classNames, e.g. month--dark. When the user changes this setting, the new preference is saved in local storage so it will be the same the next time they log in.
 
 #### MODALS
 
-#### MY EVENTS
+<span id="modals" />
 
-<span id="my-events" />
+The calendar has a total of 5 modal components - DayEvents, EventForm, EventInfo, MyEvents and Settings. As these components are closely related (e.g. they share styling, they're used to update events), they are all rendered by a parent [ModalContainer](./client/src/0-components/ModalContainer.js) component. This component manages most of the state used across the other ones and controls which modals should be shown and which hidden. It also contains [functions](https://github.com/tommcandrew/eventful-calendar/blob/1a61291ceee27bd544311f9c1cf937c2ad3fd97c/client/src/0-components/ModalContainer.js#L70-L112) for handling form submission and event deletion which are passed down as props to the appropriate child components.
+
+The [EventInfo](./client/src/0-components/EventInfo.js) modal displays a single event that the user has clicked and has two buttons - Edit and Delete. There are two ways to access this modal. The first is by clicking on an event in the DayEvents modal. The second is by clicking on an event in the MyEvents modal (accessed via the icon in the top right of the screen). One problem encountered during production was how to ensure that the back button in EventInfo returned the user to the modal that they came from. This problem was solved by setting a variable in state in ModalContainer called [viaMyEvents](https://github.com/tommcandrew/eventful-calendar/blob/1a61291ceee27bd544311f9c1cf937c2ad3fd97c/client/src/0-components/ModalContainer.js#L32). The handler function that opens the DayInfo modal accepts two arguments - the event and also an optional _*origin*_ argument. If the DayInfo modal is opened via the MyEvents modal, then _*viaMyEvents*_ is set to true. Then, when the [goBack()](https://github.com/tommcandrew/eventful-calendar/blob/1a61291ceee27bd544311f9c1cf937c2ad3fd97c/client/src/0-components/ModalContainer.js#L43-L52) function is called, it checks this variable and redirects the user accordingly.
 
 #### PRINTING
 
 <span id="printing" />
 
-A printer icon is in the top right of the screen. When clicked, it will open the print window on the user's computer ready to print whatever screen they were looking at (either whole year-view or single month-view). The orientation of the page will be set to landscape automatically. This is achieved with a media query.
+A printer icon can be found in the top right of the screen. When clicked, it will open the print window on the user's computer ready to print whatever screen they were looking at (either whole year-view or single month-view). The orientation of the page will be set to landscape automatically. This is achieved with [a media query]().
 
 #### RESPONSIVE DESIGN
 
 <img src="./gifs/mobile.gif" width="200" id="responsive">
 
-On mobile screens, only month-view is available. Also, the row of icons for My Account, My Events, Settings and Print does not appear in the header. Instead, there is a hamburger menu icon which opens an expanding menu with links to these components.
+On mobile screens, only month-view is available. Also, the row of icons for My Account, My Events, Settings and Print does not appear in the header. Instead, there is a hamburger menu icon which opens an expanding menu with links to these components. This is done by using app-wide DeviceContext. This component adds an event listener to the window on startup which will run a function called getWidth() whenever the window size changes. Whenever teh windowSize variable is updated, an effect hook runs which sets the _*device*_ variable in state to either "desktop", "mobile" or "tablet". This variable is accessible by all components and so elements can be rendered conditionally. E.g. (the hamburger menu icon in MonthHeader):
+
+```javascript
+{
+  device !== "desktop" && (
+    //HeaderLinks inside expandable menu on smaller screens
+    <div className="month-header__hamburger" onClick={() => setShowMenu(true)}>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  );
+}
+```
 
 ## License
 

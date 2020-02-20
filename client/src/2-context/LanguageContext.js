@@ -3,9 +3,9 @@ import React, { useState, createContext, useEffect } from "react";
 const LanguageContext = createContext();
 
 export const LanguageContextProvider = props => {
-  const [language, setLanguage] = useState(getInitialTheme);
+  const [language, setLanguage] = useState(getInitialLanguage);
 
-  function getInitialTheme() {
+  function getInitialLanguage() {
     const savedLanguage = JSON.parse(localStorage.getItem("language"));
     if (savedLanguage !== null) {
       return savedLanguage;

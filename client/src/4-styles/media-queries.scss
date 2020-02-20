@@ -148,3 +148,9 @@
     width: 70vw;
   }
 }
+
+@media print {
+  @page {
+    size: landscape;
+  }
+}

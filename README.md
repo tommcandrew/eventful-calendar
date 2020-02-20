@@ -149,6 +149,8 @@ Next, an array of classNames for the Day element is composed by calling the [get
 
 In year-view, each month has 6 rows (42 cells). This is so the size of each month on the screen is uniform. This is despite the fact that some months only take up 5 rows. In month-view, if the last row of a month does not have any days, it is hidden to provide more space on the screen. This is achieved by [applying a className](https://github.com/tommcandrew/eventful-calendar/blob/04fbde7f288f9b78c8406865443c042e6d5f4c7b/client/src/1-utils/getCellClassNames.js#L22-L25) of "hideRow" to the first cell in the 6th row if it has a date of -1 (i.e. if it's blank). This cell and all the cells after it are then hidden with a [CSS rule](https://github.com/tommcandrew/eventful-calendar/blob/04fbde7f288f9b78c8406865443c042e6d5f4c7b/client/src/4-styles/component-styles/_Day.scss#L124-L131).
 
+<img src="./gifs/hover.gif" width="600">
+
 In year-view, as the cells are so small, event bars and holiday bars cannot be displayed. Instead, these cells are highlighted a different color. When hovered, a tooltip-style message appears telling the user the name of any holiday on that day and whether that day is today and telling them the number of events they have on that day. For each day an array of these messages is created with the [getDayHoverMessages()](./client/src/1-utils/getDayHoverMessages.js) based on the holidayNames, eventsOnThisDay and classNames arrays created earlier.
 
 <span id="database" />

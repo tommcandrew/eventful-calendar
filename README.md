@@ -1,8 +1,8 @@
-[<img src="./client/src/5-images/calendar-icon.png" width="200px" >](http://eventful-calendar.co.uk/)
+[<p align="center"><img src="./client/src/5-images/calendar-icon.png" width="200px"></p>](http://eventful-calendar.co.uk/)
 
-# Eventful
+<h1 style="text-align: center">Eventful</h1>
 
-## A calendar app built with React, Node.js, Express and MongoDB.
+<h2 style="text-align: center">A calendar app built with React, Node.js, Express and MongoDB.</h2>
 
 ---
 
@@ -182,19 +182,6 @@ A printer icon is in the top right of the screen. When clicked, it will open the
 There are three ways to change the current date of the calendar. In month view, the user can click the arrows to go forward or back one month. The setMonth function which is triggered checks to see whether the new month index is either -1 or 12, meaning that the user has moved into the previous or following year respectively, and updates the year accordingly.
 
 In year view, there are also arrows which change the year either forward or back. A faster alternative to the arrows (if changing more than just a few years (is to click on the date at in the calendar header in month-view. A drop down menu will appear with two scrollable lists - one for months and the other for years. The user can quickly jump to any month/year in the last century.
-
-## Example (Optional)
-
-```javascript
-// code away!
-
-let generateProject = project => {
-  let code = [];
-  for (let js = 0; js < project.length; js++) {
-    code.push(js);
-  }
-};
-```
 
 ## License
 

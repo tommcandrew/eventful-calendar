@@ -5,7 +5,7 @@ import {
   settingsTextOptions,
   myAccountTextOptions,
   printTextOptions
-} from "../3-data/otherText";
+} from "../3-data/siteText";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUserCircle,

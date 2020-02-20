@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import LanguageContext from "../2-context/LanguageContext";
-import { editTextOptions, deleteTextOptions } from "../3-data/otherText";
+import { editTextOptions, deleteTextOptions } from "../3-data/siteText";
 
 const EventInfo = ({ handleDeleteEvent, handleShowForm, selectedEvent }) => {
   const { language } = useContext(LanguageContext);

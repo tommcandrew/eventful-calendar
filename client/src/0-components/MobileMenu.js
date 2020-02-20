@@ -4,7 +4,7 @@ import {
   myEventsTextOptions,
   settingsTextOptions,
   myAccountTextOptions
-} from "../3-data/otherText";
+} from "../3-data/siteText";
 
 const MobileMenu = ({
   handleShowMyEvents,

@@ -3,7 +3,7 @@ import months from "../3-data/months";
 import DateContext from "../2-context/DateContext";
 import LanguageContext from "../2-context/LanguageContext";
 import DeviceContext from "../2-context/DeviceContext";
-import { wholeYearTextOptions } from "../3-data/otherText";
+import { wholeYearTextOptions } from "../3-data/siteText";
 import HeaderLinks from "./HeaderLinks";
 import MobileMenu from "./MobileMenu";
 import DateSelect from "./DateSelect";

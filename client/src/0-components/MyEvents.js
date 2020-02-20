@@ -2,8 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import EventsContext from "../2-context/EventsContext";
 import LanguageContext from "../2-context/LanguageContext";
 import DateContext from "../2-context/DateContext";
-import { myEventsTextOptions } from "../3-data/otherText";
-import { noEventsTextOptions } from "../3-data/otherText";
+import { myEventsTextOptions, noEventsTextOptions } from "../3-data/siteText";
 import months from "../3-data/months";
 import sortEvents from "../1-utils/sortEvents";
 

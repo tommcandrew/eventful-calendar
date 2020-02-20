@@ -4,7 +4,7 @@ import LanguageContext from "./LanguageContext";
 import {
   eventSavedTextOptions,
   eventDeletedTextOptions
-} from "../3-data/otherText";
+} from "../3-data/siteText";
 import axios from "axios";
 
 const EventsContext = createContext();

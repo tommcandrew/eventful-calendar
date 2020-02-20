@@ -6,7 +6,7 @@ import {
   addTextOptions,
   charLimitTextOptions,
   eventTitleTextOptions
-} from "../3-data/otherText";
+} from "../3-data/siteText";
 import Icons from "./Icons";
 import TimeList from "./TimeList";
 

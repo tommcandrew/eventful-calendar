@@ -5,7 +5,7 @@ import {
   noEventsTextOptions,
   eventsOnThisDayTextOptions,
   addEventTextOptions
-} from "../3-data/otherText";
+} from "../3-data/siteText";
 
 const DayEvents = ({
   eventsOnThisDay,

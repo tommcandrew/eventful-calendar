@@ -9,7 +9,7 @@ import {
   languageTextOptions,
   themeTextOptions,
   holidaysTextOptions
-} from "../3-data/otherText";
+} from "../3-data/siteText";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import AutoComplete from "./AutoComplete";

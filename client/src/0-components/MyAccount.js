@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import AuthContext from "../2-context/AuthContext";
 import LanguageContext from "../2-context/LanguageContext";
-import { logOutTextOptions } from "../3-data/otherText";
+import { logOutTextOptions } from "../3-data/siteText";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 

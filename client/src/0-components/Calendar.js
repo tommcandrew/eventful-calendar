@@ -21,6 +21,8 @@ const Calendar = () => {
   const { theme } = useContext(ThemeContext);
 
   //generate calendar once dateObj is passed down from DateContext
+  //does this run every time the dateObj changes??
+  //shold there be a check to see whather the actual year has changed?
   useEffect(() => {
     if (dateObj) {
       const yearArray = createYearArray(dateObj.year);

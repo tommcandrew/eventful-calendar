@@ -35,17 +35,11 @@
 //BOTH VIEWS (LIGHT)
 .calendar--light .month {
   .cell {
-    &--day:hover {
-      background: #eee;
-    }
     &--with-event {
       position: relative;
     }
     &--today {
       background: $mainColorLight;
-      &:hover {
-        background: $mainColor;
-      }
     }
   }
 }
@@ -130,6 +124,15 @@
   }
 }
 
+//MONTH-VIEW (LIGHT)
+.calendar--light .month--month-view {
+  .cell {
+    &--day:hover {
+      background: #eee;
+    }
+  }
+}
+
 //MONTH-VIEW (DARK)
 .calendar--dark .month--month-view {
   .cell {
@@ -172,6 +175,9 @@
     &--with-holiday {
       background: rgb(170, 255, 170);
       transition: $themeTransition;
+      &:hover {
+        background: rgb(170, 255, 170);
+      }
     }
   }
 }

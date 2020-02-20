@@ -6,7 +6,7 @@ import LanguageContext from "../2-context/LanguageContext";
 const d = new Date();
 const currentYear = d.getFullYear();
 const yearList = [];
-for (let i = currentYear; i >= currentYear - 100; i--) {
+for (let i = currentYear; i <= currentYear + 100; i++) {
   yearList.push(i);
 }
 

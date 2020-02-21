@@ -1,4 +1,4 @@
-@media only screen and (max-width: 1264px) {
+@media only screen and (max-width: 800px) {
   .alert {
     width: 70%;
   }
@@ -49,10 +49,9 @@
     &__buttons {
       flex-direction: column;
       height: 20vh;
-      width: 80%;
     }
     &__button {
-      width: 35vw;
+      min-width: 30vw;
     }
   }
   .icons {
@@ -74,24 +73,16 @@
       width: 80%;
     }
   }
-  .modal-header {
-    &__content {
-      font-size: 1.3rem;
-      flex-direction: column;
-    }
-    &__date-info {
-      margin-top: 0.3rem;
-    }
-  }
   //adding specificity, otherwise not overriding main styles
   .calendar .month .month-header {
-    padding: 0 10px;
+    padding: 5px 10px;
     &__content {
       align-items: center;
       display: flex;
       justify-content: space-around;
       padding: 0 10px;
-      flex-grow: 1;
+      margin: 0 auto;
+      width: 70%;
     }
     &__month-name,
     &__year-name {
@@ -146,6 +137,25 @@
   }
   .time-list {
     width: 70vw;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .header-links {
+    width: 20%;
+  }
+  .modal-header {
+    &__content {
+      font-size: 1.3rem;
+      flex-direction: column;
+    }
+    &__date-info {
+      margin-top: 0.3rem;
+    }
+  }
+  .my-account {
+    height: 60vh;
+    min-width: 30vw;
   }
 }
 

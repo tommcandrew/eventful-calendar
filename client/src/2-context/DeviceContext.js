@@ -15,7 +15,7 @@ export const DeviceContextProvider = props => {
   useEffect(() => {
     if (windowSize > 1264) {
       setDevice("desktop");
-    } else if (windowSize < 1264 && windowSize > 480) {
+    } else if (windowSize < 1264 && windowSize > 800) {
       setDevice("tablet");
     } else {
       setDevice("mobile");

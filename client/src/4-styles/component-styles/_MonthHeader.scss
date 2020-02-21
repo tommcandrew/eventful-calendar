@@ -2,6 +2,7 @@
 .month-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 5px 0;
   position: relative;
   &__date-info {
@@ -9,6 +10,7 @@
     display: flex;
     justify-content: space-between;
     min-width: 55%;
+    margin: 0 auto;
     button {
       cursor: pointer;
     }
@@ -17,11 +19,13 @@
     font-size: 1.2rem;
     cursor: pointer;
     width: 10%;
-
+    position: absolute;
     color: white;
   }
   &__hamburger {
     cursor: pointer;
+    position: absolute;
+    left: 5px;
     & div {
       width: 35px;
       height: 5px;
@@ -57,11 +61,12 @@
     background: white;
   }
   &__content {
-    width: 20%;
-
+    min-width: 20%;
+    margin: 0 auto;
     position: relative;
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 }
 

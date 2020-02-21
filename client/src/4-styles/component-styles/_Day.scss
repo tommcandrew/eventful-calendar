@@ -152,9 +152,9 @@
 //YEAR VIEW (LIGHT AND DARK)
 .month--year-view {
   .cell {
-    flex-basis: calc(95% / 7);
+    flex-basis: calc(100% / 7);
     //giving margin so cells don't look joined up in year view (when they have --with-event bg color)
-    margin: 1px;
+    // margin: 1px;
     &__content {
       align-items: center;
       display: flex;
@@ -171,13 +171,12 @@
     &--with-event {
       background: $secondaryColor;
       transition: $themeTransition;
+      border: 1px solid white;
     }
     &--with-holiday {
       background: rgb(170, 255, 170);
       transition: $themeTransition;
-      &:hover {
-        background: rgb(170, 255, 170);
-      }
+      border: 1px solid white;
     }
   }
 }
@@ -187,10 +186,12 @@
   .cell {
     &--with-event {
       background: rgb(100, 22, 100);
+      border: 1px solid $darkThemeColor;
     }
     &--with-holiday {
       background: rgb(50, 82, 50);
       transition: $themeTransition;
+      border: 1px solid $darkThemeColor;
     }
   }
 }

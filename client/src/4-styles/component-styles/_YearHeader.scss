@@ -1,12 +1,11 @@
 .year-header {
   display: flex;
-  padding: 3px 10px;
   position: relative;
   &__content {
     align-items: center;
     display: flex;
     justify-content: space-between;
-    margin: 0 auto;
+    margin: 5px auto;
     width: 20%;
   }
   &__year-title {
@@ -15,8 +14,14 @@
     color: white;
   }
   &__app-name {
-    padding-top: 3px;
     color: white;
+    position: absolute;
+    left: 5px;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   &__links {
     &--left {

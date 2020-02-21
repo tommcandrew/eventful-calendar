@@ -7,7 +7,6 @@
   width: 100%;
   &__content {
     display: flex;
-    padding: 50px;
     text-align: center;
     height: 100%;
     flex-direction: column;
@@ -31,10 +30,11 @@
     display: flex;
     justify-content: space-between;
     margin: 0 auto;
-    width: 60%;
   }
   &__button {
-    width: 8vw;
+    min-width: 8vw;
+    white-space: nowrap;
+    margin: 0 3vw;
     @include button(white, 1.5rem);
     &:hover,
     &:focus {

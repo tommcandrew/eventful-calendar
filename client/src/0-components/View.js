@@ -22,7 +22,7 @@ const View = ({
   const { dateObj } = useContext(DateContext);
   const { device } = useContext(DeviceContext);
 
-  if (showWholeYear && device === "desktop") {
+  if (showWholeYear && device !== "mobile") {
     return (
       <>
         <YearHeader

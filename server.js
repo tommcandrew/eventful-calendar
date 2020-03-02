@@ -9,6 +9,8 @@ const PORT = 5000;
 const axios = require("axios");
 const CALENDARIFIC_KEY = process.env.CALENDARIFIC_KEY;
 const OPENCAGE_KEY = process.env.OPENCAGE_KEY;
+const Logger = require("./services/logger_service");
+const logger = new Logger("app");
 
 app.listen(PORT);
 
@@ -124,6 +126,9 @@ app.post("/moveevent/:id", verifyToken, (req, res) => {
 
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
+  if (email === "demouser@gmail.com" && password === "demo12345") {
+    logger.info("Demo user has logged in", { key: "value" });
+  }
   User.findOne({ email }).then(user => {
     if (!user) {
       res.status(403).send("That email is not registered");
@@ -219,6 +224,7 @@ app.get("/supportedCountries", (req, res) => {
 
 app.post("/countryInfo", (req, res) => {
   const { latitude, longitude } = req.body;
+  logger.info("User at location", { latitude, longitude });
   axios
     .get(
       `https://api.opencagedata.com/geocode/v1/json?key=${OPENCAGE_KEY}&q=${latitude},${longitude}&pretty=1&no_annotations=1`

@@ -9,8 +9,10 @@ const PORT = 5000;
 const axios = require("axios");
 const CALENDARIFIC_KEY = process.env.CALENDARIFIC_KEY;
 const OPENCAGE_KEY = process.env.OPENCAGE_KEY;
-const Logger = require("./services/logger_service");
-const logger = new Logger("app");
+const winston = require("winston");
+const logger = winston.createLogger({
+  transports: [new winston.transports.File({ filename: "logs.txt" })]
+});
 
 app.listen(PORT);
 
@@ -126,6 +128,7 @@ app.post("/moveevent/:id", verifyToken, (req, res) => {
 
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
+  const time = new Date(Date.now()).toUTCString();
   if (email === "demouser@gmail.com" && password === "demo12345") {
     logger.info("Demo user has logged in", { key: "value" });
   }
@@ -140,6 +143,7 @@ app.post("/login", (req, res) => {
           if (!isSame) {
             res.status(403).send("Wrong password");
           } else {
+            logger.info("User logging in: " + email + ", " + time);
             jwt.sign({ user }, "secretkey", (err, token) => {
               res.status(200).send({ token: token, userName: user.name });
             });
@@ -152,6 +156,7 @@ app.post("/login", (req, res) => {
 
 app.post("/register", (req, res) => {
   const { name, email, password, password2 } = req.body;
+  const time = new Date(Date.now()).toUTCString();
   if (password.length < 8) {
     res.status(500).send();
     return;
@@ -175,6 +180,7 @@ app.post("/register", (req, res) => {
     bcrypt.hash(user.password, salt, (err, hash) => {
       user.password = hash;
       user.save().then(user => {
+        logger.info("New user registering: " + email + ", " + time);
         jwt.sign({ user }, "secretkey", (err, token) => {
           res.send(token);
         });
@@ -224,7 +230,7 @@ app.get("/supportedCountries", (req, res) => {
 
 app.post("/countryInfo", (req, res) => {
   const { latitude, longitude } = req.body;
-  logger.info("User at location", { latitude, longitude });
+  logger.info("User at: " + latitude + " " + longitude);
   axios
     .get(
       `https://api.opencagedata.com/geocode/v1/json?key=${OPENCAGE_KEY}&q=${latitude},${longitude}&pretty=1&no_annotations=1`

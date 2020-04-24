@@ -44,11 +44,14 @@ export const HolidaysContextProvider = props => {
       localStorage.getItem("supportedCountries")
     );
     if (savedSupportedCountries) {
+      console.log('country list found in LS - saving to state')
       setSupportedCountries(savedSupportedCountries);
     } else {
+      console.log('country list not found in LS - making call to backend')
       axios
-        .get("/api/supportedCountries", { timeout: 5000 })
+        .get("/api/supportedCountries")
         .then(res => {
+          console.log('received list of countries from backend - saving to state and LS')
           setSupportedCountries(res.data);
           localStorage.setItem("supportedCountries", JSON.stringify(res.data));
         })
@@ -94,7 +97,7 @@ export const HolidaysContextProvider = props => {
         const latitude = pos.coords.latitude;
         const longitude = pos.coords.longitude;
         axios
-          .post("/api/countryInfo", { latitude, longitude }, { timeout: 5000 })
+          .post("/api/countryInfo", { latitude, longitude })
           .then(res => {
             setCountryObj({
               name: res.data.countryName,
@@ -107,9 +110,7 @@ export const HolidaysContextProvider = props => {
       },
       () => {
         setCountryObj({ name: "United Kingdom", code: "GB" });
-      },
-      { timeout: 5000 }
-    );
+      });
   };
 
   //5. When countryObj changes, save to LS. Before making API call, check both state and LS for that country's holidays. If not there, call fetchHolidays().
@@ -147,9 +148,7 @@ export const HolidaysContextProvider = props => {
       axios
         .post(
           "/api/holidays",
-          { country: countryObj.code, year: dateObj.year },
-          { timeout: 5000 }
-        )
+          { country: countryObj.code, year: dateObj.year })
         .then(res => {
           //this variable used to populate calendar
           setHolidays(res.data);

@@ -8,11 +8,13 @@ const bcrypt = require("bcryptjs");
 const PORT = 5000;
 const axios = require("axios");
 const CALENDARIFIC_KEY = process.env.CALENDARIFIC_KEY;
+
 const OPENCAGE_KEY = process.env.OPENCAGE_KEY;
 const winston = require("winston");
 const logger = winston.createLogger({
   transports: [new winston.transports.File({ filename: "logs.txt" })]
 });
+const path = require("path");
 
 app.listen(PORT);
 
@@ -23,6 +25,8 @@ mongoose.connect("mongodb://localhost:27017/eventful-calendar", {
 });
 
 app.use(express.json());
+
+app.use(express.static(path.join(__dirname, "client/build")))
 
 const verifyToken = (req, res, next) => {
   const bearer = req.headers["authorization"];
@@ -220,11 +224,11 @@ app.get("/supportedCountries", (req, res) => {
     )
     .then(response => {
       const countries = response.data.response.countries;
-
       res.status(200).send(countries);
     })
     .catch(err => {
       console.log(err);
+      res.status(500).send("Unable to get list of countries from API")
     });
 });
 
@@ -243,6 +247,7 @@ app.post("/countryInfo", (req, res) => {
     })
     .catch(err => {
       console.log(err);
+      res.status(500).send("Unable to get country info")
     });
 });
 

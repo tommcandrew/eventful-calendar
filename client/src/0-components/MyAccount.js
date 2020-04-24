@@ -11,7 +11,7 @@ const MyAccount = ({ setShowMyAccount }) => {
 
   const handleLogout = () => {
     if (userEmail === "demouser@gmail.com") {
-      axios.delete("/removeDemoEvents");
+      axios.delete("/api/removeDemoEvents");
     }
     setAuthenticated(false);
     localStorage.removeItem("my-token");
